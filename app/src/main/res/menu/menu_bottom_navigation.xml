@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/mainFragment"
+        android:title="@string/title_menu_main" />
+
+    <item
+        android:id="@id/dexFragment"
+        android:title="@string/title_menu_pokemon_dex" />
+
+    <item
+        android:id="@id/toolboxFragment"
+        android:title="@string/title_menu_toolbox" />
+</menu>

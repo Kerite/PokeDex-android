@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokemon Dex</string>
+    <string name="label_dex_fragment">宝可梦图鉴</string>
+    <string name="title_menu_toolbox">工具箱</string>
+    <string name="title_menu_main">主页</string>
+    <string name="title_menu_pokemon_dex">图鉴</string>
+</resources>
