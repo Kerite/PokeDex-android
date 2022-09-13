@@ -5,4 +5,6 @@
     <string name="title_menu_toolbox">工具箱</string>
     <string name="title_menu_main">主页</string>
     <string name="title_menu_pokemon_dex">图鉴</string>
+    <string name="notification_title_init_database">初始化数据库</string>
+    <string name="search">搜索</string>
 </resources>

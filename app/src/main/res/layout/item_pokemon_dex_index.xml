@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/pokemon_header"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="pokemon header"
@@ -34,10 +34,10 @@
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="pokemon type 1"
         app:layout_constraintStart_toEndOf="@id/pokemon_header"
-        app:layout_constraintTop_toBottomOf="@id/pokemon_name"
+        app:layout_constraintBottom_toBottomOf="@id/pokemon_header"
         tools:srcCompat="@drawable/poison" />
 
     <ImageView

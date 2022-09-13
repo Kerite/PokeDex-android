@@ -7,7 +7,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
+    <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
@@ -49,4 +49,6 @@
     <string name="title_menu_toolbox">Toolbox</string>
     <string name="title_menu_main">Main</string>
     <string name="title_menu_pokemon_dex">Dex</string>
+    <string name="notification_title_init_database">Initializing Database</string>
+    <string name="search">Search</string>
 </resources>

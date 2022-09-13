@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
 import com.kerite.pokedex.model.enums.PokemonType
 import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter
+import com.kerite.pokedex.viewmodel.MainActivityViewModel
 import com.kerite.pokedex.viewmodel.PokemonDexListViewModel
 import java.util.logging.Logger
 
@@ -20,6 +24,8 @@ import java.util.logging.Logger
  */
 class PokemonDexFragment : Fragment() {
     private lateinit var binding: FragmentPokemonDexBinding
+    private lateinit var pokemonListViewModel: PokemonDexListViewModel
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,20 +34,26 @@ class PokemonDexFragment : Fragment() {
     ): View {
         binding = FragmentPokemonDexBinding.inflate(layoutInflater)
 
-        val pokemonDexRecyclerView = binding.pokemonDexList
-        val testData = getTestData()
-        pokemonDexRecyclerView.layoutManager = LinearLayoutManager(this.context)
-        pokemonDexRecyclerView.adapter = PokemonDexRecyclerAdapter(testData)
+        setupRecyclerView()
 
         return binding.root
     }
 
-    private fun getTestData(): List<PokemonDexListViewModel> {
-        return arrayListOf(
-            PokemonDexListViewModel(1, "Ok", PokemonType.STEEL),
-            PokemonDexListViewModel(1, "Ok", PokemonType.BUG, PokemonType.DARK),
-            PokemonDexListViewModel(1, "Ok", PokemonType.BUG),
-            PokemonDexListViewModel(1, "Ok", PokemonType.BUG)
-        )
+    private fun setupRecyclerView() {
+        pokemonListViewModel =
+            ViewModelProvider(requireActivity())[PokemonDexListViewModel::class.java]
+        val adapter = PokemonDexRecyclerAdapter()
+        val pokemonDexRecyclerView = binding.pokemonDexList
+        pokemonDexRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        pokemonDexRecyclerView.adapter = adapter
+        pokemonListViewModel.setFilter("")
+
+        activityViewModel.searchFilter.observe(viewLifecycleOwner) { filter ->
+            Log.d("Filter", "Filter Updated to $filter")
+            pokemonListViewModel.setFilter(filter)
+        }
+        pokemonListViewModel.getPokemonList().observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 }
