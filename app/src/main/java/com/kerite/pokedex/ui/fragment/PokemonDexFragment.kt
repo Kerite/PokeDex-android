@@ -8,26 +8,26 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kerite.pokedex.R
 import com.kerite.pokedex.customview.BackPressedSearchView
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
-import com.kerite.pokedex.model.PokemonSearchFilter
 import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter
 import com.kerite.pokedex.ui.BaseFragment
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
 import com.kerite.pokedex.viewmodel.SearchViewModel
-import com.kerite.pokedex.viewmodel.PokemonDexFilterViewModel
-import com.kerite.pokedex.viewmodel.PokemonDexListViewModel
+import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvider {
-    private lateinit var pokemonListViewModel: PokemonDexListViewModel
+    private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
     private val activityViewModel: SearchViewModel by activityViewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
-    private val pokemonDexFilterViewModel: PokemonDexFilterViewModel by viewModels()
 
     override fun onInitView(savedInstanceState: Bundle?) {
         setupRecyclerView()
@@ -39,9 +39,10 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvid
                 showFilter()
             }
             // 观察浮动按钮的显示与否
-//            pokemonDexFilterViewModel.filterModeEnabled.observe(requireActivity()) { filterModeEnabled ->
-//                pokemonDexFilterFab.visibility = if (filterModeEnabled) View.GONE else View.VISIBLE
-//            }
+            // pokemonDexFilterViewModel.filterModeEnabled.observe(requireActivity()) { filterModeEnabled ->
+            //      pokemonDexFilterFab.visibility = if (filterModeEnabled) View.GONE else View.VISIBLE
+            // }
+            // 同步 浮动按钮 和 BottomNavigationView
             mainActivityViewModel.bottomOffset.observe(this@PokemonDexFragment) { offset ->
                 pokemonDexFilterFab.translationY = offset
             }
@@ -54,28 +55,17 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvid
 
     private fun setupRecyclerView() {
         binding.pokemonDexList.apply {
-            pokemonListViewModel =
-                ViewModelProvider(requireActivity())[PokemonDexListViewModel::class.java]
+            pokemonDexListAndFilterViewModel =
+                ViewModelProvider(requireActivity())[PokemonDexListAndFilterViewModel::class.java]
             val adapter = PokemonDexRecyclerAdapter()
             layoutManager = LinearLayoutManager(this.context)
             this.adapter = adapter
-            // 搜索框内容改变
-            activityViewModel.searchKeyword.observe(viewLifecycleOwner) { keyword ->
-                Log.d("Filter", "Filter Updated to $keyword")
-                pokemonListViewModel.setFilter(
-                    PokemonSearchFilter(
-                        "",
-                        pokemonDexFilterViewModel.filterType.value!!,
-                        pokemonDexFilterViewModel.filterRegionalVariant.value!!,
-                        pokemonDexFilterViewModel.filterGeneration.value!!
-                    )
-                )
-            }
-            // 查询结果中的内容改变
-            pokemonListViewModel.getPokemonList().observe(viewLifecycleOwner) {
-                adapter.submitList(it)
-            }
 
+            lifecycleScope.launch {
+                pokemonDexListAndFilterViewModel.pokemonList.collect {
+                    adapter.submitList(it)
+                }
+            }
         }
     }
 
@@ -96,12 +86,12 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvid
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                activityViewModel.search(query ?: "")
+                pokemonDexListAndFilterViewModel.updateSearchWord(query ?: "")
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                activityViewModel.search(newText ?: "")
+                pokemonDexListAndFilterViewModel.updateSearchWord(newText ?: "")
                 return true
             }
         })

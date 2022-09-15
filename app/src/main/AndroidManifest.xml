@@ -26,6 +26,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcut"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <activity
+            android:name=".ui.activity.SpeedCalculatorActivity"
+            android:theme="@style/Theme.PokemonDex">
+
         </activity>
     </application>
 
