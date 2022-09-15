@@ -1,4 +1,4 @@
-package com.kerite.pokedex.utils.image
+package com.kerite.pokedex.util.image
 
 import android.graphics.Bitmap
 

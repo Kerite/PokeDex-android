@@ -51,4 +51,19 @@
     <string name="title_menu_pokemon_dex">Dex</string>
     <string name="notification_title_init_database">Initializing Database</string>
     <string name="search">Search</string>
+    <string name="pokemon_search_filter">Pokemon Search Filter</string>
+    <string name="filter">Filter</string>
+    <string name="regional_variant">Regional Variant</string>
+    <string name="pokemon_type">Pokemon Type</string>
+    <string name="one">one</string>
+    <string name="two">two</string>
+    <string name="three">three</string>
+    <string name="four">four</string>
+    <string name="five">five</string>
+    <string name="six">six</string>
+    <string name="seven">seven</string>
+    <string name="eight">eight</string>
+    <string name="nine">nine</string>
+    <string name="generation">Generation %s</string>
+    <string name="generation_simple">Gen%d</string>
 </resources>

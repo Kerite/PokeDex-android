@@ -1,10 +1,9 @@
-package com.kerite.pokedex.utils
+package com.kerite.pokedex.util
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
-import java.io.InputStream
 
 fun makeStatusNotification(message: String, context: Context) {
     val builder = NotificationCompat.Builder(context, "")

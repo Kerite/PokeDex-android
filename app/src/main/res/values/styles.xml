@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 底部导航栏默认样式 -->
+    <style name="Widget.Pokedex.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+
+    </style>
+
+    <style name="Theme.Pokedex.ActionMode.CloseButton" parent="Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:tint">?attr/colorOnSurface</item>
+    </style>
+
+</resources>

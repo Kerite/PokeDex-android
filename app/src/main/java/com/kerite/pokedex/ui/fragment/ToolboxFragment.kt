@@ -1,4 +1,4 @@
-package com.kerite.pokedex.fragments
+package com.kerite.pokedex.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

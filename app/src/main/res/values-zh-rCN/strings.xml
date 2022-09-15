@@ -7,4 +7,20 @@
     <string name="title_menu_pokemon_dex">图鉴</string>
     <string name="notification_title_init_database">初始化数据库</string>
     <string name="search">搜索</string>
+    <string name="filter">过滤</string>
+    <string name="pokemon_type">属性</string>
+    <string name="action_settings">设置</string>
+    <string name="pokemon_search_filter">过滤...</string>
+    <string name="regional_variant">地区外形</string>
+    <string name="one">一</string>
+    <string name="two">二</string>
+    <string name="three">三</string>
+    <string name="four">四</string>
+    <string name="five">五</string>
+    <string name="six">六</string>
+    <string name="seven">七</string>
+    <string name="eight">八</string>
+    <string name="nine">九</string>
+    <string name="generation">第%s世代</string>
+    <string name="generation_simple">Gen%d</string>
 </resources>
