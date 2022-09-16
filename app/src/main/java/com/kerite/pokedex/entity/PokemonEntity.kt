@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.kerite.pokedex.model.enums.PokemonRegionalVariant
 import com.kerite.pokedex.model.enums.PokemonType
 
 @Entity(
@@ -18,7 +19,7 @@ data class PokemonEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "dex_number") val dexNumber: Int,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "sub_name") val subName: String?,
+    @ColumnInfo(name = "sub_name") val subName: PokemonRegionalVariant,
     @ColumnInfo(name = "type_1") val type1: PokemonType,
     @ColumnInfo(name = "type_2") val type2: PokemonType? = null,
     @ColumnInfo(name = "generation") val generation: Int,

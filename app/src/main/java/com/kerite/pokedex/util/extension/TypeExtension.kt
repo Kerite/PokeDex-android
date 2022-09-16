@@ -9,3 +9,5 @@ fun IntRange.toLinkedHashSet(): LinkedHashSet<Int> =
     LinkedHashSet<Int>().apply {
         addAll(this.toHashSet())
     }
+
+fun IntRange.toTypedArray(): Array<Int> = this.toList().toTypedArray()

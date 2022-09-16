@@ -30,7 +30,7 @@ class PokemonDexRecyclerAdapter() :
                 val bitmap = getBitmapFromAsset(context, path)
                 pokemonHeader.setImageBitmap(bitmap)
                 dexNumber.text = "#${pokemonDex.dexNumber}"
-                pokemonSubName.text = pokemonDex.subName
+                pokemonSubName.text = pokemonDex.subName.displayedName
                 pokemonDexGeneration.text = context.resources.getString(
                     R.string.generation_simple,
                     pokemonDex.generation

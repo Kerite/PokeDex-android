@@ -5,11 +5,14 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.TypeConverters
+import com.kerite.pokedex.converters.PokemonRegionalVariantConverter
 import com.kerite.pokedex.entity.PokemonEntity
 import com.kerite.pokedex.model.PokemonSearchFilter
 import com.kerite.pokedex.model.enums.PokemonRegionalVariant
 import com.kerite.pokedex.model.enums.PokemonType
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 @Dao
 interface PokemonDao {
@@ -22,9 +25,9 @@ interface PokemonDao {
     )
     fun filterFlowByNameAndFilter(
         name: String,
-        types: LinkedHashSet<PokemonType>,
-        subNames: LinkedHashSet<PokemonRegionalVariant>,
-        generation: LinkedHashSet<Int>
+        types: Set<PokemonType>,
+        subNames: Set<PokemonRegionalVariant>,
+        generation: Set<Int>
     ): Flow<List<PokemonEntity>>
 
     @Query(
@@ -34,9 +37,9 @@ interface PokemonDao {
                 "generation in (:generation)"
     )
     fun filterFlowByFilter(
-        types: LinkedHashSet<PokemonType>,
-        subNames: LinkedHashSet<PokemonRegionalVariant>,
-        generation: LinkedHashSet<Int>
+        types: Set<PokemonType>,
+        subNames: Set<PokemonRegionalVariant>,
+        generation: Set<Int>
     ): Flow<List<PokemonEntity>>
 
     @Query("SELECT * FROM pokemon_summary WHERE name LIKE '%' || :name || '%'")
@@ -44,6 +47,35 @@ interface PokemonDao {
 
     @Query("SELECT * FROM pokemon_summary")
     fun getAllFlow(): Flow<List<PokemonEntity>>
+
+    @Query(
+        "SELECT * FROM pokemon_summary WHERE " +
+                "name LIKE '%' || :name || '%' AND " +
+                "(type_1 in (:types) OR type_2 in (:types)) AND " +
+                "sub_name in (:subNames) AND " +
+                "generation in (:generation)"
+    )
+    fun filterByNameAndFilter(
+        name: String,
+        types: Set<PokemonType>,
+        subNames: Set<PokemonRegionalVariant>,
+        generation: Set<Int>
+    ): List<PokemonEntity>
+
+    @Query(
+        "SELECT * FROM pokemon_summary WHERE " +
+                "(type_1 in (:types) OR type_2 in (:types)) AND " +
+                "sub_name in (:subNames) AND " +
+                "generation in (:generation)"
+    )
+    fun filterByFilter(
+        types: LinkedHashSet<PokemonType>,
+        subNames: LinkedHashSet<PokemonRegionalVariant>,
+        generation: LinkedHashSet<Int>
+    ): List<PokemonEntity>
+
+    @Query("SELECT * FROM pokemon_summary WHERE name LIKE '%' || :name || '%'")
+    fun filterByName(name: String): List<PokemonEntity>
 
     @Query("SELECT * FROM pokemon_summary")
     fun getAll(): List<PokemonEntity>

@@ -1,6 +1,8 @@
 package com.kerite.pokedex.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,4 +26,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     }
 
     open fun onInitView(savedInstanceState: Bundle?) {}
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
 }

@@ -26,6 +26,6 @@
         tools:layout="@layout/fragment_toolbox" />
     <fragment
         android:id="@+id/dexFilterFragment"
-        android:name="com.kerite.pokedex.ui.widgets.PokemonDexFilter"
-        tools:layout="@layout/dialog_pokemon_dex_filter" />
+        android:name="com.kerite.pokedex.ui.fragment.PokemonDexFilterFragment"
+        tools:layout="@layout/fragment_pokemon_dex_filter" />
 </navigation>
