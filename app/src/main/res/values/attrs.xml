@@ -4,4 +4,12 @@
         <attr name="checked" format="boolean" />
         <attr name="maskColor" format="color" />
     </declare-styleable>
+    <declare-styleable name="PokemonStrengthWidget">
+        <attr name="hp" format="integer" />
+        <attr name="attack" format="integer" />
+        <attr name="defence" format="integer" />
+        <attr name="specialAttack" format="integer" />
+        <attr name="specialDefence" format="integer" />
+        <attr name="speed" format="integer" />
+    </declare-styleable>
 </resources>

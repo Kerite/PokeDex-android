@@ -40,6 +40,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
 //        }
     }
 
+    //region 初始化视图
     private fun initRegionalVariantFilter(
         types: Set<PokemonRegionalVariant> = setOf(*PokemonRegionalVariant.values())
     ) {
@@ -52,8 +53,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
                 types.contains(pokemonRegionalVariant)
             ) {
                 Log.d(
-                    "RegionalVariantButton",
-                    "${pokemonRegionalVariant.displayedName} checked $it"
+                    "RegionalVariantButton", "${pokemonRegionalVariant.displayedName} checked $it"
                 )
                 if (it) {
                     pokemonDexListAndFilterViewModel.addRegionalVariant(pokemonRegionalVariant)
@@ -110,12 +110,9 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
         checked: Boolean,
         checkedChangeListener: (Boolean) -> Unit
     ): SelectableTextView<T> {
-        val layoutParam =
-            GridLayout.LayoutParams(
-                GridLayout.spec(GridLayout.UNDEFINED, 1f),
-                GridLayout.spec(GridLayout.UNDEFINED, 1f)
-            )
-//            layoutParam.setGravity(Gravity.FILL)
+        val layoutParam = GridLayout.LayoutParams(
+            GridLayout.spec(GridLayout.UNDEFINED, 1f), GridLayout.spec(GridLayout.UNDEFINED, 1f)
+        )
         layoutParam.marginStart = 30
         layoutParam.marginEnd = 30
         layoutParam.bottomMargin = 20
@@ -136,6 +133,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
         parentView.addView(toggle, layoutParam)
         return toggle
     }
+    //endregion
 
     override fun onSaveInstanceState(outState: Bundle) {
         Log.d("Frag", "onSaveInstanceState")
@@ -159,7 +157,6 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         Log.d("Frag", "onViewStateRestored")
-//        onInitView(savedInstanceState)
         super.onViewStateRestored(savedInstanceState)
     }
 

@@ -23,4 +23,14 @@
     <string name="nine">九</string>
     <string name="generation">第%s世代</string>
     <string name="generation_simple">Gen%d</string>
+    <string name="hp">HP</string>
+    <string name="attack">攻击</string>
+    <string name="defence">防御</string>
+    <string name="special_attack">特攻</string>
+    <string name="special_defence">特防</string>
+    <string name="speed">速度</string>
+    <string name="total">总计</string>
+    <string name="level">等级</string>
+    <string name="nature">性格</string>
+    <string name="no_data">没有数据</string>
 </resources>

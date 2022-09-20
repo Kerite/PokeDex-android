@@ -32,7 +32,13 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name=".ui.activity.SpeedCalculatorActivity"
+            android:name=".ui.activity.PokemonDetailsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PokemonDex">
+
+        </activity>
+        <activity
+            android:name=".ui.activity.StatisticsCalculatorActivity"
             android:theme="@style/Theme.PokemonDex">
 
         </activity>

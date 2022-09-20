@@ -1,5 +1,7 @@
 package com.kerite.pokedex
 
+import androidx.datastore.preferences.core.booleanPreferencesKey
+
 // MSP图像每行的精灵数量
 val MSP_WIDTH = 30
 
@@ -32,3 +34,13 @@ const val INTENT_POKEMON_LIST = "pokemon_list"
 const val INTENT_TOOL_BOX = "tool_box"
 
 const val COUNT_GENERATION = 8
+
+val STATISTIC_PERCENT_BEFORE_THREE_GENERATION = listOf<Float>(
+    0.25f, 0.28f, 0.33f, 0.4f, 0.5f, 0.66f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f
+)
+
+/**
+ * 低性能模式
+ */
+val SETTINGS_LOW_PERFORMANCE_KEY = booleanPreferencesKey("low_performance")
+

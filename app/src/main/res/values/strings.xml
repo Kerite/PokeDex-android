@@ -66,4 +66,15 @@
     <string name="nine">nine</string>
     <string name="generation">Generation %s</string>
     <string name="generation_simple">Gen%d</string>
+    <string name="hp">HP</string>
+    <string name="attack">Attack</string>
+    <string name="defence">Defence</string>
+    <string name="special_attack">Sp.Atk</string>
+    <string name="special_defence">Sp.Def</string>
+    <string name="speed">Speed</string>
+    <string name="total">Total</string>
+    <string name="level">Level</string>
+    <string name="nature">Nature</string>
+    <string name="description_pokemon_icon">Pokemon Icon</string>
+    <string name="no_data">NO DATA</string>
 </resources>

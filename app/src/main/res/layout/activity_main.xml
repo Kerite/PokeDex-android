@@ -14,7 +14,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
@@ -33,5 +32,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/menu_bottom_navigation" />
-
 </com.kerite.pokedex.ui.widgets.ExtendedCoordinatorLayout>

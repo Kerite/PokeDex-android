@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/spacer_linear"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/hp" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/strength_hp"
+                style="@style/specie_strength_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/strength_bar_height"
+                android:max="255"
+                android:progressTint="#8ac654"
+                tools:progress="100" />
+
+            <TextView
+                android:id="@+id/strength_value_hp"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/strength_bar_height"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                tools:text="50" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/attack" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/strength_attack"
+                style="@style/specie_strength_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/strength_bar_height"
+                android:max="255"
+                android:progressTint="#f8cb3c"
+                tools:progress="100" />
+
+            <TextView
+                android:id="@+id/strength_value_attack"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/strength_bar_height"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/defence" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/strength_defence"
+                style="@style/specie_strength_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/strength_bar_height"
+                android:max="255"
+                android:progressTint="#d98837"
+                tools:progress="300" />
+
+            <TextView
+                android:id="@+id/strength_value_defence"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/strength_bar_height"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/special_attack" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/strength_special_attack"
+                style="@style/specie_strength_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/strength_bar_height"
+                android:max="255"
+                android:progressTint="#59c3d0"
+                tools:progress="100" />
+
+            <TextView
+                android:id="@+id/strength_value_special_attack"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/strength_bar_height"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/special_defence" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/strength_special_defence"
+                style="@style/specie_strength_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/strength_bar_height"
+                android:max="255"
+                android:progressTint="#5890cd"
+                tools:progress="50" />
+
+            <TextView
+                android:id="@+id/strength_value_special_defence"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/strength_bar_height"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/speed" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/strength_speed"
+                style="@style/specie_strength_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/strength_bar_height"
+                android:max="255"
+                android:progressTint="#a456d0"
+                tools:progress="50" />
+
+            <TextView
+                android:id="@+id/strength_value_speed"
+                android:layout_width="60dp"
+                android:layout_height="@dimen/strength_bar_height"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/spacer_linear"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:text="@string/total" />
+
+        <TextView
+            android:id="@+id/strength_value_total"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/strength_bar_height"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+</LinearLayout>

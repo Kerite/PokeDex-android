@@ -5,9 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kerite.pokedex.dao.PokemonDao
+import com.kerite.pokedex.dao.PokemonDetailsDao
+import com.kerite.pokedex.entity.PokemonDetailsEntity
 import com.kerite.pokedex.entity.PokemonEntity
 
-@Database(entities = [PokemonEntity::class], version = 1)
+@Database(
+    entities = [
+        PokemonEntity::class,
+        PokemonDetailsEntity::class
+    ], version = 1,
+    exportSchema = false
+)
 abstract class PokemonDatabase : RoomDatabase() {
     companion object {
         @Volatile
@@ -17,15 +25,6 @@ abstract class PokemonDatabase : RoomDatabase() {
             return pokemonDatabase ?: synchronized(this) {
                 pokemonDatabase
                     ?: Room.databaseBuilder(context, PokemonDatabase::class.java, "pokedex.db")
-//                        .addCallback(object : Callback() {
-//                            override fun onCreate(db: SupportSQLiteDatabase) {
-//                                super.onCreate(db)
-//                                val request =
-//                                    OneTimeWorkRequestBuilder<DatabaseInitialWork>()
-//                                        .build()
-//                                WorkManager.getInstance(context).enqueue(request)
-//                            }
-//                        })
                         .createFromAsset("database/pokedex.db")
                         .build()
             }
@@ -33,4 +32,6 @@ abstract class PokemonDatabase : RoomDatabase() {
     }
 
     abstract fun pokemonDao(): PokemonDao
+
+    abstract fun pokemonDetailsDao(): PokemonDetailsDao
 }
