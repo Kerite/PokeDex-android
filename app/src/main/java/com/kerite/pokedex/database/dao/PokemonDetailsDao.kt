@@ -1,8 +1,8 @@
-package com.kerite.pokedex.dao
+package com.kerite.pokedex.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.kerite.pokedex.entity.PokemonDetailsEntity
+import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

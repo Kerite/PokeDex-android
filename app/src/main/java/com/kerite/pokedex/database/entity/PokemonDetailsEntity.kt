@@ -1,4 +1,4 @@
-package com.kerite.pokedex.entity
+package com.kerite.pokedex.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

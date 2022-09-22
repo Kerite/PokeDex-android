@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kerite.pokedex.MSP_WIDTH
 import com.kerite.pokedex.R
+import com.kerite.pokedex.database.entity.PokemonEntity
 import com.kerite.pokedex.databinding.ItemPokemonDexIndexBinding
-import com.kerite.pokedex.entity.PokemonEntity
 
 class PokemonDexRecyclerAdapter(
-    val onClickListener: OnClickListener,
+    private val onClickListener: OnClickListener,
     val context: Context
 ) : ListAdapter<PokemonEntity, PokemonDexRecyclerAdapter.PokedexViewHolder>(diffCallback) {
 

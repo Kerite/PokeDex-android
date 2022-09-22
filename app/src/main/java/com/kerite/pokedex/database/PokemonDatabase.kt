@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kerite.pokedex.dao.PokemonDao
-import com.kerite.pokedex.dao.PokemonDetailsDao
-import com.kerite.pokedex.entity.PokemonDetailsEntity
-import com.kerite.pokedex.entity.PokemonEntity
+import com.kerite.pokedex.database.dao.PokemonDao
+import com.kerite.pokedex.database.dao.PokemonDetailsDao
+import com.kerite.pokedex.database.entity.PokemonDetailsEntity
+import com.kerite.pokedex.database.entity.PokemonEntity
 
 @Database(
     entities = [

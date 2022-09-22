@@ -6,8 +6,8 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
-import com.kerite.pokedex.entity.PokemonDetailsEntity
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.BaseActivity
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel

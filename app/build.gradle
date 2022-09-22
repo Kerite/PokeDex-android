@@ -40,10 +40,10 @@ android {
     flavorDimensions += "distribute"
 
     productFlavors {
-        create("appCenter") {
+        appCenter {
             dimension "distribute"
         }
-        create("googlePlay") {
+        googlePlay {
             dimension "distribute"
         }
     }

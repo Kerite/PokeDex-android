@@ -1,18 +1,14 @@
-package com.kerite.pokedex.dao
+package com.kerite.pokedex.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.TypeConverters
-import com.kerite.pokedex.converters.PokemonRegionalVariantConverter
-import com.kerite.pokedex.entity.PokemonEntity
-import com.kerite.pokedex.model.PokemonSearchFilter
+import com.kerite.pokedex.database.entity.PokemonEntity
 import com.kerite.pokedex.model.enums.PokemonRegionalVariant
 import com.kerite.pokedex.model.enums.PokemonType
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 
 @Dao
 interface PokemonDao {

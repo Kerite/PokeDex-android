@@ -1,4 +1,4 @@
-package com.kerite.pokedex.dao
+package com.kerite.pokedex.database.dao
 
 import androidx.room.Dao
 
