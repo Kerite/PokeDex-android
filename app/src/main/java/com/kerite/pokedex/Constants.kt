@@ -44,3 +44,5 @@ val STATISTIC_PERCENT_BEFORE_THREE_GENERATION = listOf<Float>(
  */
 val SETTINGS_LOW_PERFORMANCE_KEY = booleanPreferencesKey("low_performance")
 
+val SETTINGS_ANONYMOUS_ANALYTICS_ENABLED = booleanPreferencesKey("anonymous_analytics")
+
