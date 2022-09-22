@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 import java.lang.reflect.ParameterizedType
 
-val Int.dp: Int
+val Int.px: Int
     get() = (this / Resources.getSystem().displayMetrics.density).toInt()
 
-val Int.px: Int
+val Int.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+val Float.dp: Float
+    get() = this * Resources.getSystem().displayMetrics.density
 
 @Suppress("UNCHECKED_CAST")
 internal fun <T : ViewBinding> Any.inflateBinding(inflater: LayoutInflater): T {

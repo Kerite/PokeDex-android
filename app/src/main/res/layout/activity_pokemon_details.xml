@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activity.PokemonDetailsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,17 +16,20 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:contentScrim="?attr/colorSurface"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleCollapseMode="scale"
+            app:toolbarId="@+id/toolbar">
 
             <ImageView
+                android:id="@+id/pokemon_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/test_image"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7" />
+                android:layout_gravity="end"
+                android:contentDescription="@string/content_pokemon_image"
+                app:layout_collapseMode="parallax" />
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -41,22 +45,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="?android:attr/dividerVertical"
-            android:dividerPadding="8dp"
-            android:orientation="vertical"
-            android:showDividers="middle">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_standard">
+                android:layout_marginHorizontal="@dimen/margin_standard"
+                android:layout_marginVertical="@dimen/margin_standard">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/pokemon_name"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
-<!--                    tools:text="喷火龙" />-->
+                <TextView
+                    android:id="@+id/pokemon_dex_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    tools:text="#16" />
 
                 <TextView
                     android:id="@+id/pokemon_jp_name"
@@ -73,93 +75,264 @@
                     android:layout_gravity="bottom"
                     android:layout_marginStart="8dp"
                     tools:text="喷火龙" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                    <com.kerite.pokedex.ui.widgets.PokemonTypeView
+                        android:id="@+id/pokemon_type_1"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp" />
+
+                    <Space
+                        android:id="@+id/pokemon_type_space"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <com.kerite.pokedex.ui.widgets.PokemonTypeView
+                        android:id="@+id/pokemon_type_2"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp" />
+                </LinearLayout>
             </LinearLayout>
 
-            <GridLayout
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/basic_info"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_marginVertical="@dimen/margin_standard"
-                android:columnCount="6">
+                android:layout_margin="@dimen/margin_standard"
+                android:padding="@dimen/margin_middle">
 
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:gravity="center"
-                    android:text="@string/hp"
-                    android:textStyle="bold" />
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_middle"
+                    android:layout_marginVertical="@dimen/margin_standard"
+                    android:columnCount="2">
 
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:gravity="center"
-                    android:text="@string/attack"
-                    android:textStyle="bold" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/dex_description"
+                        android:layout_height="wrap_content"
+                        android:layout_columnSpan="2"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/margin_standard"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        tools:text="Here is the dex description of this pokemon, Here is the dex description of this pokemon" />
 
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:gravity="center"
-                    android:text="@string/defence"
-                    android:textStyle="bold" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pokemon_height"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:gravity="center_horizontal"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        tools:text="100m" />
 
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:gravity="center"
-                    android:text="@string/special_attack"
-                    android:textStyle="bold" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pokemon_weight"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:gravity="center_horizontal"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        tools:text="0.1kg" />
 
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:gravity="center"
-                    android:text="@string/special_defence"
-                    android:textStyle="bold" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginBottom="@dimen/margin_standard"
+                        android:gravity="center_horizontal"
+                        android:text="@string/height"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
 
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:gravity="center"
-                    android:text="@string/speed"
-                    android:textStyle="bold" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="@string/weight"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
 
-                <TextView
-                    android:id="@+id/ev_hp"
-                    android:layout_height="@dimen/ev_cell_height"
-                    android:layout_columnWeight="1"
-                    android:gravity="center" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/catch_rate"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        tools:text="45" />
 
-                <TextView
-                    android:id="@+id/ev_attack"
-                    android:layout_height="@dimen/ev_cell_height"
-                    android:layout_columnWeight="1"
-                    android:gravity="center" />
+                    <ImageView
+                        android:id="@+id/pokemon_body_image"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_columnWeight="1"
+                        android:contentDescription="@string/content_description_pokemon_body"
+                        tools:src="@drawable/body_bundle" />
 
-                <TextView
-                    android:id="@+id/ev_defence"
-                    android:layout_height="@dimen/ev_cell_height"
-                    android:layout_columnWeight="1"
-                    android:gravity="center" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:gravity="center"
+                        android:text="@string/catch_rate"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
 
-                <TextView
-                    android:id="@+id/ev_special_attack"
-                    android:layout_height="@dimen/ev_cell_height"
-                    android:layout_columnWeight="1"
-                    android:gravity="center" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pokemon_body"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                        tools:text="@string/body_bundle" />
+                </GridLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/ev_special_defence"
-                    android:layout_height="@dimen/ev_cell_height"
-                    android:layout_columnWeight="1"
-                    android:gravity="center" />
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/base_points"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-                <TextView
-                    android:id="@+id/ev_speed"
-                    android:layout_height="@dimen/ev_cell_height"
-                    android:layout_columnWeight="1"
-                    android:gravity="center" />
-            </GridLayout>
-
-            <com.kerite.pokedex.ui.widgets.PokemonStrengthWidget
-                android:id="@+id/pokemon_strength"
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/margin_standard" />
+                android:layout_margin="@dimen/margin_standard">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_margin="@dimen/margin_standard"
+                    android:columnCount="6">
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:gravity="center"
+                        android:text="@string/hp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:gravity="center"
+                        android:text="@string/attack"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:gravity="center"
+                        android:text="@string/defence"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:gravity="center"
+                        android:text="@string/special_attack"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:gravity="center"
+                        android:text="@string/special_defence"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_columnWeight="1"
+                        android:gravity="center"
+                        android:text="@string/speed"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ev_hp"
+                        android:layout_height="@dimen/ev_cell_height"
+                        android:layout_columnWeight="1"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/ev_attack"
+                        android:layout_height="@dimen/ev_cell_height"
+                        android:layout_columnWeight="1"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/ev_defence"
+                        android:layout_height="@dimen/ev_cell_height"
+                        android:layout_columnWeight="1"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/ev_special_attack"
+                        android:layout_height="@dimen/ev_cell_height"
+                        android:layout_columnWeight="1"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/ev_special_defence"
+                        android:layout_height="@dimen/ev_cell_height"
+                        android:layout_columnWeight="1"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/ev_speed"
+                        android:layout_height="@dimen/ev_cell_height"
+                        android:layout_columnWeight="1"
+                        android:gravity="center" />
+                </GridLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/species_strength"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_standard">
+
+                <com.kerite.pokedex.ui.widgets.PokemonStrengthWidget
+                    android:id="@+id/pokemon_strength"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_standard" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_standard">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/pokemon_egg_group_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

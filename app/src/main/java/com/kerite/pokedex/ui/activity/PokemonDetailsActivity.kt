@@ -1,15 +1,18 @@
 package com.kerite.pokedex.ui.activity
 
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.entity.PokemonDetailsEntity
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.BaseActivity
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>() {
     private lateinit var viewModel: DetailsActivityViewModel
@@ -28,6 +31,7 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>() {
                         is PokemonDetails.Found -> {
                             updateDetails(it.details)
                         }
+
                         else -> {
                             initPokemonDetail()
                         }
@@ -57,13 +61,36 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>() {
     }
 
     private fun updateDetails(details: PokemonDetailsEntity) {
-        Log.d("PokemonChanged", details.toString())
+        Timber.tag("PokemonChanged").d(details.toString())
         binding.apply {
             collapsingToolbar.title = details.name
+            pokemonDexNumber.text = "#" + details.dexNumber.toString()
             pokemonJpName.text = details.jpName
             pokemonEnName.text = details.enName
+            val imageUrl = Uri.parse(
+                "file:///android_asset/images/" + decidePicName(details.dexNumber)
+            )
+            Timber.d("Load Image" + imageUrl.path)
+            Glide.with(this@PokemonDetailsActivity)
+                .load(imageUrl).into(pokemonImage)
+            pokemonHeight.text = details.height + " m"
+            pokemonWeight.text = details.weight + " kg"
 
-            //<editor-fold desc="读取努力值">
+            pokemonType1.type = details.type1
+            if (details.type2 != null) {
+                pokemonType2.visibility = View.VISIBLE
+                pokemonTypeSpace.visibility = View.VISIBLE
+                pokemonType2.type = details.type2
+            } else {
+                pokemonType2.visibility = View.GONE
+                pokemonTypeSpace.visibility = View.GONE
+            }
+
+            pokemonBodyImage.setImageResource(details.body.icon)
+            pokemonBody.setText(details.body.displayedName)
+            catchRate.text = details.catchRate.toString()
+
+            //<editor-fold desc="读取努力值" defaultstate="collapsed">
             evHp.text = details.evHp.toString()
             evAttack.text = details.evAttack.toString()
             evDefence.text = details.evDefence.toString()
@@ -72,7 +99,7 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>() {
             evSpeed.text = details.evSpeed.toString()
             //</editor-fold>
 
-            //<editor-fold desc="读取种族值">
+            //<editor-fold desc="读取种族值" defaultstate="collapsed">
             pokemonStrength.hp = details.hp
             pokemonStrength.attack = details.attack
             pokemonStrength.defence = details.defence
@@ -83,7 +110,20 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>() {
         }
     }
 
+    private fun decidePicName(dexNumber: Int, subName: String? = null): String {
+        val assetList =
+            assets.list("images")?.filter { it.contains(String.format("%03d", dexNumber)) }
+        for (file in assetList!!) {
+            val splitFile = file.split("#")
+            if (subName == null && !splitFile[0].contains("_")) {
+                return file
+            }
+        }
+        return ""
+    }
+
     companion object {
         const val INTENT_DEX_NUMBER = "pokemon_dex"
+        private const val ASSET_POKEMON_IMAGE_DIR = "file:///android_asset/images/"
     }
 }
