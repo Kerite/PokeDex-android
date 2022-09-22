@@ -1,9 +1,8 @@
 package com.kerite.pokedex.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.GridLayout
 import androidx.annotation.ColorRes
 import androidx.lifecycle.ViewModelProvider
@@ -19,8 +18,9 @@ import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 
 class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>() {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
-    override fun onInitView(savedInstanceState: Bundle?) {
-        Log.d("Frag", "onCreateView")
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         pokemonDexListAndFilterViewModel =
             ViewModelProvider(requireActivity())[PokemonDexListAndFilterViewModel::class.java]
 
@@ -47,9 +47,6 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
                 pokemonRegionalVariant,
                 types.contains(pokemonRegionalVariant)
             ) {
-                Log.d(
-                    "RegionalVariantButton", "${pokemonRegionalVariant.displayedName} checked $it"
-                )
                 if (it) {
                     pokemonDexListAndFilterViewModel.addRegionalVariant(pokemonRegionalVariant)
                 } else {
@@ -129,31 +126,6 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
         return toggle
     }
     //endregion
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.d("Frag", "onSaveInstanceState")
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onAttach(context: Context) {
-        Log.d("Frag", "onAttach")
-        super.onAttach(context)
-    }
-
-    override fun onResume() {
-        Log.d("Frag", "onResume")
-        super.onResume()
-    }
-
-    override fun onPause() {
-        Log.d("Frag", "onPause")
-        super.onPause()
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        Log.d("Frag", "onViewStateRestored")
-        super.onViewStateRestored(savedInstanceState)
-    }
 
     companion object {
         val FULL_GENERATIONS = (1..COUNT_GENERATION).toTypedArray()

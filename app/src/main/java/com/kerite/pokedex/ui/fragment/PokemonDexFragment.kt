@@ -6,8 +6,12 @@ import android.animation.TimeInterpolator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.MenuItem.OnActionExpandListener
+import android.view.View
+import android.view.ViewPropertyAnimator
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -22,19 +26,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.bumptech.glide.Glide
 import com.kerite.pokedex.R
-import com.kerite.pokedex.SETTINGS_LOW_PERFORMANCE_KEY
 import com.kerite.pokedex.customview.BackPressedSearchView
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
 import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter
-import com.kerite.pokedex.settingsDataStore
 import com.kerite.pokedex.ui.BaseFragment
 import com.kerite.pokedex.ui.activity.PokemonDetailsActivity
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
-import com.kerite.pokedex.viewmodel.SearchViewModel
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
+import com.kerite.pokedex.viewmodel.SearchViewModel
 import kotlinx.coroutines.launch
 
 class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvider {
@@ -46,7 +45,9 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvid
     private val showFilterAnimInterpolator: TimeInterpolator = LinearOutSlowInInterpolator()
     private val hideFilterAnimInterpolator: TimeInterpolator = FastOutLinearInInterpolator()
 
-    override fun onInitView(savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -60,7 +61,7 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvid
             //      pokemonDexFilterFab.visibility = if (filterModeEnabled) View.GONE else View.VISIBLE
             // }
             // 同步 浮动按钮 和 BottomNavigationView
-            mainActivityViewModel.bottomOffset.observe(this@PokemonDexFragment) { offset ->
+            mainActivityViewModel.bottomOffset.observe(viewLifecycleOwner) { offset ->
                 pokemonDexFilterFab.translationY = offset
             }
         }

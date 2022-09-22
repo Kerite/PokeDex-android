@@ -6,6 +6,7 @@ import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import timber.log.Timber
 
 class PokedexApplication : Application() {
     override fun onCreate() {
@@ -22,6 +23,10 @@ class PokedexApplication : Application() {
                 Crashes::class.java,
                 Analytics::class.java
             )
+        }
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
         }
     }
 }
