@@ -5,18 +5,14 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kerite.pokedex.MSP_WIDTH
-import com.kerite.pokedex.PokedexApplication
 import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.ItemPokemonDexIndexBinding
-import com.kerite.pokedex.entity.PokemonDetailsEntity
 import com.kerite.pokedex.entity.PokemonEntity
-import com.kerite.pokedex.util.getBitmapFromAsset
 
 class PokemonDexRecyclerAdapter(
     val onClickListener: OnClickListener,
@@ -31,7 +27,7 @@ class PokemonDexRecyclerAdapter(
 //            Log.e("ViewHolder", "Binding${pokemonDex}")
             binding.apply {
                 pokemonName.text = pokemonDex.name
-                pokemonType1.setImageBitmap(PokedexApplication.getTypeImage(pokemonDex.type1))
+                pokemonType1.type = pokemonDex.type1
                 val path =
                     "file:///android_asset/small_icon/${pokemonDex.iconRowIndex * MSP_WIDTH + pokemonDex.iconColumnIndex}.png"
                 Glide.with(context)
@@ -47,7 +43,7 @@ class PokemonDexRecyclerAdapter(
 
             if (pokemonDex.type2 != null) {
                 binding.pokemonType2.visibility = View.VISIBLE
-                binding.pokemonType2.setImageBitmap(PokedexApplication.getTypeImage(pokemonDex.type2))
+                binding.pokemonType2.type = pokemonDex.type2
             } else {
                 binding.pokemonType2.visibility = View.INVISIBLE
             }

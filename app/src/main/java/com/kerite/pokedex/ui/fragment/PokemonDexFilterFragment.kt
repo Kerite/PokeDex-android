@@ -1,15 +1,12 @@
 package com.kerite.pokedex.ui.fragment
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.View
 import android.widget.GridLayout
-import androidx.fragment.app.activityViewModels
+import androidx.annotation.ColorRes
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.kerite.pokedex.COUNT_GENERATION
 import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.FragmentPokemonDexFilterBinding
@@ -19,8 +16,6 @@ import com.kerite.pokedex.ui.BaseFragment
 import com.kerite.pokedex.ui.widgets.SelectableTextView
 import com.kerite.pokedex.util.extension.toTypedArray
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>() {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
@@ -47,7 +42,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
         for (pokemonRegionalVariant in PokemonRegionalVariant.values()) {
             val button = createButton(
                 pokemonRegionalVariant.displayedName,
-                "#39c5bb",
+                R.color.regional_variant_background,
                 binding.gridPokemonRegionalVariant,
                 pokemonRegionalVariant,
                 types.contains(pokemonRegionalVariant)
@@ -67,8 +62,8 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
     private fun initTypeFilter(types: Set<PokemonType> = setOf(*PokemonType.values())) {
         for (pokemonType in PokemonType.values()) {
             val button = createButton(
-                pokemonType.typeName,
-                pokemonType.color,
+                resources.getString(pokemonType.nameRes),
+                pokemonType.colorRes,
                 binding.gridPokemonTypeToggle,
                 pokemonType,
                 types.contains(pokemonType)
@@ -88,7 +83,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
         for (generation in (1..COUNT_GENERATION).toTypedArray()) {
             val button = createButton(
                 generation.toString(),
-                "#bbc539",
+                R.color.generation_button_background,
                 binding.gridGenerationToggle,
                 generation,
                 generations.contains(generation)
@@ -104,7 +99,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
 
     private fun <T> createButton(
         name: String,
-        color: String,
+        @ColorRes color: Int,
         parentView: GridLayout,
         mappedData: T,
         checked: Boolean,
@@ -120,7 +115,7 @@ class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>()
 
         val toggle = SelectableTextView<T>(requireContext())
         toggle.text = name
-        toggle.setBackgroundColor(Color.parseColor(color))
+        toggle.setBackgroundResource(color)
         toggle.gravity = Gravity.CENTER
         toggle.setTextAppearance(R.style.SelectableTextViewText)
         toggle.width = 0

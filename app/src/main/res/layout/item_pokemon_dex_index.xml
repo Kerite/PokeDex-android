@@ -54,34 +54,30 @@
             tools:text="Test Text" />
 
         <TextView
-            tools:text="Gen8"
             android:id="@+id/pokemon_dex_generation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/dex_number"
-            app:layout_constraintTop_toBottomOf="@+id/dex_number" />
+            app:layout_constraintTop_toBottomOf="@+id/dex_number"
+            tools:text="Gen8" />
 
-        <ImageView
+        <com.kerite.pokedex.ui.widgets.PokemonTypeView
             android:id="@+id/pokemon_type_1"
             android:layout_width="60dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
-            android:contentDescription="pokemon type 1"
             app:layout_constraintBottom_toBottomOf="@id/pokemon_header"
-            app:layout_constraintStart_toEndOf="@id/pokemon_header"
-            tools:srcCompat="@drawable/poison" />
+            app:layout_constraintStart_toEndOf="@id/pokemon_header" />
 
-        <ImageView
+        <com.kerite.pokedex.ui.widgets.PokemonTypeView
             android:id="@+id/pokemon_type_2"
             android:layout_width="60dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:contentDescription="pokemon type 2"
             app:layout_constraintStart_toEndOf="@id/pokemon_type_1"
-            app:layout_constraintTop_toTopOf="@id/pokemon_type_1"
-            tools:srcCompat="@drawable/bug" />
+            app:layout_constraintTop_toTopOf="@id/pokemon_type_1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

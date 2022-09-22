@@ -2,10 +2,10 @@
     <string name="app_name">Pokemon Dex</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
 
     <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -44,7 +44,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="label_dex_fragment">Pokemon Dex</string>
     <string name="title_menu_toolbox">Toolbox</string>
     <string name="title_menu_main">Main</string>
@@ -77,4 +77,64 @@
     <string name="nature">Nature</string>
     <string name="description_pokemon_icon">Pokemon Icon</string>
     <string name="no_data">NO DATA</string>
+    <string name="base_points">Base Points</string>
+    <string name="species_strength">Species Strength</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="content_pokemon_image">Pokemon Image</string>
+    <string name="basic_info">Basic Info</string>
+    <string name="body_ball">Ball</string>
+    <string name="body_snake">Snake</string>
+    <string name="body_fish">Fish</string>
+    <string name="body_dual_hands">Dual Hands</string>
+    <string name="body_pillar">Pillar</string>
+    <string name="body_dual_foots_monster">Dual Foots Monster</string>
+    <string name="body_dual_legs">Dual Legs</string>
+    <string name="body_quadruple_foots_monster">Quadruple Foots Monster</string>
+    <string name="body_dual_wings">Dual Wings</string>
+    <string name="body_tentacle">Tentacle</string>
+    <string name="body_bundle">Bundle</string>
+    <string name="body_human">Human</string>
+    <string name="body_multi_wings">Multi Wings</string>
+    <string name="body_bug">Bugs</string>
+    <string name="body_unknown">Unknown</string>
+    <string name="content_pokemon_body_icon">Pokemon Body Icon</string>
+    <string name="catch_rate">Catch Rate</string>
+    <string name="body">Body</string>
+    <string name="type_normal">Normal</string>
+    <string name="type_flying">Flying</string>
+    <string name="type_fire">Fire</string>
+    <string name="type_psychic">Psychic</string>
+    <string name="type_water">Water</string>
+    <string name="type_bug">Bug</string>
+    <string name="type_electric">Electric</string>
+    <string name="type_rock">Rock</string>
+    <string name="type_grass">Grass</string>
+    <string name="type_ghost">Ghost</string>
+    <string name="type_ice">Ice</string>
+    <string name="type_dragon">Dragon</string>
+    <string name="type_fighting">Fighting</string>
+    <string name="type_dark">Dark</string>
+    <string name="type_poison">Poison</string>
+    <string name="type_steel">Steel</string>
+    <string name="type_ground">Ground</string>
+    <string name="type_fairy">Fairy</string>
+    <string name="egg_group_monster">Monster</string>
+    <string name="egg_group_water_1">Water 1</string>
+    <string name="egg_group_bug">Bug</string>
+    <string name="egg_group_flying">Flying</string>
+    <string name="egg_group_field">Field</string>
+    <string name="egg_group_fairy">Fairy</string>
+    <string name="egg_group_grass">Grass</string>
+    <string name="egg_group_human_like">Human-Like</string>
+    <string name="egg_group_water_3">Water 3</string>
+    <string name="egg_group_mineral">Mineral</string>
+    <string name="egg_group_amorphous">Amorphous</string>
+    <string name="egg_group_water_2">Water 2</string>
+    <string name="egg_group_ditto">Ditto</string>
+    <string name="egg_group_dragon">Dragon</string>
+    <string name="egg_group_undiscovered">Undiscovered</string>
+    <string name="egg_group_gender_unknown">Gender Unknown</string>
+    <string name="content_description_pokemon_icon">Pokemon Icon</string>
+    <string name="content_description_pokemon_body">Pokemon Body</string>
 </resources>

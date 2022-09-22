@@ -12,4 +12,26 @@
         <attr name="specialDefence" format="integer" />
         <attr name="speed" format="integer" />
     </declare-styleable>
+    <declare-styleable name="PokemonTypeView">
+        <attr name="type" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="flying" value="1" />
+            <enum name="fire" value="2" />
+            <enum name="psychic" value="3" />
+            <enum name="water" value="4" />
+            <enum name="bug" value="5" />
+            <enum name="electric" value="6" />
+            <enum name="rock" value="7" />
+            <enum name="grass" value="8" />
+            <enum name="ghost" value="9" />
+            <enum name="ice" value="10" />
+            <enum name="dragon" value="11" />
+            <enum name="fighting" value="12" />
+            <enum name="dark" value="13" />
+            <enum name="poison" value="14" />
+            <enum name="steel" value="15" />
+            <enum name="ground" value="16" />
+            <enum name="fairy" value="17" />
+        </attr>
+    </declare-styleable>
 </resources>

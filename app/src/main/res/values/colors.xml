@@ -3,4 +3,28 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="miku">#39c5bb</color>
+
+    <color name="regional_variant_background">@color/miku</color>
+    <color name="generation_button_background">#bbc539</color>
+
+    <color name="type_normal">#9199a1</color>
+    <color name="type_flying">#8ea8de</color>
+    <color name="type_fire">#fe9c54</color>
+    <color name="type_psychic">#f97178</color>
+    <color name="type_water">#4f90d5</color>
+    <color name="type_bug">#91c02e</color>
+    <color name="type_electric">#f4d23c</color>
+    <color name="type_rock">#c5b78b</color>
+    <color name="type_grass">#62bb5a</color>
+    <color name="type_ghost">#5269ac</color>
+    <color name="type_ice">#73cebf</color>
+    <color name="type_dragon">#0a6dc2</color>
+    <color name="type_fight">#cd406a</color>
+    <color name="type_dark">#5a5365</color>
+    <color name="type_poison">#a96ac8</color>
+    <color name="type_steel">#5a8da1</color>
+    <color name="type_ground">#d87844</color>
+    <color name="type_fairy">#eb8fe6</color>
+
+    <color name="type_background_filter">#cf4f4F4f</color>
 </resources>

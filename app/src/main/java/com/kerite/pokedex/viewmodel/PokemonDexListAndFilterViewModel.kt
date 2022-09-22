@@ -12,8 +12,13 @@ import com.kerite.pokedex.model.enums.PokemonType
 import com.kerite.pokedex.util.extension.addValue
 import com.kerite.pokedex.util.extension.removeValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PokemonDexListAndFilterViewModel(application: Application) : AndroidViewModel(application) {
@@ -131,26 +136,14 @@ class PokemonDexListAndFilterViewModel(application: Application) : AndroidViewMo
     }
 
     fun removePokemonType(value: PokemonType) {
-        Log.d(
-            "PokemonDexFilter",
-            "Add PokemonType ${value.typeName}"
-        )
         mFilterType.removeValue(value)
     }
 
     fun addRegionalVariant(value: PokemonRegionalVariant) {
-        Log.d(
-            "PokemonDexFilter",
-            "Add RegionalVariant ${value.displayedName}"
-        )
         mFilterRegionalVariant.addValue(value)
     }
 
     fun removeRegionalVariant(value: PokemonRegionalVariant) {
-        Log.d(
-            "PokemonDexFilter",
-            "Remove RegionalVariant ${value.displayedName}"
-        )
         mFilterRegionalVariant.removeValue(value)
     }
 
