@@ -1,22 +1,29 @@
 package com.kerite.pokedex.model.enums
 
+import androidx.annotation.StringRes
+import com.kerite.pokedex.R
+
+/**
+ * 蛋组信息
+ */
+@Suppress("unused")
 enum class EggGroup(
-    val displayedName: String
+    @StringRes val displayedName: Int
 ) {
-    MONSTER("怪兽"),
-    WATER_1("水中1"),
-    BUG("虫"),
-    FLYING("飞行"),
-    FIELD("陆上"),
-    FAIRY("妖精"),
-    GRASS("植物"),
-    HUMAN_LIKE("人型"),
-    WATER_3("水中3"),
-    MINERAL("矿物"),
-    AMORPHOUS("不定形"),
-    WATER_2("水中2"),
-    DITTO("百变怪"),
-    DRAGON("龙"),
-    UNDISCOVERED("未发现"),
-    GENDER_UNKNOWN("性别不明");
+    MONSTER(R.string.egg_group_monster),
+    WATER_1(R.string.egg_group_water_1),
+    BUG(R.string.egg_group_bug),
+    FLYING(R.string.egg_group_flying),
+    FIELD(R.string.egg_group_field),
+    FAIRY(R.string.egg_group_fairy),
+    GRASS(R.string.egg_group_grass),
+    HUMAN_LIKE(R.string.egg_group_human_like),
+    WATER_3(R.string.egg_group_water_3),
+    MINERAL(R.string.egg_group_mineral),
+    AMORPHOUS(R.string.egg_group_amorphous),
+    WATER_2(R.string.egg_group_water_2),
+    DITTO(R.string.egg_group_ditto),
+    DRAGON(R.string.egg_group_dragon),
+    UNDISCOVERED(R.string.egg_group_undiscovered),
+    GENDER_UNKNOWN(R.string.egg_group_gender_unknown);
 }
