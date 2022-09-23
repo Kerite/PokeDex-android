@@ -22,9 +22,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener
-import com.bumptech.glide.Glide
 import com.kerite.pokedex.R
 import com.kerite.pokedex.customview.BackPressedSearchView
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
@@ -119,18 +116,18 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(
             layoutManager = LinearLayoutManager(this.context)
             this.adapter = adapter
 
-            addOnScrollListener(object : OnScrollListener() {
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        Glide.with(this@apply.context).resumeRequests()
-                    } else {
-                        if (mainActivityViewModel.performanceModeFlow.value == true) {
-                            Glide.with(this@apply.context).pauseRequests()
-                        }
-                    }
-                }
-            })
+//            addOnScrollListener(object : OnScrollListener() {
+//                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                    super.onScrollStateChanged(recyclerView, newState)
+//                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                        Glide.with(this@apply.context).resumeRequests()
+//                    } else {
+//                        if (mainActivityViewModel.performanceModeFlow.value == true) {
+//                            Glide.with(this@apply.context).pauseRequests()
+//                        }
+//                    }
+//                }
+//            })
 
             lifecycleScope.launch {
                 pokemonDexListAndFilterViewModel.pokemonList.collect {

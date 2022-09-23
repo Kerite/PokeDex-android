@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import coil.request.Disposable
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -13,16 +14,14 @@ import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.BaseActivity
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
 ) {
     private lateinit var viewModel: DetailsActivityViewModel
+    private var imageLoadDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +30,7 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
 
         binding.apply {
             setSupportActionBar(toolbar)
+
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             lifecycleScope.launch {
                 viewModel.currentPokemonDetail.collect {
@@ -97,16 +97,25 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             pokemonDexNumber.text = "#" + details.dexNumber.toString()
             pokemonJpName.text = details.jpName
             pokemonEnName.text = details.enName
-            CoroutineScope(Dispatchers.IO).launch {
-                val imageUrl = Uri.parse(
-                    "file:///android_asset/images/" + decidePicName(details.dexNumber, details.formName, details.name)
-                )
-                Timber.d("Load Image" + imageUrl.path)
-                withContext(Dispatchers.Main) {
-                    Glide.with(this@PokemonDetailsActivity)
-                        .load(imageUrl).into(pokemonImage)
-                }
-            }
+//            CoroutineScope(Dispatchers.IO).launch {
+//                val imageUrl = Uri.parse(
+//                    "file:///android_asset/images/" + decidePicName(details.dexNumber, details.formName, details.name)
+//                )
+//                Timber.d("Load Image" + imageUrl.path)
+//
+//            }
+            val text = "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace("##", "#")
+            Timber.tag("LoadImage").d(text)
+            Glide.with(this@PokemonDetailsActivity)
+                .load(Uri.parse(text))
+                .into(pokemonImage)
+//            if (imageLoadDisposable != null) {
+//                imageLoadDisposable!!.dispose()
+//            }
+//            imageLoadDisposable = pokemonImage.load(Uri.parse(text))
+//            Glide.with(this@PokemonDetailsActivity)
+//                .load(Uri.parse(text))
+//                .into(pokemonImage)
             pokemonHeight.text = details.height + " m"
             pokemonWeight.text = details.weight + " kg"
 
@@ -163,7 +172,7 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
                 return file
             }
         }
-        return ""
+        return assetList.first()
     }
 
     companion object {

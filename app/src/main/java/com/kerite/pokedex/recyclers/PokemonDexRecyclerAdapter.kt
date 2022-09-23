@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import com.kerite.pokedex.MSP_WIDTH
 import com.kerite.pokedex.R
 import com.kerite.pokedex.database.entity.PokemonEntity
@@ -30,9 +30,7 @@ class PokemonDexRecyclerAdapter(
                 pokemonType1.type = pokemonDex.type1
                 val path =
                     "file:///android_asset/small_icon/${pokemonDex.iconRowIndex * MSP_WIDTH + pokemonDex.iconColumnIndex}.png"
-                Glide.with(context)
-                    .load(Uri.parse(path))
-                    .into(pokemonHeader)
+                pokemonHeader.load(Uri.parse(path))
                 dexNumber.text = "#${pokemonDex.dexNumber}"
                 pokemonSubName.text = pokemonDex.subName.displayedName
                 pokemonDexGeneration.text = context.resources.getString(
