@@ -6,12 +6,17 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.BaseActivity
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
@@ -40,6 +45,29 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
                     }
                 }
             }
+            lifecycleScope.launch {
+                viewModel.pokemonDetails.collect {
+                    pokemonSubnameTab.removeAllTabs()
+                    for (detail in it) {
+                        pokemonSubnameTab.addTab(pokemonSubnameTab.newTab().setText(detail.formName ?: detail.name))
+                    }
+                }
+            }
+            pokemonSubnameTab.addOnTabSelectedListener(object : OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    if (tab != null) {
+                        viewModel.changePokemonIndex(tab.position)
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+
+                }
+            })
         }
     }
 
@@ -69,12 +97,16 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             pokemonDexNumber.text = "#" + details.dexNumber.toString()
             pokemonJpName.text = details.jpName
             pokemonEnName.text = details.enName
-            val imageUrl = Uri.parse(
-                "file:///android_asset/images/" + decidePicName(details.dexNumber)
-            )
-            Timber.d("Load Image" + imageUrl.path)
-            Glide.with(this@PokemonDetailsActivity)
-                .load(imageUrl).into(pokemonImage)
+            CoroutineScope(Dispatchers.IO).launch {
+                val imageUrl = Uri.parse(
+                    "file:///android_asset/images/" + decidePicName(details.dexNumber, details.formName, details.name)
+                )
+                Timber.d("Load Image" + imageUrl.path)
+                withContext(Dispatchers.Main) {
+                    Glide.with(this@PokemonDetailsActivity)
+                        .load(imageUrl).into(pokemonImage)
+                }
+            }
             pokemonHeight.text = details.height + " m"
             pokemonWeight.text = details.weight + " kg"
 
@@ -112,12 +144,22 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
         }
     }
 
-    private fun decidePicName(dexNumber: Int, subName: String? = null): String {
+    /**
+     * 此方法用于获取宝可梦的图像
+     */
+    private fun decidePicName(dexNumber: Int, subName: String? = null, pokemonName: String? = null): String {
         val assetList =
             assets.list("images")?.filter { it.contains(String.format("%03d", dexNumber)) }
         for (file in assetList!!) {
             val splitFile = file.split("#")
+            Timber.d(subName + " " + splitFile.joinToString(", "))
+            if (subName?.replace("的样子", "") == splitFile.last().replace(".webp", "")) {
+                return file
+            }
             if (subName == null && !splitFile[0].contains("_")) {
+                return file
+            }
+            if (subName?.replace(pokemonName ?: "", "") == splitFile.last().replace("的样子", "").replace(".webp", "")) {
                 return file
             }
         }
