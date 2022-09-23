@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="other_category"
+        android:title="Other">
+        <Preference
+            android:key="app_center_analyze"
+            android:title="匿名统计" />
+    </PreferenceCategory>
+</PreferenceScreen>

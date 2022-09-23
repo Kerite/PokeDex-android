@@ -24,3 +24,7 @@
 #-keep,allowoptimization public class * extends androidx.viewbinding.ViewBinding {
 #    public static * inflate(android.view.LayoutInflater);
 #}
+
+-keepclassmembers class * extends androidx.datastore.preferences.protobuf.GeneratedMessageLite {
+    <fields>;
+}

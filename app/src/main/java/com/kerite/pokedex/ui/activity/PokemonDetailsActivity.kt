@@ -119,6 +119,10 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             pokemonHeight.text = details.height + " m"
             pokemonWeight.text = details.weight + " kg"
 
+            abilitySubview.ability1.text = details.ability1
+            abilitySubview.ability2.text = details.ability2
+            abilitySubview.abilityHidden.text = details.abilityHidden
+
             pokemonType1.type = details.type1
             if (details.type2 != null) {
                 pokemonType2.visibility = View.VISIBLE

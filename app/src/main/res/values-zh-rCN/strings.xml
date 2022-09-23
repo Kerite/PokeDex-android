@@ -94,4 +94,8 @@
     <string name="egg_group_gender_unknown">性别不明</string>
     <string name="content_description_pokemon_icon">宝可梦图标</string>
     <string name="content_description_pokemon_body">宝可梦体形</string>
+    <string name="ability_1">特性1</string>
+    <string name="ability_2">特性2</string>
+    <string name="ability_hidden">隐藏特性</string>
+    <string name="abilities">特性</string>
 </resources>

@@ -147,6 +147,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/pokemon_height"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
@@ -156,6 +157,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/pokemon_weight"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
@@ -164,6 +166,7 @@
                         tools:text="0.1kg" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill_horizontal"
@@ -173,6 +176,7 @@
                         android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill_horizontal"
@@ -182,6 +186,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/catch_rate"
+                        android:layout_width="0dp"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
                         android:gravity="center"
@@ -190,13 +195,14 @@
 
                     <ImageView
                         android:id="@+id/pokemon_body_image"
-                        android:layout_width="32dp"
+                        android:layout_width="0dp"
                         android:layout_height="32dp"
                         android:layout_columnWeight="1"
                         android:contentDescription="@string/content_description_pokemon_body"
                         tools:src="@drawable/body_bundle" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
                         android:gravity="center"
@@ -205,6 +211,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/pokemon_body"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
                         android:layout_gravity="fill"
@@ -312,6 +319,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:text="@string/abilities"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+            <include
+                android:id="@+id/ability_subview"
+                layout="@layout/subview_ability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_standard" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/species_strength"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
@@ -326,19 +347,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_standard" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                style="?attr/materialCardViewElevatedStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_standard">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/pokemon_egg_group_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

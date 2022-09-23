@@ -137,4 +137,8 @@
     <string name="egg_group_gender_unknown">Gender Unknown</string>
     <string name="content_description_pokemon_icon">Pokemon Icon</string>
     <string name="content_description_pokemon_body">Pokemon Body</string>
+    <string name="ability_1">Ability 1</string>
+    <string name="ability_2">Ability 2</string>
+    <string name="ability_hidden">Hidden Ability</string>
+    <string name="abilities">Abilities</string>
 </resources>
