@@ -16,14 +16,15 @@ import com.kerite.pokedex.ui.widgets.SelectableTextView
 import com.kerite.pokedex.util.extension.toTypedArray
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 
-class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>() {
+class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>(
+    FragmentPokemonDexFilterBinding::inflate
+) {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pokemonDexListAndFilterViewModel =
             ViewModelProvider(requireActivity())[PokemonDexListAndFilterViewModel::class.java]
-
         initRegionalVariantFilter(pokemonDexListAndFilterViewModel.filterRegionalVariant.value)
         initTypeFilter(pokemonDexListAndFilterViewModel.filterType.value)
         initGenerationFilter(pokemonDexListAndFilterViewModel.filterGeneration.value)

@@ -20,7 +20,9 @@ import com.kerite.pokedex.ui.behavior.BottomViewHideOnScrollBehavior
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
 import com.kerite.pokedex.viewmodel.SearchViewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(
+    ActivityMainBinding::inflate
+) {
     private lateinit var navController: NavController
     private val searchWordViewModel: SearchViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by viewModels()

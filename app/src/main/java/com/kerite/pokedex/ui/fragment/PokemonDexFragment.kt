@@ -36,7 +36,9 @@ import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 import com.kerite.pokedex.viewmodel.SearchViewModel
 import kotlinx.coroutines.launch
 
-class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(), MenuProvider {
+class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(
+    FragmentPokemonDexBinding::inflate
+), MenuProvider {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
     private val activityViewModel: SearchViewModel by activityViewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()

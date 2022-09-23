@@ -14,7 +14,9 @@ import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>() {
+class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
+    ActivityPokemonDetailsBinding::inflate
+) {
     private lateinit var viewModel: DetailsActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

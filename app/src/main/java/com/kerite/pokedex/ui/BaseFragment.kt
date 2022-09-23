@@ -6,19 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.kerite.pokedex.util.inflateBinding
 
-abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+private typealias FragmentInflate<T> = (LayoutInflater) -> T
+
+abstract class BaseFragment<VB : ViewBinding>(
+    private val inflate: FragmentInflate<VB>
+) : Fragment() {
     private var mBinding: VB? = null
 
-    val binding: VB get() = checkNotNull(mBinding)
+    val binding: VB get() = mBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = inflateBinding(inflater)
+        mBinding = inflate(inflater)
         return binding.root
     }
 

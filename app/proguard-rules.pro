@@ -21,7 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 # ViewBinding
--keepclassmembers class ** implements androidx.viewbinding.ViewBinding {
-    public static ** bind(***);
-    public static ** inflate(***);
-}
+#-keep,allowoptimization public class * extends androidx.viewbinding.ViewBinding {
+#    public static * inflate(android.view.LayoutInflater);
+#}
