@@ -142,4 +142,5 @@
     <string name="ability_hidden">Hidden Ability</string>
     <string name="abilities">Abilities</string>
     <string name="check_update">Check Update</string>
+    <string name="auto_check_update">Check Update On Start</string>
 </resources>

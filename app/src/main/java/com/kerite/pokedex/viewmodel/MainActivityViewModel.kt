@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.kerite.pokedex.SETTINGS_LOW_PERFORMANCE_DEFAULT
 import com.kerite.pokedex.SETTINGS_LOW_PERFORMANCE_KEY
 import com.kerite.pokedex.settingsDataStore
 import com.kerite.pokedex.ui.behavior.BottomViewHideOnScrollBehavior
@@ -29,7 +30,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     val bottomState: LiveData<Int> get() = mBottomState
     val performanceModeFlow = application.settingsDataStore.data
         .mapLatest { preference -> preference[SETTINGS_LOW_PERFORMANCE_KEY] }
-        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, SETTINGS_LOW_PERFORMANCE_DEFAULT)
 
     fun setHidden(hidden: Boolean) {
         mBottomHidden.value = hidden
