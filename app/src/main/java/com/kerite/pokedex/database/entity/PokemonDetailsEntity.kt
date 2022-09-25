@@ -48,4 +48,4 @@ data class PokemonDetailsEntity(
     @ColumnInfo(name = "special_attack") val specialAttack: Int,
     @ColumnInfo(name = "special_defence") val specialDefence: Int,
     @ColumnInfo(name = "speed") val speed: Int
-) {}
+)

@@ -17,7 +17,8 @@ import com.kerite.pokedex.util.dp
 private typealias BottomDialogInflate<T> = (LayoutInflater) -> T
 
 abstract class BaseBottomDialogFragment<VB : ViewBinding>(
-    private val inflate: BottomDialogInflate<VB>
+    private val inflate: BottomDialogInflate<VB>,
+    private val initPadding: Boolean = true
 ) : BottomSheetDialogFragment() {
     private lateinit var mBinding: VB
     val binding get() = mBinding
@@ -48,7 +49,20 @@ abstract class BaseBottomDialogFragment<VB : ViewBinding>(
             mBinding = inflate(inflater)
         }
         return mBinding.root.apply {
-            setPadding(paddingLeft, paddingTop + 32.dp, paddingRight, paddingBottom)
+            if (initPadding) {
+                setPadding(
+                    paddingLeft + resources.getDimension(R.dimen.margin_middle).toInt(),
+                    paddingTop + 32.dp,
+                    paddingRight + resources.getDimension(R.dimen.margin_middle).toInt(),
+                    paddingBottom
+                )
+            }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mBinding = inflate(layoutInflater)
+
     }
 }

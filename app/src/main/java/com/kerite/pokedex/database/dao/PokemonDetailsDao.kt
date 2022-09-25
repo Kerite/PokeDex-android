@@ -15,4 +15,7 @@ interface PokemonDetailsDao {
 
     @Query("SELECT * FROM pokemon_detail WHERE dex_number = :dexNumber")
     fun findFlowByDexNumber(dexNumber: Int): Flow<List<PokemonDetailsEntity>>
+
+    @Query("SELECT * FROM pokemon_detail WHERE ability_1 = :abilityName OR ability_2 = :abilityName OR ability_hidden = :abilityName")
+    fun filterByAbility(abilityName: String): List<PokemonDetailsEntity>
 }

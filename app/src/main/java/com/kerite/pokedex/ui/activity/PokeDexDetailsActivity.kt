@@ -3,25 +3,26 @@ package com.kerite.pokedex.ui.activity
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.View.OnClickListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import coil.request.Disposable
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.textview.MaterialTextView
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.BaseActivity
+import com.kerite.pokedex.ui.dialog.AbilityPopupFragment
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
-) {
+), OnClickListener {
     private lateinit var viewModel: DetailsActivityViewModel
-    private var imageLoadDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,11 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             setSupportActionBar(toolbar)
 
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+            abilitySubview.ability1.setOnClickListener(this@PokeDexDetailsActivity)
+            abilitySubview.ability2.setOnClickListener(this@PokeDexDetailsActivity)
+            abilitySubview.abilityHidden.setOnClickListener(this@PokeDexDetailsActivity)
+
             lifecycleScope.launch {
                 viewModel.currentPokemonDetail.collect {
                     when (it) {
@@ -60,13 +66,8 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
                     }
                 }
 
-                override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab?) {
-
-                }
+                override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
+                override fun onTabReselected(tab: TabLayout.Tab?) = Unit
             })
         }
     }
@@ -157,30 +158,27 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
         }
     }
 
-    /**
-     * 此方法用于获取宝可梦的图像
-     */
-    private fun decidePicName(dexNumber: Int, subName: String? = null, pokemonName: String? = null): String {
-        val assetList =
-            assets.list("images")?.filter { it.contains(String.format("%03d", dexNumber)) }
-        for (file in assetList!!) {
-            val splitFile = file.split("#")
-            Timber.d(subName + " " + splitFile.joinToString(", "))
-            if (subName?.replace("的样子", "") == splitFile.last().replace(".webp", "")) {
-                return file
-            }
-            if (subName == null && !splitFile[0].contains("_")) {
-                return file
-            }
-            if (subName?.replace(pokemonName ?: "", "") == splitFile.last().replace("的样子", "").replace(".webp", "")) {
-                return file
+    private fun showAbilityDialog(abilityString: CharSequence) {
+        AbilityPopupFragment(abilityString.toString()).show(
+            this.supportFragmentManager, AbilityPopupFragment::javaClass.name
+        )
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            binding.abilitySubview.ability1.id,
+            binding.abilitySubview.ability2.id,
+            binding.abilitySubview.abilityHidden.id -> {
+                val textView = v as MaterialTextView
+                if (textView.text.isNotBlank()) {
+                    showAbilityDialog(textView.text)
+                }
             }
         }
-        return assetList.first()
     }
 
     companion object {
         const val INTENT_DEX_NUMBER = "pokemon_dex"
-        private const val ASSET_POKEMON_IMAGE_DIR = "file:///android_asset/images/"
+        const val INTENT_FORM_NAME = "form_name"
     }
 }
