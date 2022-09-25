@@ -1,15 +1,18 @@
 package com.kerite.pokedex.ui
 
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.view.WindowCompat
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kerite.pokedex.R
+import com.kerite.pokedex.util.dp
 
 private typealias BottomDialogInflate<T> = (LayoutInflater) -> T
 
@@ -25,8 +28,13 @@ abstract class BaseBottomDialogFragment<VB : ViewBinding>(
                 super.onAttachedToWindow()
 
                 window?.let {
-                    it.attributes?.windowAnimations = R.style.BottomDialogAnimation
+                    it.attributes.windowAnimations = R.style.BottomDialogAnimation
                     WindowCompat.setDecorFitsSystemWindows(it, false)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        it.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+                        it.attributes.blurBehindRadius = 64
+                        it.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+                    }
                 }
             }
         }
@@ -39,6 +47,8 @@ abstract class BaseBottomDialogFragment<VB : ViewBinding>(
         if (!this::mBinding.isInitialized) {
             mBinding = inflate(inflater)
         }
-        return mBinding.root
+        return mBinding.root.apply {
+            setPadding(paddingLeft, paddingTop + 32.dp, paddingRight, paddingBottom)
+        }
     }
 }

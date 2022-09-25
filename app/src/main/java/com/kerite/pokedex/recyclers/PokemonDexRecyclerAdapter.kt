@@ -13,16 +13,16 @@ import com.kerite.pokedex.MSP_WIDTH
 import com.kerite.pokedex.R
 import com.kerite.pokedex.database.entity.PokemonEntity
 import com.kerite.pokedex.databinding.ItemPokemonDexIndexBinding
+import com.kerite.pokedex.model.enums.PokemonRegionalVariant
 
 class PokemonDexRecyclerAdapter(
     private val onClickListener: OnClickListener,
     val context: Context
 ) : ListAdapter<PokemonEntity, PokemonDexRecyclerAdapter.PokedexViewHolder>(diffCallback) {
-
     class PokedexViewHolder(
         private val binding: ItemPokemonDexIndexBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(pokemonDex: PokemonEntity) {
+        fun bind(pokemonDex: PokemonEntity, onClick: (Int, PokemonRegionalVariant) -> Unit) {
             val context = binding.root.context
 //            Log.e("ViewHolder", "Binding${pokemonDex}")
             binding.apply {
@@ -37,13 +37,15 @@ class PokemonDexRecyclerAdapter(
                     R.string.generation_simple,
                     pokemonDex.generation
                 )
-            }
-
-            if (pokemonDex.type2 != null) {
-                binding.pokemonType2.visibility = View.VISIBLE
-                binding.pokemonType2.type = pokemonDex.type2
-            } else {
-                binding.pokemonType2.visibility = View.INVISIBLE
+                if (pokemonDex.type2 != null) {
+                    pokemonType2.visibility = View.VISIBLE
+                    pokemonType2.type = pokemonDex.type2
+                } else {
+                    pokemonType2.visibility = View.INVISIBLE
+                }
+                root.setOnClickListener {
+                    onClick(pokemonDex.dexNumber, pokemonDex.subName)
+                }
             }
         }
     }
@@ -55,9 +57,9 @@ class PokemonDexRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: PokedexViewHolder, position: Int) {
-        holder.bind(getItem(position))
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(getItem(position))
+        val item = getItem(position)
+        holder.bind(item) { dexNumber, regionalVariant ->
+            onClickListener.onClick(dexNumber, regionalVariant)
         }
     }
 
@@ -76,7 +78,8 @@ class PokemonDexRecyclerAdapter(
         }
     }
 
-    class OnClickListener(val clickListener: (PokemonEntity) -> Unit) {
-        fun onClick(pokemonEntity: PokemonEntity) = clickListener(pokemonEntity)
+    class OnClickListener(val clickListener: (Int, PokemonRegionalVariant) -> Unit) {
+        fun onClick(dexNumber: Int, regionalVariant: PokemonRegionalVariant) =
+            clickListener(dexNumber, regionalVariant)
     }
 }

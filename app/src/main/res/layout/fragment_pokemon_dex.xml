@@ -14,19 +14,10 @@
         android:layout_marginBottom="108dp"
         android:contentDescription="@string/pokemon_search_filter" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemon_dex_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:itemCount="10"
         tools:listitem="@layout/item_pokemon_dex_index" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/pokemon_dex_filter_fragment_container"
-        android:name="com.kerite.pokedex.ui.fragment.PokeDexFilterFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_pokemon_dex_filter" />
-
 </FrameLayout>

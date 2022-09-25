@@ -1,7 +1,6 @@
-package com.kerite.pokedex.customview
+package com.kerite.pokedex.ui.customview
 
 import android.content.Context
-import android.util.Log
 import android.view.KeyEvent
 import androidx.appcompat.widget.SearchView
 

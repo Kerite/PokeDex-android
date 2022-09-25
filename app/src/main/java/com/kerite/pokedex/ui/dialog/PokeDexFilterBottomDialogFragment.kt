@@ -1,4 +1,4 @@
-package com.kerite.pokedex.ui.fragment
+package com.kerite.pokedex.ui.dialog
 
 import android.os.Bundle
 import android.view.Gravity
@@ -11,12 +11,12 @@ import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.FragmentPokemonDexFilterBinding
 import com.kerite.pokedex.model.enums.PokemonRegionalVariant
 import com.kerite.pokedex.model.enums.PokemonType
-import com.kerite.pokedex.ui.BaseFragment
+import com.kerite.pokedex.ui.BaseBottomDialogFragment
 import com.kerite.pokedex.ui.widgets.SelectableTextView
 import com.kerite.pokedex.util.extension.toTypedArray
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 
-class PokeDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>(
+class PokeDexFilterBottomDialogFragment : BaseBottomDialogFragment<FragmentPokemonDexFilterBinding>(
     FragmentPokemonDexFilterBinding::inflate
 ) {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
@@ -28,12 +28,6 @@ class PokeDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>(
         initRegionalVariantFilter(pokemonDexListAndFilterViewModel.filterRegionalVariant.value)
         initTypeFilter(pokemonDexListAndFilterViewModel.filterType.value)
         initGenerationFilter(pokemonDexListAndFilterViewModel.filterGeneration.value)
-
-//        lifecycleScope.launch {
-//            pokemonDexListAndFilterViewModel.advancedFilterMode.collectLatest {
-//                binding.root.visibility = if (it) View.VISIBLE else View.GONE
-//            }
-//        }
     }
 
     //region 初始化视图
