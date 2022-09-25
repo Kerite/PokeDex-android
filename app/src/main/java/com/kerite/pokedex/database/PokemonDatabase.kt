@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.kerite.pokedex.database.dao.MoveDao
+import com.kerite.pokedex.database.dao.PokeDexAbilityDao
 import com.kerite.pokedex.database.dao.PokemonDao
 import com.kerite.pokedex.database.dao.PokemonDetailsDao
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
@@ -33,5 +35,15 @@ abstract class PokemonDatabase : RoomDatabase() {
 
     abstract fun pokemonDao(): PokemonDao
 
+    /**
+     * 宝可梦详情 DAO
+     */
     abstract fun pokemonDetailsDao(): PokemonDetailsDao
+
+    abstract fun pokemonMoveSummary(): MoveDao
+
+    /**
+     * 宝可梦特性列表 DAO
+     */
+    abstract fun pokemonAbilitySummary(): PokeDexAbilityDao
 }

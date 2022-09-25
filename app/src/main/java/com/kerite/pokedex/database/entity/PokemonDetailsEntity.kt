@@ -7,6 +7,9 @@ import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.model.enums.PokemonBody
 import com.kerite.pokedex.model.enums.PokemonType
 
+/**
+ * 宝可梦详情
+ */
 @Entity(
     tableName = "pokemon_detail"
 )
