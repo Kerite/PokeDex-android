@@ -17,4 +17,9 @@
         <item name="android:maxHeight">30dp</item>
     </style>
 
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_dialog_up</item>
+        <item name="android:windowExitAnimation">@anim/bottom_dialog_down</item>
+    </style>
+
 </resources>
