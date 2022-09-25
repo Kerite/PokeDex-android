@@ -3,6 +3,7 @@ package com.kerite.pokedex
 import android.app.Application
 import com.kerite.pokedex.intergrates.PokeDexDistributeListener
 import com.kerite.pokedex.intergrates.TimberReleaseTree
+import com.kerite.pokedex.intergrates.TimberThreadAwareTree
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
@@ -12,11 +13,10 @@ import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
 class PokedexApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+            Timber.plant(TimberThreadAwareTree())
         } else {
             Timber.plant(TimberReleaseTree())
         }
@@ -26,7 +26,7 @@ class PokedexApplication : Application() {
         val isAutoCheckUpdateEnabled = runBlocking {
             settingsDataStore.data.first()[SETTINGS_AUTO_CHECK_UPDATE_KEY] ?: SETTINGS_AUTO_CHECK_UPDATE_DEFAULT
         }
-        Timber.tag("AppCenterStat").i("AnonymousAnalytics $isAnonymousAnalyticsEnabled AutoCheckUpdate $isAutoCheckUpdateEnabled")
+        Timber.tag("AppCenterStat").d("AnonymousAnalytics $isAnonymousAnalyticsEnabled AutoCheckUpdate $isAutoCheckUpdateEnabled")
 
         // Config AppCenter
         if (!BuildConfig.DEBUG && BuildConfig.APPCENTER_KEY.isNotBlank()) {
@@ -47,13 +47,13 @@ class PokedexApplication : Application() {
                 Distribute::class.java
             )
             Analytics.isEnabled().thenAccept {
-                Timber.tag("AppCenterStat").i("Analytics Enabled $it")
+                if (it) Timber.tag("AppCenterStat").i("Analytics Enabled")
             }
             Crashes.isEnabled().thenAccept {
-                Timber.tag("AppCenterStat").i("Crashes Enabled $it")
+                if (it) Timber.tag("AppCenterStat").i("Crashes Enabled")
             }
             Distribute.isEnabled().thenAccept {
-                Timber.tag("AppCenterStat").i("Distribute Enabled $it")
+                if (it) Timber.tag("AppCenterStat").i("Distribute Enabled")
             }
         }
     }
