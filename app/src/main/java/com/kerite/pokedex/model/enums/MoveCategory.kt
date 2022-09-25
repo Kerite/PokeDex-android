@@ -1,6 +1,6 @@
 package com.kerite.pokedex.model.enums
 
-enum class MoveType(
+enum class MoveCategory(
     val moveName: String,
 ) {
     PHYSICAL("物理"),
