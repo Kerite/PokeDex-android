@@ -15,17 +15,27 @@ class PokedexApplication : Application() {
         val isAnonymousAnalyticsEnabled = runBlocking {
             settingsDataStore.data.first()[SETTINGS_ANONYMOUS_ANALYTICS_ENABLED] ?: true
         }
+        val isAutoCheckUpdateEnabled = runBlocking {
+            settingsDataStore.data.first()[SETTINGS_AUTO_CHECK_UPDATE_KEY] ?: true
+        }
 
         // Config AppCenter
-        if (!BuildConfig.DEBUG && isAnonymousAnalyticsEnabled && BuildConfig.APPCENTER_KEY.isNotBlank()) {
-            AppCenter.start(
-                this,
-                BuildConfig.APPCENTER_KEY,
-                Distribute::class.java,
-                Crashes::class.java,
-                Analytics::class.java
-            )
+        if (!BuildConfig.DEBUG && BuildConfig.APPCENTER_KEY.isNotBlank()) {
+            if (isAnonymousAnalyticsEnabled) {
+                AppCenter.start(
+                    this,
+                    Analytics::class.java,
+                    Crashes::class.java
+                )
+            }
+            if (isAutoCheckUpdateEnabled) {
+                AppCenter.start(
+                    this,
+                    Distribute::class.java
+                )
+            }
         }
+
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
