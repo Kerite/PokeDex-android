@@ -1,5 +1,6 @@
 package com.kerite.pokedex.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.LayoutInflater
@@ -81,6 +82,13 @@ abstract class BaseActivity<VB : ViewBinding>(
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         Timber.tag(lifeCycleLogTag).d("onRestoreInstanceState(Bundle)")
         super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    /**
+     * 打开指定的 Activity
+     */
+    fun startActivity(target: Class<out BaseActivity<*>>) {
+        startActivity(Intent(this, target))
     }
 
     companion object {

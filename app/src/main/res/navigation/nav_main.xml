@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/dexFragment"
-        android:name="com.kerite.pokedex.ui.fragment.PokemonDexFragment"
+        android:name="com.kerite.pokedex.ui.fragment.PokeDexPokemonListFragment"
         android:label="@string/label_dex_fragment"
         tools:layout="@layout/fragment_pokemon_dex">
         <action
@@ -26,6 +26,6 @@
         tools:layout="@layout/fragment_toolbox" />
     <fragment
         android:id="@+id/dexFilterFragment"
-        android:name="com.kerite.pokedex.ui.fragment.PokemonDexFilterFragment"
+        android:name="com.kerite.pokedex.ui.fragment.PokeDexFilterFragment"
         tools:layout="@layout/fragment_pokemon_dex_filter" />
 </navigation>

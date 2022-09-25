@@ -27,13 +27,13 @@ import com.kerite.pokedex.customview.BackPressedSearchView
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
 import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter
 import com.kerite.pokedex.ui.BaseFragment
-import com.kerite.pokedex.ui.activity.PokemonDetailsActivity
+import com.kerite.pokedex.ui.activity.PokeDexDetailsActivity
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 import com.kerite.pokedex.viewmodel.SearchViewModel
 import kotlinx.coroutines.launch
 
-class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(
+class PokeDexPokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
     FragmentPokemonDexBinding::inflate
 ), MenuProvider {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
@@ -108,8 +108,8 @@ class PokemonDexFragment : BaseFragment<FragmentPokemonDexBinding>(
             val adapter =
                 PokemonDexRecyclerAdapter(PokemonDexRecyclerAdapter.OnClickListener { pokemon ->
                     val intent =
-                        Intent(requireActivity(), PokemonDetailsActivity::class.java).apply {
-                            putExtra(PokemonDetailsActivity.INTENT_DEX_NUMBER, pokemon.dexNumber)
+                        Intent(requireActivity(), PokeDexDetailsActivity::class.java).apply {
+                            putExtra(PokeDexDetailsActivity.INTENT_DEX_NUMBER, pokemon.dexNumber)
                         }
                     startActivity(intent)
                 }, this.context)

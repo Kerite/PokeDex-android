@@ -4,6 +4,9 @@
         android:key="other_category"
         android:title="Other">
         <Preference
+            android:key="preference_check_update"
+            android:title="@string/check_update" />
+        <rikka.material.preference.MaterialSwitchPreference
             android:key="app_center_analyze"
             android:title="匿名统计" />
     </PreferenceCategory>

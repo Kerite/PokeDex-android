@@ -141,4 +141,5 @@
     <string name="ability_2">Ability 2</string>
     <string name="ability_hidden">Hidden Ability</string>
     <string name="abilities">Abilities</string>
+    <string name="check_update">Check Update</string>
 </resources>

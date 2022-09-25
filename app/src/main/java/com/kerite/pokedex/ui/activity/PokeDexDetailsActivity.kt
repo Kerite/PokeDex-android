@@ -17,7 +17,7 @@ import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
+class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
 ) {
     private lateinit var viewModel: DetailsActivityViewModel
@@ -106,7 +106,7 @@ class PokemonDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
 //            }
             val text = "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace("##", "#")
             Timber.tag("LoadImage").d(text)
-            Glide.with(this@PokemonDetailsActivity)
+            Glide.with(this@PokeDexDetailsActivity)
                 .load(Uri.parse(text))
                 .into(pokemonImage)
 //            if (imageLoadDisposable != null) {

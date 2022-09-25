@@ -41,6 +41,7 @@ val STATISTIC_PERCENT_BEFORE_THREE_GENERATION = listOf<Float>(
 
 const val SETTINGS_LOW_PERFORMANCE_KEY_STR = "low_performance"
 const val SETTINGS_ANONYMOUS_ANALYTICS_ENABLED_STR = "anonymous_analytics"
+const val SETTINGS_CHECK_UPDATE_STR = "preference_check_update"
 
 /**
  * 低性能模式

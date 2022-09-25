@@ -16,7 +16,7 @@ import com.kerite.pokedex.ui.widgets.SelectableTextView
 import com.kerite.pokedex.util.extension.toTypedArray
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 
-class PokemonDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>(
+class PokeDexFilterFragment : BaseFragment<FragmentPokemonDexFilterBinding>(
     FragmentPokemonDexFilterBinding::inflate
 ) {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel

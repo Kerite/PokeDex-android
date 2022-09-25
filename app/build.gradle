@@ -4,6 +4,10 @@ plugins {
     id 'kotlin-kapt'
 }
 
+configurations.all {
+    exclude group: 'dev.rikka.rikkax.appcompat', module: 'appcompat'
+}
+
 android {
     namespace 'com.kerite.pokedex'
     compileSdk 33
@@ -23,7 +27,12 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix '.debug'
         }
     }
     compileOptions {
@@ -42,9 +51,13 @@ android {
     productFlavors {
         appCenter {
             dimension "distribute"
+            buildConfigField("Boolean", "IS_APP_CENTER", "true")
+            buildConfigField("Boolean", "IS_GOOGLE_PLAY", "false")
         }
         googlePlay {
             dimension "distribute"
+            buildConfigField("Boolean", "IS_APP_CENTER", "false")
+            buildConfigField("Boolean", "IS_GOOGLE_PLAY", "true")
         }
     }
 }
@@ -98,5 +111,5 @@ dependencies {
     implementation "io.coil-kt:coil:2.2.1"
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
-//    implementation "dev.rikka.rikkax.material:material-preference:2.0.0"
+    implementation "dev.rikka.rikkax.material:material-preference:2.0.0"
 }

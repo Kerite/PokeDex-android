@@ -32,7 +32,7 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
-            android:name=".ui.activity.PokemonDetailsActivity"
+            android:name=".ui.activity.PokeDexDetailsActivity"
             android:exported="true"
             android:theme="@style/Theme.PokemonDex">
 
@@ -40,6 +40,9 @@
         <activity
             android:name=".ui.activity.StatisticsCalculatorActivity"
             android:theme="@style/Theme.PokemonDex">
+
+        </activity>
+        <activity android:name=".ui.activity.PokeDexSettingsActivity">
 
         </activity>
     </application>

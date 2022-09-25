@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.PokemonDexFragment">
+    tools:context=".ui.fragment.PokeDexPokemonListFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pokemon_dex_filter_fab"
@@ -25,7 +24,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/pokemon_dex_filter_fragment_container"
-        android:name="com.kerite.pokedex.ui.fragment.PokemonDexFilterFragment"
+        android:name="com.kerite.pokedex.ui.fragment.PokeDexFilterFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_pokemon_dex_filter" />
