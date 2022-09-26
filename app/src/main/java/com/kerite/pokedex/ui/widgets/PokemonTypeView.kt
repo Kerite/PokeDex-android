@@ -74,7 +74,7 @@ class PokemonTypeView @JvmOverloads constructor(
 
 //        val iconRight = w / 3f - w / 20f
 //        val iconLeft = w / 20f
-        val iconTop = h / 4f
+//        val iconTop = h / 4f
 //        val iconBottom = h - iconTop
 
         val iconMiddleX = w / 6f

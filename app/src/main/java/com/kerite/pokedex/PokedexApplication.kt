@@ -55,6 +55,8 @@ class PokedexApplication : Application() {
             Distribute.isEnabled().thenAccept {
                 if (it) Timber.tag("AppCenterStat").i("Distribute Enabled")
             }
+        } else if (!BuildConfig.DEBUG && BuildConfig.APPCENTER_KEY.isBlank()) {
+            Timber.tag("AppCenterStat").e("AppCenter secret is empty")
         }
     }
 }
