@@ -37,7 +37,18 @@ jobs:
             echo ${{ secrets.SIGNING_KEY_STORE }} | base --decode > ${{ github.workspace }}/keystore.jks
           fi
 
-      - name: Setup Gradle
+      - name: Build With Gradle
         uses: gradle/gradle-build-action@v2
         with:
           arguments: -PappVerName=${{ env.APP_VERSION }} assembleRelease
+
+      - name: Upload Built AppCenter apk
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: AppCenter
+          path: ${{ github.workspace }}/app/build/outputs/apk/appCenter/release
+
+#      - name: App Center
+#        uses: wzieba/AppCenter-Github-Action@v1.3.3
+
