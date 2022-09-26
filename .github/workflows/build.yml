@@ -56,3 +56,9 @@ jobs:
           token: ${{ secrets.APP_CENTER_TOKEN }}
           group: public
           file: ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-release.apk
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-release.apk
