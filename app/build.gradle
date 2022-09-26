@@ -21,7 +21,7 @@ android {
         minSdk 30
         targetSdk 33
         versionCode 'git rev-list --no-merges --count HEAD'.execute().text.trim().toInteger()
-        versionName "$versionNamePrefix(${'git rev-parse --short HEAD'.execute().text.trim()})"
+        versionName "$versionNamePrefix (${'git rev-parse --short HEAD'.execute().text.trim()})"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
