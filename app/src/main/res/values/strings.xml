@@ -147,4 +147,7 @@
     <string name="egg_group_2">Egg Group 2</string>
     <string name="egg_cycle">Egg Cycle</string>
     <string name="egg_info">Egg Info</string>
+    <string name="toast_checking_update">Checking Update…</string>
+    <string name="toast_update_available">Update Available %s</string>
+    <string name="toast_no_update_available">No Update Available</string>
 </resources>

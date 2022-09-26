@@ -104,4 +104,7 @@
     <string name="egg_group_2">蛋组2</string>
     <string name="egg_cycle">孵蛋周期</string>
     <string name="egg_info">蛋组信息</string>
+    <string name="toast_checking_update">检查更新中</string>
+    <string name="toast_update_available">更新可用 %s</string>
+    <string name="toast_no_update_available">暂无更新可用</string>
 </resources>

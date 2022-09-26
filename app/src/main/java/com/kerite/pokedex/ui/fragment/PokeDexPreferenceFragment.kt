@@ -13,6 +13,7 @@ import com.kerite.pokedex.SETTINGS_AUTO_CHECK_UPDATE_KEY
 import com.kerite.pokedex.SETTINGS_AUTO_CHECK_UPDATE_STR
 import com.kerite.pokedex.SETTINGS_CHECK_UPDATE_STR
 import com.kerite.pokedex.settingsDataStore
+import com.kerite.pokedex.util.extension.shortToast
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.analytics.EventProperties
 import com.microsoft.appcenter.distribute.Distribute
@@ -20,15 +21,14 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexPreferenceFragment : PreferenceFragmentCompat() {
-    //    private var dataStore: DataStore<Preferences>
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-//        preferenceManager.preferenceDataStore = SettingsDataStore(requireContext().settingsDataStore)
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
 
         // 检查更新
         (findPreference<Preference>(SETTINGS_CHECK_UPDATE_STR))?.apply {
             setOnPreferenceClickListener {
                 Timber.tag("UpdateChecker").i("Checking Update...")
+                context.shortToast(resources.getString(R.string.toast_checking_update))
                 Distribute.checkForUpdate()
                 true
             }
