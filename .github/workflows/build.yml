@@ -40,7 +40,7 @@ jobs:
       - name: Build With Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: -PappVerName=${{ env.APP_VERSION }} assembleRelease
+          arguments: assembleRelease
 
       - name: Upload Built AppCenter apk
         if: success()
@@ -57,8 +57,13 @@ jobs:
           group: public
           file: ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-release.apk
 
+      - name: Get Tag
+        id: get-tag
+        run: echo "::set-output name=release_tag::$(cat ${{ github.workspace }}/version.properties | tr -d 'VERSION_NAME_PREFIX=' | tr -d '\n')"
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ steps.get-tag.outputs.release_tag }}
           files: |
             ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-release.apk

@@ -8,6 +8,13 @@ configurations.all {
     exclude group: 'dev.rikka.rikkax.appcompat', module: 'appcompat'
 }
 
+def versionPropsFile = file('version.properties')
+Properties versionProps = new Properties()
+if (versionPropsFile.canRead()) {
+    versionProps.load(new FileInputStream(versionPropsFile))
+}
+def namePrefix = versionProps['VERSION_NAME_PREFIX']
+
 android {
     namespace 'com.kerite.pokedex'
     compileSdk 33
@@ -16,8 +23,8 @@ android {
         applicationId "com.kerite.pokedex"
         minSdk 30
         targetSdk 33
-        versionCode 'git rev-list HEAD --first-parent --count'.execute().text.trim().toInteger()
-        versionName "1.0(${'git rev-parse --short HEAD'.execute().text.trim()})"
+        versionCode 'git rev-list --no-merges --count HEAD'.execute().text.trim().toInteger()
+        versionName "$namePrefix.${'git rev-parse --short HEAD'.execute().text.trim()}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
