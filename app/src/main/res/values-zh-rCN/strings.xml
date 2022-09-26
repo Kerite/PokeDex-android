@@ -100,4 +100,8 @@
     <string name="abilities">特性</string>
     <string name="check_update">检查更新</string>
     <string name="auto_check_update">打开时检查更新</string>
+    <string name="egg_group_1">蛋组1</string>
+    <string name="egg_group_2">蛋组2</string>
+    <string name="egg_cycle">孵蛋周期</string>
+    <string name="egg_info">蛋组信息</string>
 </resources>

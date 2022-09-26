@@ -19,7 +19,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/strength_bar_height"
             android:gravity="center_vertical"
-            android:text="@string/hp" />
+            android:text="@string/hp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -39,6 +40,7 @@
                 android:id="@+id/strength_value_hp"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/strength_bar_height"
+                android:layout_marginLeft="@dimen/margin_standard"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
@@ -57,7 +59,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/strength_bar_height"
             android:gravity="center_vertical"
-            android:text="@string/attack" />
+            android:text="@string/attack"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -77,6 +80,7 @@
                 android:id="@+id/strength_value_attack"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/strength_bar_height"
+                android:layout_marginLeft="@dimen/margin_standard"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black" />
@@ -94,7 +98,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/strength_bar_height"
             android:gravity="center_vertical"
-            android:text="@string/defence" />
+            android:text="@string/defence"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -114,6 +119,7 @@
                 android:id="@+id/strength_value_defence"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/strength_bar_height"
+                android:layout_marginLeft="@dimen/margin_standard"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black" />
@@ -131,7 +137,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/strength_bar_height"
             android:gravity="center_vertical"
-            android:text="@string/special_attack" />
+            android:text="@string/special_attack"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -151,6 +158,7 @@
                 android:id="@+id/strength_value_special_attack"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/strength_bar_height"
+                android:layout_marginLeft="@dimen/margin_standard"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black" />
@@ -168,7 +176,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/strength_bar_height"
             android:gravity="center_vertical"
-            android:text="@string/special_defence" />
+            android:text="@string/special_defence"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -188,6 +197,7 @@
                 android:id="@+id/strength_value_special_defence"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/strength_bar_height"
+                android:layout_marginLeft="@dimen/margin_standard"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black" />
@@ -205,7 +215,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/strength_bar_height"
             android:gravity="center_vertical"
-            android:text="@string/speed" />
+            android:text="@string/speed"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -225,6 +236,7 @@
                 android:id="@+id/strength_value_speed"
                 android:layout_width="60dp"
                 android:layout_height="@dimen/strength_bar_height"
+                android:layout_marginLeft="@dimen/margin_standard"
                 android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black" />

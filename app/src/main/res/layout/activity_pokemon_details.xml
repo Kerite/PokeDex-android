@@ -324,7 +324,21 @@
 
             <include
                 android:id="@+id/ability_subview"
-                layout="@layout/subview_ability"
+                layout="@layout/card_ability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_standard" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/egg_info"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+            <include
+                android:id="@+id/egg_group_card"
+                layout="@layout/card_egg_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_standard" />
@@ -346,7 +360,8 @@
                     android:id="@+id/pokemon_strength"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_standard" />
+                    android:layout_marginHorizontal="@dimen/margin_middle"
+                    android:layout_marginVertical="@dimen/margin_standard" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

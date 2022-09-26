@@ -4,4 +4,5 @@
     <dimen name="ev_cell_height">50dp</dimen>
     <dimen name="margin_standard">8dp</dimen>
     <dimen name="margin_middle">16dp</dimen>
+    <dimen name="margin_name_to_header">2dp</dimen>
 </resources>

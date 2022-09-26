@@ -92,6 +92,7 @@ dependencies {
 
     implementation 'androidx.interpolator:interpolator:1.0.0'
 
+    // 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -112,4 +113,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation "dev.rikka.rikkax.material:material-preference:2.0.0"
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
 }

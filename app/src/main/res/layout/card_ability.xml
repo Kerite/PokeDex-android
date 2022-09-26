@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewElevatedStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_middle"
+        android:layout_marginVertical="@dimen/margin_standard"
+        android:columnCount="3">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ability_1"
+            style="@style/GridLayoutColumn.ClickableItem"
+            tools:text="威吓" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ability_2"
+            style="@style/GridLayoutColumn.ClickableItem"
+            tools:text="威吓" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ability_hidden"
+            style="@style/GridLayoutColumn.ClickableItem"
+            tools:text="威吓" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GridLayoutColumn.Label"
+            android:text="@string/ability_1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GridLayoutColumn.Label"
+            android:text="@string/ability_2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GridLayoutColumn.Label"
+            android:text="@string/ability_hidden" />
+    </GridLayout>
+</com.google.android.material.card.MaterialCardView>

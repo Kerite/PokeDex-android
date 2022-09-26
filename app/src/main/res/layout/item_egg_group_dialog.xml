@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/pokemon_image"
+            android:id="@+id/pokemon_thumbnail"
             style="@style/PokemonHeaderImageView"
             android:contentDescription="@string/content_description_pokemon_icon"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -19,28 +19,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/pokemon_name"
+            android:id="@+id/pokemon_name_text_view"
             style="@style/Widget.Pokedex.PokemonNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_middle"
             android:layout_marginTop="@dimen/margin_name_to_header"
-            android:gravity="center"
-            app:layout_constraintStart_toEndOf="@+id/pokemon_image"
-            app:layout_constraintTop_toTopOf="@+id/pokemon_image"
-            tools:text="喷火龙" />
+            app:layout_constraintStart_toEndOf="@+id/pokemon_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/pokemon_thumbnail"
+            tools:text="TODO" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/pokemon_form_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
             android:layout_marginTop="@dimen/margin_standard"
-            android:gravity="center"
             android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-            app:layout_constraintStart_toStartOf="@+id/pokemon_name"
-            app:layout_constraintTop_toBottomOf="@+id/pokemon_name"
-            tools:text="超极巨化" />
+            app:layout_constraintStart_toStartOf="@+id/pokemon_name_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/pokemon_name_text_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

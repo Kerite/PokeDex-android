@@ -6,26 +6,22 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kerite.pokedex.database.PokemonDatabase
-import com.kerite.pokedex.database.entity.PokemonDetailsEntity
-import com.kerite.pokedex.databinding.FragmentAbilityPopupBinding
+import com.kerite.pokedex.databinding.FragmentDialogAbilityBinding
 import com.kerite.pokedex.recyclers.AbilityDialogRecyclerAdapter
 import com.kerite.pokedex.ui.BaseBottomDialogFragment
 import com.kerite.pokedex.ui.activity.PokeDexDetailsActivity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class AbilityPopupFragment(
-    private val abilityName: String
-) : BaseBottomDialogFragment<FragmentAbilityPopupBinding>(
-    FragmentAbilityPopupBinding::inflate, false
+class AbilityDialogFragment(
+        private val abilityName: String
+) : BaseBottomDialogFragment<FragmentDialogAbilityBinding>(
+        FragmentDialogAbilityBinding::inflate, false
 ) {
-    private val foundPokemonList = MutableStateFlow<List<PokemonDetailsEntity>>(emptyList())
     private lateinit var recyclerAdapter: AbilityDialogRecyclerAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         Timber.d(abilityName)
         binding.apply {
             pokemonList.apply {
@@ -41,9 +37,8 @@ class AbilityPopupFragment(
                     val db = PokemonDatabase.getInstance(requireContext())
                     val detailsList = withContext(Dispatchers.IO) {
                         db.pokemonDetailsDao()
-                            .filterByAbility(abilityName)
+                                .filterByAbility(abilityName)
                     }
-
                     recyclerAdapter.submitList(detailsList)
                 }
             }
@@ -51,7 +46,7 @@ class AbilityPopupFragment(
                 val db = PokemonDatabase.getInstance(requireContext())
                 val abilityInfo = withContext(Dispatchers.IO) {
                     db.pokemonAbilitySummary()
-                        .findByAbilityName(abilityName)
+                            .findByAbilityName(abilityName)
                 }
                 abilityNameTextView.text = abilityInfo?.name
                 abilityDescriptionTextView.text = abilityInfo?.description

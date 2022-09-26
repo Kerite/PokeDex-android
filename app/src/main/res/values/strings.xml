@@ -143,4 +143,8 @@
     <string name="abilities">Abilities</string>
     <string name="check_update">Check Update</string>
     <string name="auto_check_update">Check Update On Start</string>
+    <string name="egg_group_1">Egg Group 1</string>
+    <string name="egg_group_2">Egg Group 2</string>
+    <string name="egg_cycle">Egg Cycle</string>
+    <string name="egg_info">Egg Info</string>
 </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?attr/materialCardViewElevatedStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_middle"
+        android:layout_marginVertical="@dimen/margin_standard"
+        android:columnCount="3">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pokemon_egg_group_text_view_1"
+            style="@style/GridLayoutColumn.ClickableItem" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pokemon_egg_group_text_view_2"
+            style="@style/GridLayoutColumn.ClickableItem"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pokemon_egg_cycle_text_view"
+            style="@style/GridLayoutColumn.ClickableItem"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GridLayoutColumn.Label"
+            android:layout_height="match_parent"
+            android:text="@string/egg_group_1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GridLayoutColumn.Label"
+            android:layout_height="match_parent"
+            android:text="@string/egg_group_2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/GridLayoutColumn.Label"
+            android:layout_height="match_parent"
+            android:text="@string/egg_cycle" />
+    </GridLayout>
+</com.google.android.material.card.MaterialCardView>

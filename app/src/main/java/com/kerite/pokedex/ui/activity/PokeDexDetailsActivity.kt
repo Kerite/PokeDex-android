@@ -13,16 +13,19 @@ import com.google.android.material.textview.MaterialTextView
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
+import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.ui.BaseActivity
-import com.kerite.pokedex.ui.dialog.AbilityPopupFragment
+import com.kerite.pokedex.ui.dialog.AbilityDialogFragment
+import com.kerite.pokedex.ui.dialog.EggGroupDialogFragment
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
-    ActivityPokemonDetailsBinding::inflate
+        ActivityPokemonDetailsBinding::inflate
 ), OnClickListener {
     private lateinit var viewModel: DetailsActivityViewModel
+    private var currentDetails: PokemonDetailsEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,10 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             abilitySubview.ability1.setOnClickListener(this@PokeDexDetailsActivity)
             abilitySubview.ability2.setOnClickListener(this@PokeDexDetailsActivity)
             abilitySubview.abilityHidden.setOnClickListener(this@PokeDexDetailsActivity)
+
+            eggGroupCard.pokemonEggGroupTextView1.setOnClickListener(this@PokeDexDetailsActivity)
+            eggGroupCard.pokemonEggGroupTextView2.setOnClickListener(this@PokeDexDetailsActivity)
+            eggGroupCard.pokemonEggCycleTextView.setOnClickListener(this@PokeDexDetailsActivity)
 
             lifecycleScope.launch {
                 viewModel.currentPokemonDetail.collect {
@@ -93,6 +100,7 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
 
     private fun updateDetails(details: PokemonDetailsEntity) {
         Timber.tag("PokemonChanged").d(details.toString())
+        currentDetails = details
         binding.apply {
             collapsingToolbar.title = details.name
             pokemonDexNumber.text = "#" + details.dexNumber.toString()
@@ -108,8 +116,8 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             val text = "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace("##", "#")
             Timber.tag("LoadImage").d(text)
             Glide.with(this@PokeDexDetailsActivity)
-                .load(Uri.parse(text))
-                .into(pokemonImage)
+                    .load(Uri.parse(text))
+                    .into(pokemonImage)
 //            if (imageLoadDisposable != null) {
 //                imageLoadDisposable!!.dispose()
 //            }
@@ -123,6 +131,12 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             abilitySubview.ability1.text = details.ability1
             abilitySubview.ability2.text = details.ability2
             abilitySubview.abilityHidden.text = details.abilityHidden
+
+            eggGroupCard.pokemonEggGroupTextView1.text =
+                    resources.getString(details.eggGroup1.displayedName)
+            eggGroupCard.pokemonEggGroupTextView2.text = if (details.eggGroup2 != null)
+                resources.getString(details.eggGroup2.displayedName) else ""
+            eggGroupCard.pokemonEggCycleTextView.text = details.eggCycle.toString()
 
             pokemonType1.type = details.type1
             if (details.type2 != null) {
@@ -158,12 +172,6 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
         }
     }
 
-    private fun showAbilityDialog(abilityString: CharSequence) {
-        AbilityPopupFragment(abilityString.toString()).show(
-            this.supportFragmentManager, AbilityPopupFragment::javaClass.name
-        )
-    }
-
     override fun onClick(v: View) {
         when (v.id) {
             binding.abilitySubview.ability1.id,
@@ -174,7 +182,34 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
                     showAbilityDialog(textView.text)
                 }
             }
+
+            binding.eggGroupCard.pokemonEggGroupTextView1.id -> {
+                currentDetails?.apply {
+                    showEggGroupDialog(eggGroup1)
+                }
+            }
+
+            binding.eggGroupCard.pokemonEggGroupTextView2.id -> {
+                currentDetails?.eggGroup2?.apply {
+                    showEggGroupDialog(this)
+                }
+            }
+
+            binding.eggGroupCard.pokemonEggCycleTextView.id -> {
+            }
         }
+    }
+
+    private fun showAbilityDialog(abilityString: CharSequence) {
+        AbilityDialogFragment(abilityString.toString()).show(
+                this.supportFragmentManager, AbilityDialogFragment::javaClass.name
+        )
+    }
+
+    private fun showEggGroupDialog(eggGroup: EggGroup) {
+        EggGroupDialogFragment(eggGroup).show(
+                supportFragmentManager, EggGroupDialogFragment::javaClass.name
+        )
     }
 
     companion object {

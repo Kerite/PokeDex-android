@@ -26,14 +26,14 @@
 
         <TextView
             android:id="@+id/pokemon_name"
+            style="@style/Widget.Pokedex.PokemonNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toEndOf="@+id/pokemon_header"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Pokemon Name Here" />
+            tools:text="喷火龙" />
 
         <TextView
             android:id="@+id/pokemon_sub_name"
