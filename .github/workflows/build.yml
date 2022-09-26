@@ -59,7 +59,7 @@ jobs:
 
       - name: Get Tag
         id: get-tag
-        run: echo "::set-output name=release_tag::$(cat ${{ github.workspace }}/version.properties | tr -d 'VERSION_NAME_PREFIX=' | tr -d '\n')"
+        run: echo "::set-output name=release_tag::$(cat ${{ github.workspace }}/app/version.properties | tr -d 'VERSION_NAME_PREFIX=' | tr -d '\n')"
 
       - name: Release
         uses: softprops/action-gh-release@v1
