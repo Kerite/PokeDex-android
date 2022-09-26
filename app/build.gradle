@@ -16,8 +16,8 @@ android {
         applicationId "com.kerite.pokedex"
         minSdk 30
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 'git rev-list HEAD --first-parent --count'.execute().text.trim().toInteger()
+        versionName "1.0(${'git rev-parse --short HEAD'.execute().text.trim()})"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
