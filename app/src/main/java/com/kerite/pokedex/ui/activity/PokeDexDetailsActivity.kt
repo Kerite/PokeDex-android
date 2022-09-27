@@ -17,15 +17,17 @@ import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.ui.BaseActivity
 import com.kerite.pokedex.ui.dialog.AbilityDialogFragment
 import com.kerite.pokedex.ui.dialog.EggGroupDialogFragment
+import com.kerite.pokedex.util.AntiShaker
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
-        ActivityPokemonDetailsBinding::inflate
+    ActivityPokemonDetailsBinding::inflate
 ), OnClickListener {
     private lateinit var viewModel: DetailsActivityViewModel
     private var currentDetails: PokemonDetailsEntity? = null
+    private val dialogAntiShaker: AntiShaker = AntiShaker()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,8 +118,8 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             val text = "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace("##", "#")
             Timber.tag("LoadImage").d(text)
             Glide.with(this@PokeDexDetailsActivity)
-                    .load(Uri.parse(text))
-                    .into(pokemonImage)
+                .load(Uri.parse(text))
+                .into(pokemonImage)
 //            if (imageLoadDisposable != null) {
 //                imageLoadDisposable!!.dispose()
 //            }
@@ -133,7 +135,7 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
             abilitySubview.abilityHidden.text = details.abilityHidden
 
             eggGroupCard.pokemonEggGroupTextView1.text =
-                    resources.getString(details.eggGroup1.displayedName)
+                resources.getString(details.eggGroup1.displayedName)
             eggGroupCard.pokemonEggGroupTextView2.text = if (details.eggGroup2 != null)
                 resources.getString(details.eggGroup2.displayedName) else ""
             eggGroupCard.pokemonEggCycleTextView.text = details.eggCycle.toString()
@@ -201,15 +203,19 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
     }
 
     private fun showAbilityDialog(abilityString: CharSequence) {
-        AbilityDialogFragment(abilityString.toString()).show(
+        dialogAntiShaker.antiShake {
+            AbilityDialogFragment(abilityString.toString()).show(
                 this.supportFragmentManager, AbilityDialogFragment::javaClass.name
-        )
+            )
+        }
     }
 
     private fun showEggGroupDialog(eggGroup: EggGroup) {
-        EggGroupDialogFragment(eggGroup).show(
+        dialogAntiShaker.antiShake {
+            EggGroupDialogFragment(eggGroup).show(
                 supportFragmentManager, EggGroupDialogFragment::javaClass.name
-        )
+            )
+        }
     }
 
     companion object {
