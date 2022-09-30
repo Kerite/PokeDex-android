@@ -1,4 +1,4 @@
-package com.kerite.pokedex.model.enums
+package com.kerite.pokedex.model
 
 data class PokemonPoint(
     val hp: Int,
@@ -7,4 +7,4 @@ data class PokemonPoint(
     val specialAttack: Int,
     val specialDefence: Int,
     val speed: Int
-) {}
+)

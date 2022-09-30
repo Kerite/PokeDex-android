@@ -9,6 +9,7 @@ import com.kerite.pokedex.database.dao.PokeDexAbilityDao
 import com.kerite.pokedex.database.dao.PokemonDao
 import com.kerite.pokedex.database.dao.PokemonDetailsDao
 import com.kerite.pokedex.database.entity.PokeDexAbilityEntity
+import com.kerite.pokedex.database.entity.PokeDexMoveBasicEntity
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.database.entity.PokemonEntity
 
@@ -16,7 +17,8 @@ import com.kerite.pokedex.database.entity.PokemonEntity
     entities = [
         PokemonEntity::class,
         PokemonDetailsEntity::class,
-        PokeDexAbilityEntity::class
+        PokeDexAbilityEntity::class,
+        PokeDexMoveBasicEntity::class
     ], version = 1,
     exportSchema = false
 )

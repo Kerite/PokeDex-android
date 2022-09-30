@@ -2,12 +2,19 @@ package com.kerite.pokedex.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.kerite.pokedex.model.enums.MoveCategory
 import com.kerite.pokedex.model.enums.PokemonType
 
 @Entity(
-    tableName = "pokemon_move_basic"
+    tableName = "pokemon_move_basic",
+    indices = [
+        Index(name = "idx__move_basic__name", unique = false, value = ["name"]),
+        Index(name = "idx__move_basic__move_id", unique = false, value = ["move_id"]),
+        Index(name = "idx__move_basic__move_type", unique = false, value = ["type"]),
+        Index(name = "idx__move_basic__damage_category", unique = false, value = ["damage_category"])
+    ]
 )
 data class PokeDexMoveBasicEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,

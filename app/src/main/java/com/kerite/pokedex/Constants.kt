@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.kerite.pokedex
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -27,8 +29,8 @@ val MEGA_COUNT_2 = arrayOf(
 )
 
 // 未知图腾图鉴编号
-val UNOWN_DEX_NUMBER = 201
-val UNOWN_COUNT = 28
+const val UNOWN_DEX_NUMBER = 201
+const val UNOWN_COUNT = 28
 
 const val INTENT_POKEMON_LIST = "pokemon_list"
 const val INTENT_TOOL_BOX = "tool_box"
