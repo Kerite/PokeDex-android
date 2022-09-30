@@ -11,16 +11,16 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import com.kerite.fission.android.extensions.startActivity
 import com.kerite.pokedex.INTENT_POKEMON_LIST
 import com.kerite.pokedex.INTENT_TOOL_BOX
 import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.ActivityMainBinding
-import com.kerite.pokedex.ui.BaseActivity
-import com.kerite.pokedex.ui.behavior.BottomViewHideOnScrollBehavior
+import com.kerite.pokedex.ui.PokeDexBaseActivity
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
 import com.kerite.pokedex.viewmodel.SearchViewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>(
+class MainActivity : PokeDexBaseActivity<ActivityMainBinding>(
     ActivityMainBinding::inflate
 ) {
     private lateinit var navController: NavController
@@ -51,13 +51,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
             bottomNavigation.apply {
                 // 绑定底部导航栏和导航图
                 setupWithNavController(navController)
-                behavior.addOnAnimationUpdateListener(object :
-                    BottomViewHideOnScrollBehavior.OnAnimationUpdateListener {
-                    override fun onAnimationUpdated(offset: Float, state: Int) {
-                        mainActivityViewModel.setOffset(offset)
-                        mainActivityViewModel.setState(state)
-                    }
-                })
+//                behavior.addOnAnimationUpdateListener(object :
+//                    BottomViewHideOnScrollBehavior.OnAnimationUpdateListener {
+//                    override fun onAnimationUpdated(offset: Float, state: Int) {
+//                        mainActivityViewModel.setOffset(offset)
+//                        mainActivityViewModel.setState(state)
+//                    }
+//                })
             }
         }
     }
@@ -81,7 +81,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                startActivity(PokeDexSettingsActivity::class.java)
+                startActivity<PokeDexSettingsActivity>()
                 true
             }
 

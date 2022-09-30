@@ -38,6 +38,9 @@ jobs:
             echo releaseStoreFile='${{ github.workspace }}/keystore.jks' >> gradle.properties
             echo ${{ secrets.SIGNING_KEY_STORE }} | base64 --decode > ${{ github.workspace }}/keystore.jks
           fi
+          if [ ! -z "${{ secrets.GOOGLE_SERVICE_JSON }}" ]; then
+            echo ${{ secrets.GOOGLE_SERVICE_JSON }} | base64 --decode > app/google-services.json
+          fi
 
       - name: Build With Gradle
         uses: gradle/gradle-build-action@v2

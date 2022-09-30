@@ -2,10 +2,13 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 configurations.all {
     exclude group: 'dev.rikka.rikkax.appcompat', module: 'appcompat'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 def versionProps = new Properties()
@@ -104,16 +107,21 @@ dependencies {
     implementation "androidx.work:work-multiprocess:$work_manager_version"
 
     // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    def lifecycle_version = '2.5.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
+    // DataStore
     implementation("androidx.datastore:datastore-preferences-core:1.0.0")
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+    // Core
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+    implementation "androidx.core:core-animation:1.0.0-beta01"
+
     // AppCenter
     def appCenterSdkVersion = '4.4.5'
-    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
-    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
     appCenterImplementation "com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}"
     googlePlayImplementation "com.microsoft.appcenter:appcenter-distribute-play:${appCenterSdkVersion}"
 
@@ -122,7 +130,6 @@ dependencies {
     // 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
-    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
@@ -134,11 +141,22 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    implementation 'com.google.mlkit:image-labeling:17.0.7'
+    implementation 'com.google.mlkit:image-labeling-custom:17.0.1'
+
     // Third Party Libraries
     implementation 'com.jakewharton.timber:timber:5.0.1'
     implementation "io.coil-kt:coil:2.2.1"
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
-    kapt 'com.github.bumptech.glide:compiler:4.13.2'
+    implementation 'com.github.bumptech.glide:glide:4.14.0'
+    kapt 'com.github.bumptech.glide:compiler:4.14.0'
     implementation "dev.rikka.rikkax.material:material-preference:2.0.0"
     implementation 'com.guolindev.permissionx:permissionx:1.7.1'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:30.5.0')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
+
+    implementation('com.github.Kerite:fission-ktx:master-SNAPSHOT')
 }

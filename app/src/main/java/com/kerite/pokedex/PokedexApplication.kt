@@ -5,8 +5,6 @@ import com.kerite.pokedex.intergrates.PokeDexDistributeListener
 import com.kerite.pokedex.intergrates.TimberReleaseTree
 import com.kerite.pokedex.intergrates.TimberThreadAwareTree
 import com.microsoft.appcenter.AppCenter
-import com.microsoft.appcenter.analytics.Analytics
-import com.microsoft.appcenter.crashes.Crashes
 import com.microsoft.appcenter.distribute.Distribute
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -32,8 +30,6 @@ class PokedexApplication : Application() {
         if (!BuildConfig.DEBUG && BuildConfig.APPCENTER_KEY.isNotBlank()) {
             if (!isAnonymousAnalyticsEnabled) {
                 Timber.tag("AppCenterStat").i("Anonymous Analytics Disable")
-                Analytics.setEnabled(false)
-                Crashes.setEnabled(false)
             }
             if (!isAutoCheckUpdateEnabled) {
                 Distribute.disableAutomaticCheckForUpdate()
@@ -42,16 +38,8 @@ class PokedexApplication : Application() {
             AppCenter.start(
                 this,
                 BuildConfig.APPCENTER_KEY,
-                Analytics::class.java,
-                Crashes::class.java,
                 Distribute::class.java
             )
-            Analytics.isEnabled().thenAccept {
-                if (it) Timber.tag("AppCenterStat").i("Analytics Enabled")
-            }
-            Crashes.isEnabled().thenAccept {
-                if (it) Timber.tag("AppCenterStat").i("Crashes Enabled")
-            }
             Distribute.isEnabled().thenAccept {
                 if (it) Timber.tag("AppCenterStat").i("Distribute Enabled")
             }

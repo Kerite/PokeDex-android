@@ -10,11 +10,12 @@ import com.kerite.pokedex.databinding.WidgetSpeciesStrengthBinding
 class PokemonStrengthWidget @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
+    var max = 255
     var hp = 0
         set(value) {
             field = value
             binding.apply {
-                strengthHp.progress = value
+                strengthHp.animateTo(value)
                 strengthValueHp.text = value.toString()
                 strengthValueTotal.text = mTotal.toString()
             }
@@ -23,7 +24,7 @@ class PokemonStrengthWidget @JvmOverloads constructor(
         set(value) {
             field = value
             binding.apply {
-                strengthAttack.progress = value
+                strengthAttack.animateTo(value)
                 strengthValueAttack.text = value.toString()
                 strengthValueTotal.text = mTotal.toString()
             }
@@ -32,7 +33,7 @@ class PokemonStrengthWidget @JvmOverloads constructor(
         set(value) {
             field = value
             binding.apply {
-                strengthDefence.progress = value
+                strengthDefence.animateTo(value)
                 strengthValueDefence.text = value.toString()
                 strengthValueTotal.text = mTotal.toString()
             }
@@ -41,7 +42,7 @@ class PokemonStrengthWidget @JvmOverloads constructor(
         set(value) {
             field = value
             binding.apply {
-                strengthSpecialAttack.progress = value
+                strengthSpecialAttack.animateTo(value)
                 strengthValueSpecialAttack.text = value.toString()
                 strengthValueTotal.text = mTotal.toString()
             }
@@ -50,7 +51,7 @@ class PokemonStrengthWidget @JvmOverloads constructor(
         set(value) {
             field = value
             binding.apply {
-                strengthSpecialDefence.progress = value
+                strengthSpecialDefence.animateTo(value)
                 strengthValueSpecialDefence.text = value.toString()
                 strengthValueTotal.text = mTotal.toString()
             }
@@ -59,7 +60,8 @@ class PokemonStrengthWidget @JvmOverloads constructor(
         set(value) {
             field = value
             binding.apply {
-                strengthSpeed.progress = value
+                strengthSpeed.animateTo(value)
+//                strengthSpeed.animateTo(value)
                 strengthValueSpeed.text = value.toString()
                 strengthValueTotal.text = mTotal.toString()
             }
@@ -72,20 +74,40 @@ class PokemonStrengthWidget @JvmOverloads constructor(
         context.obtainStyledAttributes(
             attrs, R.styleable.PokemonStrengthWidget
         ).apply {
-//            val view = LayoutInflater.from(context)
-//                .inflate(R.layout.widget_species_strength, this@PokemonStrengthWidget)
-//            binding = WidgetSpeciesStrengthBinding.bind(view)
             binding = WidgetSpeciesStrengthBinding.inflate(
                 LayoutInflater.from(context), this@PokemonStrengthWidget, true
             )
-
             hp = getInt(R.styleable.PokemonStrengthWidget_hp, 0)
             attack = getInt(R.styleable.PokemonStrengthWidget_attack, 0)
             defence = getInt(R.styleable.PokemonStrengthWidget_defence, 0)
             specialAttack = getInt(R.styleable.PokemonStrengthWidget_specialAttack, 0)
             specialDefence = getInt(R.styleable.PokemonStrengthWidget_specialDefence, 0)
             speed = getInt(R.styleable.PokemonStrengthWidget_speed, 0)
+
             recycle()
         }
+    }
+
+    fun getMaxStrength(): Int {
+        val max = maxOf(hp, attack, defence, specialAttack, specialDefence, speed)
+        return if (max != 0) {
+            max
+        } else {
+            255
+        }
+//        binding.apply {
+//            strengthHp.max = maxValue
+//            strengthAttack.max = maxValue
+//            strengthSpecialAttack.max = maxValue
+//            strengthSpecialDefence.max = maxValue
+//            strengthSpeed.max = maxValue
+//            strengthDefence.max = maxValue
+//        }
+//        hp = hp
+//        attack = attack
+//        defence = defence
+//        specialAttack = specialAttack
+//        specialDefence = specialDefence
+//        speed = speed
     }
 }

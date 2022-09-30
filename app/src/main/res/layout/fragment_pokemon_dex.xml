@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.PokeDexPokemonListFragment">
+    tools:context=".ui.fragment.PokemonListFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pokemon_dex_filter_fab"

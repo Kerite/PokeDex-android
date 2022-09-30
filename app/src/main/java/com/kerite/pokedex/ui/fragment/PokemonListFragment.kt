@@ -1,6 +1,5 @@
 package com.kerite.pokedex.ui.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,14 +10,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kerite.fission.AntiShaker
+import com.kerite.fission.android.BaseFragment
+import com.kerite.fission.android.extensions.startActivity
 import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
 import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter
-import com.kerite.pokedex.ui.BaseFragment
 import com.kerite.pokedex.ui.activity.PokeDexDetailsActivity
 import com.kerite.pokedex.ui.customview.BackPressedSearchView
 import com.kerite.pokedex.ui.dialog.PokeDexFilterBottomDialogFragment
@@ -28,12 +30,13 @@ import com.kerite.pokedex.viewmodel.SearchViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class PokeDexPokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
+class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
     FragmentPokemonDexBinding::inflate
 ), MenuProvider {
     private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
     private val activityViewModel: SearchViewModel by activityViewModels()
-    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
+    private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private val antiShaker = AntiShaker()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,11 +65,11 @@ class PokeDexPokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
                 ViewModelProvider(requireActivity())[PokemonDexListAndFilterViewModel::class.java]
             val adapter =
                 PokemonDexRecyclerAdapter(PokemonDexRecyclerAdapter.OnClickListener { dexNumber, regionalVariant ->
-                    val intent =
-                        Intent(requireActivity(), PokeDexDetailsActivity::class.java).apply {
-                            putExtra(PokeDexDetailsActivity.INTENT_DEX_NUMBER, dexNumber)
-                        }
-                    startActivity(intent)
+                    antiShaker.antiShake {
+                        startActivity<PokeDexDetailsActivity>(
+                            PokeDexDetailsActivity.INTENT_DEX_NUMBER to dexNumber
+                        )
+                    }
                 }, this.context)
             layoutManager = LinearLayoutManager(this.context)
             this.adapter = adapter

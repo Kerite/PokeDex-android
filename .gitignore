@@ -38,3 +38,5 @@ render.experimental.xml
 
 # Built output-meta
 output-metadata.json
+
+google-services.json

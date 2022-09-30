@@ -1,18 +1,10 @@
 package com.kerite.pokedex.ui.widgets
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.TimeInterpolator
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
-import android.view.ViewPropertyAnimator
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.interpolator.view.animation.FastOutLinearInInterpolator
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kerite.pokedex.ui.behavior.BottomViewHideOnScrollBehavior
-import com.kerite.pokedex.util.extension.applySystemAnimatorScale
 
 class ExtendedBottomNavigationView @JvmOverloads constructor(
     context: Context,
@@ -24,5 +16,4 @@ class ExtendedBottomNavigationView @JvmOverloads constructor(
     private val behavior = BottomViewHideOnScrollBehavior<ExtendedBottomNavigationView>()
 
     override fun getBehavior() = behavior
-
 }

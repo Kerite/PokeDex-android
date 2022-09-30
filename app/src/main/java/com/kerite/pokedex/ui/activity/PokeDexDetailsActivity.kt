@@ -10,19 +10,19 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.textview.MaterialTextView
+import com.kerite.fission.AntiShaker
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.model.enums.EggGroup
-import com.kerite.pokedex.ui.BaseActivity
+import com.kerite.pokedex.ui.PokeDexBaseActivity
 import com.kerite.pokedex.ui.dialog.AbilityDialogFragment
 import com.kerite.pokedex.ui.dialog.EggGroupDialogFragment
-import com.kerite.pokedex.util.AntiShaker
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
+class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
 ), OnClickListener {
     private lateinit var viewModel: DetailsActivityViewModel
@@ -32,6 +32,7 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[DetailsActivityViewModel::class.java]
+        Timber.tag("Intent").d(intent.dataString)
         viewModel.changePokemonDexNumber(intent.getIntExtra(INTENT_DEX_NUMBER, 0))
 
         binding.apply {
@@ -101,7 +102,7 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
     }
 
     private fun updateDetails(details: PokemonDetailsEntity) {
-        Timber.tag("PokemonChanged").d(details.toString())
+//        Timber.tag("PokemonChanged").d(details.toString())
         currentDetails = details
         binding.apply {
             collapsingToolbar.title = details.name
@@ -116,7 +117,7 @@ class PokeDexDetailsActivity : BaseActivity<ActivityPokemonDetailsBinding>(
 //
 //            }
             val text = "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace("##", "#")
-            Timber.tag("LoadImage").d(text)
+//            Timber.tag("LoadImage").d(text)
             Glide.with(this@PokeDexDetailsActivity)
                 .load(Uri.parse(text))
                 .into(pokemonImage)

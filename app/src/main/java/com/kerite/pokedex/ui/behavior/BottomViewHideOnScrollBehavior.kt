@@ -3,10 +3,8 @@ package com.kerite.pokedex.ui.behavior
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.TimeInterpolator
-import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewPropertyAnimator
@@ -15,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.google.android.material.motion.MotionUtils
-import kotlin.coroutines.coroutineContext
 
 class BottomViewHideOnScrollBehavior<V : View> : CoordinatorLayout.Behavior<V> {
     @JvmOverloads

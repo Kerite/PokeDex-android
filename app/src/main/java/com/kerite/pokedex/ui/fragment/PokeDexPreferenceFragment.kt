@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.TwoStatePreference
+import com.kerite.fission.android.extensions.shortToast
 import com.kerite.pokedex.R
 import com.kerite.pokedex.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED
 import com.kerite.pokedex.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED_STR
@@ -13,9 +14,6 @@ import com.kerite.pokedex.SETTINGS_AUTO_CHECK_UPDATE_KEY
 import com.kerite.pokedex.SETTINGS_AUTO_CHECK_UPDATE_STR
 import com.kerite.pokedex.SETTINGS_CHECK_UPDATE_STR
 import com.kerite.pokedex.settingsDataStore
-import com.kerite.pokedex.util.extension.shortToast
-import com.microsoft.appcenter.analytics.Analytics
-import com.microsoft.appcenter.analytics.EventProperties
 import com.microsoft.appcenter.distribute.Distribute
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -41,10 +39,6 @@ class PokeDexPreferenceFragment : PreferenceFragmentCompat() {
                     context.settingsDataStore.edit { settings ->
                         settings[SETTINGS_ANONYMOUS_ANALYTICS_ENABLED] = newValue as Boolean
                     }
-                    Analytics.trackEvent(
-                        "Settings",
-                        EventProperties().set("SETTINGS_ANONYMOUS_ANALYTICS_ENABLED", newValue as Boolean)
-                    )
                 }
                 true
             }

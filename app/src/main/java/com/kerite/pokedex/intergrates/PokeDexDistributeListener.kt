@@ -1,8 +1,8 @@
 package com.kerite.pokedex.intergrates
 
 import android.app.Activity
+import com.kerite.fission.android.extensions.shortToast
 import com.kerite.pokedex.R
-import com.kerite.pokedex.util.extension.shortToast
 import com.microsoft.appcenter.distribute.DistributeListener
 import com.microsoft.appcenter.distribute.ReleaseDetails
 import timber.log.Timber

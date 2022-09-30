@@ -5,7 +5,7 @@
         android:shortcutId="compose">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.kerite.pokedex.ui.activity.StatisticsCalculatorActivity"
+            android:targetClass="com.kerite.pokedex.ui.activity.StatisticsCalculatorActivityPokeDex"
             android:targetPackage="com.kerite.pokedex" />
     </shortcut>
 </shortcuts>

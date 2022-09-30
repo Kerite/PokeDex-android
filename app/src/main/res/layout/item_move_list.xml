@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/move_level_or_tm_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            tools:text="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/move_name_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            tools:text="阳光烈焰" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/move_accuracy_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/move_power_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <com.kerite.pokedex.ui.widgets.PokemonTypeView
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/margin_standard" />
+    </LinearLayout>
+</LinearLayout>

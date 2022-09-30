@@ -4,13 +4,13 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.kerite.fission.extensions.addValue
+import com.kerite.fission.extensions.removeValue
 import com.kerite.pokedex.COUNT_GENERATION
 import com.kerite.pokedex.database.PokemonDatabase
 import com.kerite.pokedex.model.PokemonSearchFilter
 import com.kerite.pokedex.model.enums.PokemonRegionalVariant
 import com.kerite.pokedex.model.enums.PokemonType
-import com.kerite.pokedex.util.extension.addValue
-import com.kerite.pokedex.util.extension.removeValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

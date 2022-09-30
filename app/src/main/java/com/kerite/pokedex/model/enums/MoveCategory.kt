@@ -7,5 +7,6 @@ enum class MoveCategory(
     SPECIAL("特殊"),
     STATUS("变化"),
     MAX("极巨"),
-    GIGANTAMAX("超极巨")
+    GIGANTAMAX("超极巨"),
+    Z_MOVE("Z-招式")
 }

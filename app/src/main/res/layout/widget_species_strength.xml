@@ -27,7 +27,7 @@
             android:layout_height="@dimen/strength_bar_height"
             android:layout_weight="1">
 
-            <ProgressBar
+            <com.kerite.fission.android.AnimationProgressBar
                 android:id="@+id/strength_hp"
                 style="@style/specie_strength_progress_bar"
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
             android:layout_height="@dimen/strength_bar_height"
             android:layout_weight="1">
 
-            <ProgressBar
+            <com.kerite.fission.android.AnimationProgressBar
                 android:id="@+id/strength_attack"
                 style="@style/specie_strength_progress_bar"
                 android:layout_width="match_parent"
@@ -106,7 +106,7 @@
             android:layout_height="@dimen/strength_bar_height"
             android:layout_weight="1">
 
-            <ProgressBar
+            <com.kerite.fission.android.AnimationProgressBar
                 android:id="@+id/strength_defence"
                 style="@style/specie_strength_progress_bar"
                 android:layout_width="match_parent"
@@ -145,7 +145,7 @@
             android:layout_height="@dimen/strength_bar_height"
             android:layout_weight="1">
 
-            <ProgressBar
+            <com.kerite.fission.android.AnimationProgressBar
                 android:id="@+id/strength_special_attack"
                 style="@style/specie_strength_progress_bar"
                 android:layout_width="match_parent"
@@ -184,7 +184,7 @@
             android:layout_height="@dimen/strength_bar_height"
             android:layout_weight="1">
 
-            <ProgressBar
+            <com.kerite.fission.android.AnimationProgressBar
                 android:id="@+id/strength_special_defence"
                 style="@style/specie_strength_progress_bar"
                 android:layout_width="match_parent"
@@ -223,7 +223,7 @@
             android:layout_height="@dimen/strength_bar_height"
             android:layout_weight="1">
 
-            <ProgressBar
+            <com.kerite.fission.android.AnimationProgressBar
                 android:id="@+id/strength_speed"
                 style="@style/specie_strength_progress_bar"
                 android:layout_width="match_parent"
