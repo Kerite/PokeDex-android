@@ -26,4 +26,4 @@ Visit [This Link](https://install.appcenter.ms/users/keriteal/apps/pokemon-dex/d
 
 ### Github Release
 
-Visit [Latest Release](https://github.com/Kerite/PokeDex-android/releases/latest)
+Visit [Latest Release](/releases/latest)
