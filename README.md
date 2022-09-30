@@ -1,7 +1,6 @@
 # Poke Dex
 
-[![Build](https://github.com/Kerite/PokeDex-android/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Kerite/PokeDex-android/actions/workflows/build.yml)
-[![License](https://img.shields.io/github/license/zhaobozhen/LibChecker?label=License)](https://choosealicense.com/licenses/apache-2.0/)
+[![Build](https://github.com/Kerite/PokeDex-android/actions/workflows/build.yml/badge.svg)](https://github.com/Kerite/PokeDex-android/actions/workflows/build.yml)[![License](https://img.shields.io/github/license/zhaobozhen/LibChecker?label=License)](https://choosealicense.com/licenses/apache-2.0/)
 [![Waka Time](https://wakatime.com/badge/user/210d002b-46ac-43fc-858b-64b8ab6acd23/project/9d0b0a50-01f6-4cea-8699-e826eb05a29f.svg)](https://wakatime.com/badge/user/210d002b-46ac-43fc-858b-64b8ab6acd23/project/9d0b0a50-01f6-4cea-8699-e826eb05a29f)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Kerite/PokeDex-android)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Kerite/PokeDex-android)
