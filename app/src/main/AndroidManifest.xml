@@ -34,7 +34,10 @@
             android:name=".ui.activity.PokeDexDetailsActivity"
             android:exported="true"
             android:theme="@style/Theme.PokemonDex">
-
+            <intent-filter>
+                <action android:name="com.kerite.pokedex.pokemon.detail" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.StatisticsCalculatorActivityPokeDex"

@@ -4,22 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kerite.pokedex.database.dao.MoveDao
+import com.kerite.pokedex.database.dao.MoveListDao
 import com.kerite.pokedex.database.dao.PokeDexAbilityDao
 import com.kerite.pokedex.database.dao.PokemonDao
 import com.kerite.pokedex.database.dao.PokemonDetailsDao
-import com.kerite.pokedex.database.entity.PokeDexAbilityEntity
-import com.kerite.pokedex.database.entity.PokeDexMoveBasicEntity
-import com.kerite.pokedex.database.entity.PokemonDetailsEntity
-import com.kerite.pokedex.database.entity.PokemonEntity
+import com.kerite.pokedex.database.dbview.MoveLearnDatabaseView
+import com.kerite.pokedex.database.entity.*
 
 @Database(
     entities = [
         PokemonEntity::class,
         PokemonDetailsEntity::class,
         PokeDexAbilityEntity::class,
-        PokeDexMoveBasicEntity::class
-    ], version = 1,
+        PokeDexMoveLearnEntity::class,
+        PokeDexMoveEntity::class
+    ],
+    views = [
+        MoveLearnDatabaseView::class
+    ],
+    version = 1,
     exportSchema = false
 )
 abstract class PokemonDatabase : RoomDatabase() {
@@ -44,10 +47,10 @@ abstract class PokemonDatabase : RoomDatabase() {
      */
     abstract fun pokemonDetailsDao(): PokemonDetailsDao
 
-    abstract fun pokemonMoveSummary(): MoveDao
-
     /**
      * 宝可梦特性列表 DAO
      */
     abstract fun pokemonAbilitySummary(): PokeDexAbilityDao
+
+    abstract fun moveListDao(): MoveListDao
 }

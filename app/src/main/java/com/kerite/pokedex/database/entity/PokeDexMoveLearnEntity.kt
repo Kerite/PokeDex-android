@@ -1,29 +1,26 @@
 package com.kerite.pokedex.database.entity
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kerite.pokedex.model.enums.MovePattern
 
+@Entity(
+    tableName = "pokemon_move_learn"
+)
 data class PokeDexMoveLearnEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "move_id") val moveId: Int,
     @ColumnInfo(name = "dex_number") val dexNumber: Int,
     @ColumnInfo(name = "form_name") val formName: String?,
     @ColumnInfo(name = "pattern") val pattern: MovePattern,
-    /**
-     * 游戏版本 红绿蓝
-     */
     @ColumnInfo(name = "red_green_blue") val redGreenBlue: String?,
-    /**
-     * 游戏版本 皮卡丘
-     */
     @ColumnInfo(name = "yellow") val yellow: String?,
-    /**
-     * 游戏版本 金银
-     */
     @ColumnInfo(name = "gold_silver") val goldSilver: String?,
     @ColumnInfo(name = "crystal") val crystal: String?,
     @ColumnInfo(name = "ruby_sapphire_emerald") val rubySapphireEmerald: String?,
+    @ColumnInfo(name = "fire_red_leaf_green") val fireRedLeafGreen: String?,
+    @ColumnInfo(name = "diamond_pearl") val diamondPearl: String?,
     @ColumnInfo(name = "platinum") val platinum: String?,
     @ColumnInfo(name = "heart_gold_soul_silver") val heartGoldSoulSilver: String?,
     @ColumnInfo(name = "black_white") val blackWhite: String?,

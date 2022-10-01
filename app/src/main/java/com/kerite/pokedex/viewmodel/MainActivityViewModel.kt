@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kerite.pokedex.SETTINGS_LOW_PERFORMANCE_DEFAULT
-import com.kerite.pokedex.SETTINGS_LOW_PERFORMANCE_KEY
+import com.kerite.pokedex.SettingsConstants.SETTINGS_LOW_PERFORMANCE_DEFAULT
+import com.kerite.pokedex.SettingsConstants.SETTINGS_LOW_PERFORMANCE_KEY
 import com.kerite.pokedex.settingsDataStore
 import com.kerite.pokedex.ui.behavior.BottomViewHideOnScrollBehavior
 import kotlinx.coroutines.ExperimentalCoroutinesApi

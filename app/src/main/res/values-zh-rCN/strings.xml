@@ -107,4 +107,5 @@
     <string name="toast_checking_update">检查更新中</string>
     <string name="toast_update_available">更新可用 %s</string>
     <string name="toast_no_update_available">暂无更新可用</string>
+    <string name="variably">变化</string>
 </resources>

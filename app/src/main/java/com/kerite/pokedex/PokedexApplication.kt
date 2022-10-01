@@ -1,6 +1,10 @@
 package com.kerite.pokedex
 
 import android.app.Application
+import com.kerite.pokedex.SettingsConstants.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED
+import com.kerite.pokedex.SettingsConstants.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED_DEFAULT
+import com.kerite.pokedex.SettingsConstants.SETTINGS_AUTO_CHECK_UPDATE_DEFAULT
+import com.kerite.pokedex.SettingsConstants.SETTINGS_AUTO_CHECK_UPDATE_KEY
 import com.kerite.pokedex.intergrates.PokeDexDistributeListener
 import com.kerite.pokedex.intergrates.TimberReleaseTree
 import com.kerite.pokedex.intergrates.TimberThreadAwareTree

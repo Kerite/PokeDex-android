@@ -23,7 +23,25 @@ import com.kerite.pokedex.model.enums.PokemonType
  * @author Kerite
  */
 @Entity(
-    tableName = "pokemon_move"
+    tableName = "pokemon_move",
+    indices = [
+        androidx.room.Index(name = "idx__move_basic__name", unique = false, value = ["name"]),
+        androidx.room.Index(
+            name = "idx__move_basic__move_id",
+            unique = false,
+            value = ["move_id"]
+        ),
+        androidx.room.Index(
+            name = "idx__move_basic__move_type",
+            unique = false,
+            value = ["type"]
+        ),
+        androidx.room.Index(
+            name = "idx__move_basic__damage_category",
+            unique = false,
+            value = ["damage_category"]
+        )
+    ]
 )
 data class PokeDexMoveEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
@@ -32,10 +50,18 @@ data class PokeDexMoveEntity(
     @ColumnInfo(name = "jp_name") val jpName: String,
     @ColumnInfo(name = "en_name") val enName: String,
     @ColumnInfo(name = "type") val type: PokemonType,
-    @ColumnInfo(name = "category") val category: MoveCategory,
+    @ColumnInfo(name = "damage_category") val damageCategory: MoveCategory,
+    @ColumnInfo(name = "pp") val basePowerPoint: Int,
     @ColumnInfo(name = "power") val power: String,
     @ColumnInfo(name = "accuracy") val accuracy: String,
-    @ColumnInfo(name = "pp") val pp: Int,
-    @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "generation") val generation: Int
+    @ColumnInfo(name = "generation") val generation: Int,
+    @ColumnInfo(name = "touches") val touches: Boolean,
+    @ColumnInfo(name = "protect") val protect: Boolean,
+    @ColumnInfo(name = "magic_coat") val magicCoat: Boolean,
+    @ColumnInfo(name = "snatch") val snatch: Boolean,
+    @ColumnInfo(name = "mirror_move") val mirrorMove: Boolean,
+    @ColumnInfo(name = "kings_rock") val kingsRock: Boolean,
+    @ColumnInfo(name = "sound") val sound: Boolean,
+    @ColumnInfo(name = "target") val target: Int,
+    @ColumnInfo(name = "description") val description: String
 )

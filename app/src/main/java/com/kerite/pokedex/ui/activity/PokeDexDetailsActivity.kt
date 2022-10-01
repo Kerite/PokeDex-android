@@ -2,9 +2,10 @@ package com.kerite.pokedex.ui.activity
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
@@ -19,26 +20,30 @@ import com.kerite.pokedex.ui.PokeDexBaseActivity
 import com.kerite.pokedex.ui.dialog.AbilityDialogFragment
 import com.kerite.pokedex.ui.dialog.EggGroupDialogFragment
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
+import com.kerite.pokedex.viewmodel.MoveLearnListViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
 ), OnClickListener {
-    private lateinit var viewModel: DetailsActivityViewModel
+    private val viewModel: DetailsActivityViewModel by viewModels()
+    private val moveLearnViewModel: MoveLearnListViewModel by viewModels()
     private var currentDetails: PokemonDetailsEntity? = null
     private val dialogAntiShaker: AntiShaker = AntiShaker()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[DetailsActivityViewModel::class.java]
         Timber.tag("Intent").d(intent.dataString)
         viewModel.changePokemonDexNumber(intent.getIntExtra(INTENT_DEX_NUMBER, 0))
 
         binding.apply {
             setSupportActionBar(toolbar)
 
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeButtonEnabled(true)
+            }
 
             abilitySubview.ability1.setOnClickListener(this@PokeDexDetailsActivity)
             abilitySubview.ability2.setOnClickListener(this@PokeDexDetailsActivity)
@@ -65,7 +70,9 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                 viewModel.pokemonDetails.collect {
                     pokemonSubnameTab.removeAllTabs()
                     for (detail in it) {
-                        pokemonSubnameTab.addTab(pokemonSubnameTab.newTab().setText(detail.formName ?: detail.name))
+                        pokemonSubnameTab.addTab(
+                            pokemonSubnameTab.newTab().setText(detail.formName ?: detail.name)
+                        )
                     }
                 }
             }
@@ -116,7 +123,11 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
 //                Timber.d("Load Image" + imageUrl.path)
 //
 //            }
-            val text = "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace("##", "#")
+            val text =
+                "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace(
+                    "##",
+                    "#"
+                )
 //            Timber.tag("LoadImage").d(text)
             Glide.with(this@PokeDexDetailsActivity)
                 .load(Uri.parse(text))
@@ -154,6 +165,7 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
             pokemonBodyImage.setImageResource(details.body.icon)
             pokemonBody.setText(details.body.displayedName)
             catchRate.text = details.catchRate.toString()
+            moveLearnViewModel.setDexNumber(details.dexNumber)
 
             //<editor-fold desc="读取努力值" defaultstate="collapsed">
             evHp.text = details.evHp.toString()
@@ -217,6 +229,14 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                 supportFragmentManager, EggGroupDialogFragment::javaClass.name
             )
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

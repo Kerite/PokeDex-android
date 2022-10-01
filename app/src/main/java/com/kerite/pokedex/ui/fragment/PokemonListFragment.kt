@@ -16,8 +16,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kerite.fission.AntiShaker
-import com.kerite.fission.android.BaseFragment
 import com.kerite.fission.android.extensions.startActivity
+import com.kerite.fission.android.ui.BaseFragment
 import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
 import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter

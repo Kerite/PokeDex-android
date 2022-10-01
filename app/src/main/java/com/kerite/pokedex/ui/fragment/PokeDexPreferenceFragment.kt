@@ -8,11 +8,11 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.TwoStatePreference
 import com.kerite.fission.android.extensions.shortToast
 import com.kerite.pokedex.R
-import com.kerite.pokedex.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED
-import com.kerite.pokedex.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED_STR
-import com.kerite.pokedex.SETTINGS_AUTO_CHECK_UPDATE_KEY
-import com.kerite.pokedex.SETTINGS_AUTO_CHECK_UPDATE_STR
-import com.kerite.pokedex.SETTINGS_CHECK_UPDATE_STR
+import com.kerite.pokedex.SettingsConstants.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED
+import com.kerite.pokedex.SettingsConstants.SETTINGS_ANONYMOUS_ANALYTICS_ENABLED_STR
+import com.kerite.pokedex.SettingsConstants.SETTINGS_AUTO_CHECK_UPDATE_KEY
+import com.kerite.pokedex.SettingsConstants.SETTINGS_AUTO_CHECK_UPDATE_STR
+import com.kerite.pokedex.SettingsConstants.SETTINGS_CHECK_UPDATE_STR
 import com.kerite.pokedex.settingsDataStore
 import com.microsoft.appcenter.distribute.Distribute
 import kotlinx.coroutines.launch

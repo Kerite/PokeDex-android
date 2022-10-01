@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.WindowManager
 import androidx.viewbinding.ViewBinding
-import com.kerite.fission.android.BaseActivity
 import com.kerite.fission.android.extensions.shortToast
+import com.kerite.fission.android.ui.BaseActivity
 import com.kerite.pokedex.BuildConfig
 
 private typealias ActivityInflate<T> = (LayoutInflater) -> T

@@ -9,6 +9,24 @@ import com.kerite.pokedex.model.enums.PokemonType
 
 /**
  * 宝可梦详情
+ * @param id 宝可梦ID
+ * @param dexNumber 图鉴编号
+ * @param name 宝可梦名字
+ * @param jpName 日文名字
+ * @param enName 英文名字
+ * @param formName 形态名字
+ * @param height 身高
+ * @param weight 体重
+ * @param type1 属性1
+ * @param type2 属性2
+ * @param body 体形
+ * @param catchRate 捕获率
+ * @param specie 分类
+ * @param ability1 特性1
+ * @param ability2 特性2
+ * @param abilityHidden 隐藏特性
+ * @param evHp 击倒后生命努力值
+ * @param evAttack 击倒后攻击努力值
  */
 @Entity(
     tableName = "pokemon_detail"
