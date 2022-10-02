@@ -24,7 +24,7 @@ android {
         minSdk 29
         targetSdk 33
         versionCode 'git rev-list --no-merges --count HEAD'.execute().text.trim().toInteger()
-        versionName "$versionNamePrefix (${'git rev-parse --short HEAD'.execute().text.trim()})"
+        versionName "$versionNamePrefix-${'git rev-parse --short HEAD'.execute().text.trim()}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -104,7 +104,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            outputFileName = outputFileName.replace("app-", "PokeDex-")
+            outputFileName = outputFileName.replace("app-", "PokeDex-v" + versionName + "-")
         }
     }
 }

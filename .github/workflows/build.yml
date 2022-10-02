@@ -48,7 +48,11 @@ jobs:
         with:
           arguments: assembleRelease
 
-      - name: Upload Built AppCenter apk
+      - name: Find Built Universal Apk
+        id: get-universal-apk
+        run: echo "::set-output name=universal_apk::$(find app/build/outputs/apk/appCenter/release -name "*universal*")"
+
+      - name: Upload Built Artifact
         if: success()
         uses: actions/upload-artifact@v3
         with:
@@ -61,7 +65,7 @@ jobs:
           app: Keriteal/Pokemon-Dex
           token: ${{ secrets.APP_CENTER_TOKEN }}
           group: public
-          file: ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-universal-release.apk
+          file: ${{ steps.get-universal-apk.outputs.universal_apk }}
 
       - name: Get Tag
         id: get-tag
