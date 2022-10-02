@@ -61,7 +61,7 @@ jobs:
           app: Keriteal/Pokemon-Dex
           token: ${{ secrets.APP_CENTER_TOKEN }}
           group: public
-          file: ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-release.apk
+          file: ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-universal-release.apk
 
       - name: Get Tag
         id: get-tag
