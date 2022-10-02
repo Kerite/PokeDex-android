@@ -14,13 +14,24 @@ import com.kerite.pokedex.SettingsConstants.SETTINGS_AUTO_CHECK_UPDATE_KEY
 import com.kerite.pokedex.SettingsConstants.SETTINGS_AUTO_CHECK_UPDATE_STR
 import com.kerite.pokedex.SettingsConstants.SETTINGS_CHECK_UPDATE_STR
 import com.kerite.pokedex.settingsDataStore
+import com.kerite.pokedex.util.SettingsDataStore
 import com.microsoft.appcenter.distribute.Distribute
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexPreferenceFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        preferenceManager.preferenceDataStore =
+            SettingsDataStore(requireContext().settingsDataStore)
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
+
+//        (findPreference<SimpleMenuPreference>(SETTINGS_GAME_STR))?.apply {
+//            setOnPreferenceChangeListener { preference, value ->
+//                val gameVersion = value as String
+//                Timber.tag("SettingsUpdate").i(value.toString())
+//                true
+//            }
+//        }
 
         // 检查更新
         (findPreference<Preference>(SETTINGS_CHECK_UPDATE_STR))?.apply {

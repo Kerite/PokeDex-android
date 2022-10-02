@@ -32,9 +32,12 @@ data class PokemonMoveRow(
          * @return return null if no value
          */
         fun fromMoveLearnView(view: MoveLearnDatabaseView, game: EnumGameList): PokemonMoveRow? {
-            val shownText = game.learnProperty.get(view)
+            var shownText = game.learnProperty.get(view)
             if (shownText.isNullOrBlank()) {
                 return null
+            }
+            if (shownText.startsWith("—<")) {
+                shownText = "进化"
             }
             return PokemonMoveRow(
                 id = view.id,

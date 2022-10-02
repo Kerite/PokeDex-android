@@ -10,6 +10,7 @@ import com.kerite.pokedex.model.PokemonMoveRow
 import com.kerite.pokedex.model.enums.EnumGameList
 import com.kerite.pokedex.model.enums.MovePattern
 import com.kerite.pokedex.settingsDataStore
+import com.kerite.pokedex.util.extension.isNumeric
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -41,30 +42,47 @@ class MoveLearnListViewModel(
         mPokemonDexNumber,
         mMovePattern,
         mPokemonFormName,
-    ) { _, generationPreference, dexNumber, pattern, formName ->
+    ) { _, gameVersionPreference, dexNumber, pattern, formName ->
+        // <editor-fold defaultstate="collapsed" desc="数据库查询">
         if (dexNumber == null) {
             return@combine emptyList<PokemonMoveRow>()
         } else {
-            val moveLearnList =
-                withContext(Dispatchers.IO) { mMoveLearnDao.filterMoveLearn(dexNumber) }
-            Timber.tag("DatabaseResult").d(moveLearnList.joinToString("\n"))
-            val result = withContext(Dispatchers.Default) {
+            val gameVersionEnum = EnumGameList.valueOf(gameVersionPreference)
+            Timber.tag("MoveFilter").d("GameVersion ${gameVersionEnum.name}")
+            val moveLearnList = withContext(Dispatchers.IO) {
+                if (formName == null) {
+                    Timber.tag("MoveFilter").d("FormName is NULL")
+                    mMoveLearnDao.filterMoveLearn(dexNumber)
+                } else {
+                    Timber.tag("MoveFilter").d("FormName $formName")
+                    mMoveLearnDao.filterMoveLearn(dexNumber, formName)
+                }
+            }
+            return@combine withContext(Dispatchers.Default) {
                 moveLearnList.mapNotNull {
-                    PokemonMoveRow.fromMoveLearnView(it, EnumGameList.fromInt(generationPreference))
+                    PokemonMoveRow.fromMoveLearnView(it, gameVersionEnum)
                 }.sortedWith { o1, o2 ->
-                    if (o1.value == "—" && o2.value != "—") {
+                    if (o1.value == "进化" && o2.value != "进化") {
+                        -1
+                    } else if (o1.value != "进化" && o2.value == "进化") {
+                        1
+                    } else if (o1.value == "进化" && o2.value == "进化") {
+                        o1.id - o2.id
+                    } else if (o1.value == "—" && o2.value != "—") {
                         -1
                     } else if (o2.value == "—" && o1.value != "—") {
                         1
                     } else if (o2.value == "—" && o1.value == "—") {
                         o1.id - o2.id
+                    } else if (o2.value.isNumeric() && o1.value.isNumeric()) {
+                        o1.value.toInt() - o2.value.toInt()
                     } else {
                         o1.value.compareTo(o2.value)
                     }
                 }
             }
-            return@combine result
         }
+        // </editor-fold>
     }
 
     fun setDexNumber(dexNumber: Int) {

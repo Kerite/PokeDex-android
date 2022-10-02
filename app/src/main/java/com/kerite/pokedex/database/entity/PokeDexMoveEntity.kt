@@ -51,7 +51,7 @@ data class PokeDexMoveEntity(
     @ColumnInfo(name = "en_name") val enName: String,
     @ColumnInfo(name = "type") val type: PokemonType,
     @ColumnInfo(name = "damage_category") val damageCategory: MoveCategory,
-    @ColumnInfo(name = "pp") val basePowerPoint: Int,
+    @ColumnInfo(name = "pp") val basePowerPoint: String,
     @ColumnInfo(name = "power") val power: String,
     @ColumnInfo(name = "accuracy") val accuracy: String,
     @ColumnInfo(name = "generation") val generation: Int,

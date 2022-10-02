@@ -108,4 +108,21 @@
     <string name="toast_update_available">更新可用 %s</string>
     <string name="toast_no_update_available">暂无更新可用</string>
     <string name="variably">变化</string>
+    <string name="game_red">红</string>
+    <string name="game_green">绿</string>
+    <string name="game_blue">蓝</string>
+    <string name="game_yellow">皮卡丘</string>
+    <string name="game_gold">金</string>
+    <string name="game_silver">银</string>
+    <string name="game_crystal">水晶</string>
+    <string name="game_ruby">红宝石</string>
+    <string name="game_sapphire">蓝宝石</string>
+    <string name="game_fire_red">火红</string>
+    <string name="game_leaf_green">叶绿</string>
+    <string name="game_emerald">绿宝石</string>
+    <string name="game_diamond">钻石</string>
+    <string name="game_pearl">珍珠</string>
+    <string name="game_platinum">白金</string>
+    <string name="game_heart_gold">心金</string>
+    <string name="game_soul_silver">魂银</string>
 </resources>

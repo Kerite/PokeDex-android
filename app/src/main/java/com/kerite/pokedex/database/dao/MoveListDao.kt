@@ -43,7 +43,12 @@ interface MoveListDao {
     ): List<PokeDexMoveEntity>
 
     @Query(
-        "SELECT * FROM MoveLearnDatabaseView WHERE dexNumber = :dexNumber"
+        "SELECT * FROM MoveLearnDatabaseView WHERE dexNumber = :dexNumber AND formName IS NULL"
     )
     fun filterMoveLearn(dexNumber: Int): List<MoveLearnDatabaseView>
+
+    @Query(
+        "SELECT * FROM MoveLearnDatabaseView WHERE dexNumber = :dexNumber AND formName = :formName"
+    )
+    fun filterMoveLearn(dexNumber: Int, formName: String): List<MoveLearnDatabaseView>
 }

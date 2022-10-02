@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
+        android:key="dex_category"
+        android:title="图鉴设置">
+        <rikka.preference.SimpleMenuPreference
+            android:defaultValue="SWORD"
+            android:entries="@array/list_game"
+            android:entryValues="@array/list_game_value"
+            android:key="preference_game"
+            android:summary="%s"
+            android:title="图鉴版本" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:key="other_category"
         android:title="Other">
         <Preference

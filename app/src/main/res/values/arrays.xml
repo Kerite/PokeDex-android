@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_game_value">
+        <item>RED</item>
+        <item>GREEN</item>
+        <item>BLUE</item>
+        <item>YELLOW</item>
+        <item>GOLD</item>
+        <item>SILVER</item>
+        <item>CRYSTAL</item>
+        <item>RUBY</item>
+        <item>SAPPHIRE</item>
+        <item>FIRE_RED</item>
+        <item>LEAF_GREEN</item>
+        <item>EMERALD</item>
+        <item>DIAMOND</item>
+        <item>PEARL</item>
+        <item>HEART_GOLD</item>
+        <item>SOUL_SILVER</item>
+        <item>BLACK</item>
+        <item>WHITE</item>
+        <item>BLACK_2</item>
+        <item>WHITE_2</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>OMEGA_RUBY</item>
+        <item>ALPHA_SAPPHIRE</item>
+        <item>SUN</item>
+        <item>MOON</item>
+        <item>ULTRA_SUN</item>
+        <item>ULTRA_MOON</item>
+        <item>LETS_GO</item>
+        <item>SHIELD</item>
+        <item>SWORD</item>
+        <item>BRILLIANT_DIAMOND</item>
+        <item>SHINING_PEARL</item>
+        <item>LEGEND_ARCEUS</item>
+    </string-array>
+    <string-array name="list_game">
+        <item>红</item>
+        <item>绿</item>
+        <item>蓝</item>
+        <item>黄</item>
+        <item>金</item>
+        <item>银</item>
+        <item>水晶</item>
+        <item>红宝石</item>
+        <item>绿宝石</item>
+        <item>火红</item>
+        <item>叶绿</item>
+        <item>绿宝石</item>
+        <item>钻石</item>
+        <item>珍珠</item>
+        <item>心灵之金</item>
+        <item>灵魂之银</item>
+        <item>黑</item>
+        <item>白</item>
+        <item>黑2</item>
+        <item>白2</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>欧米伽蓝宝石</item>
+        <item>阿尔法红宝石</item>
+        <item>日</item>
+        <item>月</item>
+        <item>究极之日</item>
+        <item>究极之月</item>
+        <item>去吧皮卡丘/去吧伊布</item>
+        <item>剑</item>
+        <item>盾</item>
+        <item>晶灿珍珠</item>
+        <item>明亮钻石</item>
+        <item>传说 阿尔宙斯</item>
+    </string-array>
+</resources>

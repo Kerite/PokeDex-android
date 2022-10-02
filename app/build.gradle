@@ -36,6 +36,13 @@ android {
         }
     }
 
+    splits {
+        abi {
+            enable true
+            universalApk false
+        }
+    }
+
     signingConfigs {
         release {
             if (project.properties['releaseStoreFile'] != null) {
@@ -59,13 +66,16 @@ android {
             applicationIdSuffix '.debug'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_12
+        targetCompatibility JavaVersion.VERSION_12
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_12.toString()
     }
+
     buildFeatures {
         viewBinding true
     }
@@ -84,6 +94,7 @@ android {
             buildConfigField("Boolean", "IS_GOOGLE_PLAY", "true")
         }
     }
+
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')

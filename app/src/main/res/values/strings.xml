@@ -151,4 +151,21 @@
     <string name="toast_update_available">Update Available %s</string>
     <string name="toast_no_update_available">No Update Available</string>
     <string name="variably">Variably</string>
+    <string name="game_red">Red</string>
+    <string name="game_green">Green</string>
+    <string name="game_blue">Blue</string>
+    <string name="game_yellow">Yellow</string>
+    <string name="game_gold">Gold</string>
+    <string name="game_silver">Silver</string>
+    <string name="game_crystal">Crystal</string>
+    <string name="game_ruby">Ruby</string>
+    <string name="game_sapphire">Sapphire</string>
+    <string name="game_fire_red">Fire Red</string>
+    <string name="game_leaf_green">Leaf Green</string>
+    <string name="game_emerald">Emerald</string>
+    <string name="game_diamond">Diamond</string>
+    <string name="game_pearl">Pearl</string>
+    <string name="game_platinum">Platinum</string>
+    <string name="game_heart_gold">Heart Gold</string>
+    <string name="game_soul_silver">Soul Silver</string>
 </resources>

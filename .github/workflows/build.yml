@@ -72,4 +72,4 @@ jobs:
         with:
           tag_name: ${{ steps.get-tag.outputs.release_tag }}
           files: |
-            ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/app-appCenter-release.apk
+            ${{ github.workspace }}/app/build/outputs/apk/appCenter/release/*.apk

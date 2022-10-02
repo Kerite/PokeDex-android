@@ -3,7 +3,7 @@
 package com.kerite.pokedex
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.kerite.pokedex.model.enums.EnumGameList
 
 // MSP图像每行的精灵数量
@@ -71,7 +71,7 @@ object SettingsConstants {
     /**
      * 选择的游戏
      */
-    const val SETTINGS_GAME_STR = "preference_generation"
-    val SETTINGS_GAME_DEFAULT = EnumGameList.SWORD.ordinal
-    val SETTINGS_GAME_KEY = intPreferencesKey(SETTINGS_GAME_STR)
+    const val SETTINGS_GAME_STR = "preference_game"
+    val SETTINGS_GAME_DEFAULT = EnumGameList.SWORD.name
+    val SETTINGS_GAME_KEY = stringPreferencesKey(SETTINGS_GAME_STR)
 }
