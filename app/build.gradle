@@ -101,6 +101,12 @@ android {
             version '3.22.1'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = outputFileName.replace("app-", "PokeDex-v" + versionName + "-")
+        }
+    }
 }
 
 dependencies {
