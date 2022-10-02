@@ -29,47 +29,49 @@
         <item>MOON</item>
         <item>ULTRA_SUN</item>
         <item>ULTRA_MOON</item>
-        <item>LETS_GO</item>
-        <item>SHIELD</item>
+        <item>LETS_GO_PIKACHU</item>
+        <item>LETS_GO_EEVEE</item>
         <item>SWORD</item>
+        <item>SHIELD</item>
         <item>BRILLIANT_DIAMOND</item>
         <item>SHINING_PEARL</item>
         <item>LEGEND_ARCEUS</item>
     </string-array>
     <string-array name="list_game">
-        <item>红</item>
-        <item>绿</item>
-        <item>蓝</item>
-        <item>黄</item>
-        <item>金</item>
-        <item>银</item>
-        <item>水晶</item>
-        <item>红宝石</item>
-        <item>绿宝石</item>
-        <item>火红</item>
-        <item>叶绿</item>
-        <item>绿宝石</item>
-        <item>钻石</item>
-        <item>珍珠</item>
-        <item>心灵之金</item>
-        <item>灵魂之银</item>
-        <item>黑</item>
-        <item>白</item>
-        <item>黑2</item>
-        <item>白2</item>
-        <item>X</item>
-        <item>Y</item>
-        <item>欧米伽蓝宝石</item>
-        <item>阿尔法红宝石</item>
-        <item>日</item>
-        <item>月</item>
-        <item>究极之日</item>
-        <item>究极之月</item>
-        <item>去吧皮卡丘/去吧伊布</item>
-        <item>剑</item>
-        <item>盾</item>
-        <item>晶灿珍珠</item>
-        <item>明亮钻石</item>
-        <item>传说 阿尔宙斯</item>
+        <item>@string/game_red</item>
+        <item>@string/game_green</item>
+        <item>@string/game_blue</item>
+        <item>@string/game_yellow</item>
+        <item>@string/game_gold</item>
+        <item>@string/game_silver</item>
+        <item>@string/game_crystal</item>
+        <item>@string/game_ruby</item>
+        <item>@string/game_sapphire</item>
+        <item>@string/game_fire_red</item>
+        <item>@string/game_leaf_green</item>
+        <item>@string/game_emerald</item>
+        <item>@string/game_diamond</item>
+        <item>@string/game_pearl</item>
+        <item>@string/game_heart_gold</item>
+        <item>@string/game_soul_silver</item>
+        <item>@string/game_black</item>
+        <item>@string/game_white</item>
+        <item>@string/game_black_2</item>
+        <item>@string/game_white_2</item>
+        <item>@string/game_x</item>
+        <item>@string/game_y</item>
+        <item>@string/game_omega_ruby</item>
+        <item>@string/game_alpha_sapphire</item>
+        <item>@string/game_sun</item>
+        <item>@string/game_moon</item>
+        <item>@string/game_ultra_sun</item>
+        <item>@string/game_ultra_moon</item>
+        <item>@string/game_lets_go_pikachu</item>
+        <item>@string/game_lets_go_eevee</item>
+        <item>@string/game_sword</item>
+        <item>@string/game_shield</item>
+        <item>@string/game_shining_pearl</item>
+        <item>@string/game_brilliant_diamond</item>
+        <item>@string/game_legends_arceus</item>
     </string-array>
 </resources>

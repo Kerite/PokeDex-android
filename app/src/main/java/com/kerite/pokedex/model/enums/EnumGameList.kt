@@ -1,6 +1,7 @@
 package com.kerite.pokedex.model.enums
 
 import androidx.annotation.StringRes
+import com.kerite.pokedex.R
 import com.kerite.pokedex.database.dbview.MoveLearnDatabaseView
 import kotlin.reflect.KProperty1
 
@@ -14,49 +15,178 @@ enum class EnumGameList(
     val learnProperty: KProperty1<MoveLearnDatabaseView, String?>,
     @StringRes val gameName: Int = 0,
 ) {
-    RED(1, MoveLearnDatabaseView::redGreenBlue),
-    GREEN(1, MoveLearnDatabaseView::redGreenBlue),
-    BLUE(1, MoveLearnDatabaseView::redGreenBlue),
-    YELLOW(1, MoveLearnDatabaseView::yellow),
-    GOLD(2, MoveLearnDatabaseView::goldSilver),
-    SILVER(2, MoveLearnDatabaseView::goldSilver),
-    CRYSTAL(2, MoveLearnDatabaseView::crystal),
-    RUBY(3, MoveLearnDatabaseView::rubySapphireEmerald),
-    SAPPHIRE(3, MoveLearnDatabaseView::rubySapphireEmerald),
-    FIRE_RED(3, MoveLearnDatabaseView::fireRedLeafGreen),
-    LEAF_GREEN(3, MoveLearnDatabaseView::fireRedLeafGreen),
-    EMERALD(3, MoveLearnDatabaseView::rubySapphireEmerald),
-    DIAMOND(4, MoveLearnDatabaseView::diamondPearl),
-    PEARL(4, MoveLearnDatabaseView::diamondPearl),
-    HEART_GOLD(4, MoveLearnDatabaseView::heartGoldSoulSilver),
-    SOUL_SILVER(4, MoveLearnDatabaseView::heartGoldSoulSilver),
-    BLACK(5, MoveLearnDatabaseView::blackWhite),
-    WHITE(5, MoveLearnDatabaseView::blackWhite),
-    BLACK_2(5, MoveLearnDatabaseView::blackWhite2),
-    WHITE_2(5, MoveLearnDatabaseView::blackWhite2),
-    X(6, MoveLearnDatabaseView::xy),
-    Y(6, MoveLearnDatabaseView::xy),
-    OMEGA_RUBY(6, MoveLearnDatabaseView::omegaRubyAlphaSapphire),
-    ALPHA_SAPPHIRE(6, MoveLearnDatabaseView::omegaRubyAlphaSapphire),
-    SUN(7, MoveLearnDatabaseView::sunMoon),
-    MOON(7, MoveLearnDatabaseView::sunMoon),
-    ULTRA_SUN(7, MoveLearnDatabaseView::ultraSunUltraMoon),
-    ULTRA_MOON(7, MoveLearnDatabaseView::ultraSunUltraMoon),
-    LETS_GO(7, MoveLearnDatabaseView::letsGo),
-    SHIELD(8, MoveLearnDatabaseView::swordShield),
-    SWORD(8, MoveLearnDatabaseView::swordShield),
-    BRILLIANT_DIAMOND(8, MoveLearnDatabaseView::brilliantDiamondShinningPearl),
-    SHINING_PEARL(8, MoveLearnDatabaseView::brilliantDiamondShinningPearl),
-    LEGEND_ARCEUS(8, MoveLearnDatabaseView::legendArceus);
-
-    companion object {
-        fun fromInt(order: Int): EnumGameList {
-            for (value in values()) {
-                if (order == value.ordinal) {
-                    return value
-                }
-            }
-            throw IndexOutOfBoundsException()
-        }
-    }
+    RED(
+        1,
+        MoveLearnDatabaseView::redGreenBlue,
+        R.string.game_red
+    ),
+    GREEN(
+        1,
+        MoveLearnDatabaseView::redGreenBlue,
+        R.string.game_green
+    ),
+    BLUE(
+        1,
+        MoveLearnDatabaseView::redGreenBlue,
+        R.string.game_blue
+    ),
+    YELLOW(
+        1,
+        MoveLearnDatabaseView::yellow,
+        R.string.game_yellow
+    ),
+    GOLD(
+        2,
+        MoveLearnDatabaseView::goldSilver,
+        R.string.game_gold
+    ),
+    SILVER(
+        2,
+        MoveLearnDatabaseView::goldSilver,
+        R.string.game_silver
+    ),
+    CRYSTAL(
+        2,
+        MoveLearnDatabaseView::crystal,
+        R.string.game_crystal
+    ),
+    RUBY(
+        3,
+        MoveLearnDatabaseView::rubySapphireEmerald,
+        R.string.game_ruby
+    ),
+    SAPPHIRE(
+        3,
+        MoveLearnDatabaseView::rubySapphireEmerald,
+        R.string.game_sapphire
+    ),
+    FIRE_RED(
+        3,
+        MoveLearnDatabaseView::fireRedLeafGreen,
+        R.string.game_fire_red
+    ),
+    LEAF_GREEN(
+        3,
+        MoveLearnDatabaseView::fireRedLeafGreen,
+        R.string.game_leaf_green
+    ),
+    EMERALD(
+        3,
+        MoveLearnDatabaseView::rubySapphireEmerald,
+        R.string.game_emerald
+    ),
+    DIAMOND(
+        4,
+        MoveLearnDatabaseView::diamondPearl,
+        R.string.game_diamond
+    ),
+    PEARL(
+        4,
+        MoveLearnDatabaseView::diamondPearl,
+        R.string.game_pearl
+    ),
+    HEART_GOLD(
+        4,
+        MoveLearnDatabaseView::heartGoldSoulSilver,
+        R.string.game_heart_gold
+    ),
+    SOUL_SILVER(
+        4,
+        MoveLearnDatabaseView::heartGoldSoulSilver,
+        R.string.game_soul_silver
+    ),
+    BLACK(
+        5,
+        MoveLearnDatabaseView::blackWhite,
+        R.string.game_black
+    ),
+    WHITE(
+        5,
+        MoveLearnDatabaseView::blackWhite,
+        R.string.game_white
+    ),
+    BLACK_2(
+        5,
+        MoveLearnDatabaseView::blackWhite2,
+        R.string.game_black_2
+    ),
+    WHITE_2(
+        5,
+        MoveLearnDatabaseView::blackWhite2,
+        R.string.game_white_2
+    ),
+    X(
+        6,
+        MoveLearnDatabaseView::xy,
+        R.string.game_x
+    ),
+    Y(
+        6,
+        MoveLearnDatabaseView::xy,
+        R.string.game_y
+    ),
+    OMEGA_RUBY(
+        6,
+        MoveLearnDatabaseView::omegaRubyAlphaSapphire,
+        R.string.game_omega_ruby
+    ),
+    ALPHA_SAPPHIRE(
+        6,
+        MoveLearnDatabaseView::omegaRubyAlphaSapphire,
+        R.string.game_alpha_sapphire
+    ),
+    SUN(
+        7,
+        MoveLearnDatabaseView::sunMoon,
+        R.string.game_sun
+    ),
+    MOON(
+        7,
+        MoveLearnDatabaseView::sunMoon,
+        R.string.game_moon
+    ),
+    ULTRA_SUN(
+        7,
+        MoveLearnDatabaseView::ultraSunUltraMoon,
+        R.string.game_ultra_sun
+    ),
+    ULTRA_MOON(
+        7,
+        MoveLearnDatabaseView::ultraSunUltraMoon,
+        R.string.game_ultra_moon
+    ),
+    LETS_GO_PIKACHU(
+        7,
+        MoveLearnDatabaseView::letsGo,
+        R.string.game_lets_go_pikachu
+    ),
+    LETS_GO_EEVEE(
+        7,
+        MoveLearnDatabaseView::letsGo,
+        R.string.game_lets_go_eevee
+    ),
+    SWORD(
+        8,
+        MoveLearnDatabaseView::swordShield,
+        R.string.game_sword
+    ),
+    SHIELD(
+        8,
+        MoveLearnDatabaseView::swordShield,
+        R.string.game_shield
+    ),
+    BRILLIANT_DIAMOND(
+        8,
+        MoveLearnDatabaseView::brilliantDiamondShinningPearl,
+        R.string.game_brilliant_diamond
+    ),
+    SHINING_PEARL(
+        8,
+        MoveLearnDatabaseView::brilliantDiamondShinningPearl,
+        R.string.game_shining_pearl
+    ),
+    LEGEND_ARCEUS(
+        8, MoveLearnDatabaseView::legendArceus,
+        R.string.game_legends_arceus
+    );
 }

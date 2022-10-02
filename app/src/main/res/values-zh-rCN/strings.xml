@@ -125,4 +125,23 @@
     <string name="game_platinum">白金</string>
     <string name="game_heart_gold">心金</string>
     <string name="game_soul_silver">魂银</string>
+    <string name="game_black">黑</string>
+    <string name="game_white">白</string>
+    <string name="game_black_2">黑2</string>
+    <string name="game_white_2">白2</string>
+    <string name="game_x">X</string>
+    <string name="game_y">Y</string>
+    <string name="game_omega_ruby">欧米茄红宝石</string>
+    <string name="game_alpha_sapphire">阿尔法蓝宝石</string>
+    <string name="game_sun">日</string>
+    <string name="game_moon">月</string>
+    <string name="game_ultra_sun">究极日</string>
+    <string name="game_ultra_moon">究极月</string>
+    <string name="game_lets_go_pikachu">去吧皮卡丘</string>
+    <string name="game_lets_go_eevee">去吧伊布</string>
+    <string name="game_sword">剑</string>
+    <string name="game_shield">盾</string>
+    <string name="game_brilliant_diamond">晶灿钻石</string>
+    <string name="game_shining_pearl">明亮珍珠</string>
+    <string name="game_legends_arceus">传说 阿尔宙斯</string>
 </resources>

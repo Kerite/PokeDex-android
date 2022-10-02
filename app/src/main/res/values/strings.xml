@@ -168,4 +168,23 @@
     <string name="game_platinum">Platinum</string>
     <string name="game_heart_gold">Heart Gold</string>
     <string name="game_soul_silver">Soul Silver</string>
+    <string name="game_black">Black</string>
+    <string name="game_white">White</string>
+    <string name="game_black_2">Black 2</string>
+    <string name="game_white_2">White 2</string>
+    <string name="game_x">X</string>
+    <string name="game_y">Y</string>
+    <string name="game_omega_ruby">Omege Ruby</string>
+    <string name="game_alpha_sapphire">Alpha Sapphire</string>
+    <string name="game_sun">Sun</string>
+    <string name="game_moon">Moon</string>
+    <string name="game_ultra_sun">Ultra Sun</string>
+    <string name="game_ultra_moon">Ultra Moon</string>
+    <string name="game_lets_go_pikachu">Let\'s Go, Pikachu</string>
+    <string name="game_lets_go_eevee">Let\'s Go, Eevee</string>
+    <string name="game_sword">Sword</string>
+    <string name="game_shield">Shield</string>
+    <string name="game_brilliant_diamond">Brilliant Diamond</string>
+    <string name="game_shining_pearl">Shining Pearl</string>
+    <string name="game_legends_arceus">Legends: Arceus</string>
 </resources>
