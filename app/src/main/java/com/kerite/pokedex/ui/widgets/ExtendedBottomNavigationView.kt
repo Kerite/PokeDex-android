@@ -16,4 +16,6 @@ class ExtendedBottomNavigationView @JvmOverloads constructor(
     private val behavior = BottomViewHideOnScrollBehavior<ExtendedBottomNavigationView>()
 
     override fun getBehavior() = behavior
+
+    fun slideUp() = behavior.slideUp(this, true)
 }

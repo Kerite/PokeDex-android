@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.ViewPropertyAnimator
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
-import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.google.android.material.motion.MotionUtils
 
@@ -37,6 +36,8 @@ class BottomViewHideOnScrollBehavior<V : View> : CoordinatorLayout.Behavior<V> {
     private lateinit var slideUpAnimInterpolator: TimeInterpolator
     private lateinit var slideDownAnimInterpolator: TimeInterpolator
 
+    val currentState get() = mCurrentState
+
     override fun onLayoutChild(parent: CoordinatorLayout, child: V, layoutDirection: Int): Boolean {
         val params = child.layoutParams as ViewGroup.MarginLayoutParams
         height = params.bottomMargin + child.measuredHeight
@@ -50,16 +51,8 @@ class BottomViewHideOnScrollBehavior<V : View> : CoordinatorLayout.Behavior<V> {
             com.google.android.material.R.attr.motionDurationMedium4,
             DEFAULT_SLIDE_DOWN_DURATION
         )
-        slideUpAnimInterpolator = MotionUtils.resolveThemeInterpolator(
-            child.context,
-            com.google.android.material.R.attr.motionEasingEmphasizedInterpolator,
-            LinearOutSlowInInterpolator()
-        )
-        slideDownAnimInterpolator = MotionUtils.resolveThemeInterpolator(
-            child.context,
-            com.google.android.material.R.attr.motionEasingEmphasizedInterpolator,
-            FastOutLinearInInterpolator()
-        )
+        slideUpAnimInterpolator = LinearOutSlowInInterpolator()
+        slideDownAnimInterpolator = LinearOutSlowInInterpolator()
         return super.onLayoutChild(parent, child, layoutDirection)
     }
 
@@ -112,7 +105,7 @@ class BottomViewHideOnScrollBehavior<V : View> : CoordinatorLayout.Behavior<V> {
         }
     }
 
-    private fun slideUp(view: V, animate: Boolean = true) {
+    fun slideUp(view: V, animate: Boolean = true) {
         if (mCurrentState == STATE_UP) return
 
         currentAnimator?.cancel().also {
@@ -122,6 +115,8 @@ class BottomViewHideOnScrollBehavior<V : View> : CoordinatorLayout.Behavior<V> {
         val targetTranslationY = 0f
         if (animate) {
             doAnimate(view, targetTranslationY, slideUpDuration.toLong(), slideUpAnimInterpolator)
+        } else {
+            view.translationY = targetTranslationY
         }
     }
 

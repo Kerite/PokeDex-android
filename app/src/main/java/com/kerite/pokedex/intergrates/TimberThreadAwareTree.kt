@@ -1,5 +1,8 @@
 package com.kerite.pokedex.intergrates
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
 class TimberThreadAwareTree : Timber.DebugTree() {
@@ -7,6 +10,11 @@ class TimberThreadAwareTree : Timber.DebugTree() {
         val newTag = tag?.let {
             "<${Thread.currentThread().name}>$tag"
         }
-        super.log(priority, newTag, message, t)
+        t?.let {
+            CoroutineScope(Dispatchers.Default).apply {
+                super.log(priority, newTag, message, t)
+                FirebaseCrashlytics.getInstance().recordException(it)
+            }
+        }
     }
 }

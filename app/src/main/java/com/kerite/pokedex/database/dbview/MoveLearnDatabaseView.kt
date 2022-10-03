@@ -3,12 +3,14 @@ package com.kerite.pokedex.database.dbview
 import androidx.room.ColumnInfo
 import androidx.room.DatabaseView
 import com.kerite.pokedex.model.enums.MoveCategory
+import com.kerite.pokedex.model.enums.MovePattern
 import com.kerite.pokedex.model.enums.PokemonType
 
 @DatabaseView(
     "SELECT pokemon_move.id, " +
             "pokemon_move_learn.dex_number AS dexNumber, " +
             "pokemon_move_learn.form_name AS formName, " +
+            "pokemon_move_learn.pattern," +
             "pokemon_move.name, pokemon_move.type, " +
             "pokemon_move.damage_category AS damageCategory, " +
             "pokemon_move.pp, pokemon_move.power, pokemon_move.accuracy, " +
@@ -30,6 +32,7 @@ data class MoveLearnDatabaseView(
     val id: Int,
     val dexNumber: Int,
     val formName: String?,
+    val pattern: MovePattern,
     val name: String,
     val type: PokemonType,
     val damageCategory: MoveCategory,

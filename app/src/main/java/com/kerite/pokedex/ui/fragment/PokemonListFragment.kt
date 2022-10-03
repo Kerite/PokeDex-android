@@ -1,5 +1,6 @@
 package com.kerite.pokedex.ui.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,17 +11,18 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kerite.fission.AntiShaker
+import coil.load
 import com.kerite.fission.android.extensions.startActivity
 import com.kerite.fission.android.ui.BaseFragment
+import com.kerite.fission.android.ui.SimpleListRecyclerAdapter
+import com.kerite.pokedex.MSP_WIDTH
 import com.kerite.pokedex.R
+import com.kerite.pokedex.database.entity.PokemonEntity
 import com.kerite.pokedex.databinding.FragmentPokemonDexBinding
-import com.kerite.pokedex.recyclers.PokemonDexRecyclerAdapter
+import com.kerite.pokedex.databinding.ItemPokemonDexIndexBinding
 import com.kerite.pokedex.ui.activity.PokeDexDetailsActivity
 import com.kerite.pokedex.ui.customview.BackPressedSearchView
 import com.kerite.pokedex.ui.dialog.PokeDexFilterBottomDialogFragment
@@ -33,18 +35,15 @@ import kotlinx.coroutines.launch
 class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
     FragmentPokemonDexBinding::inflate
 ), MenuProvider {
-    private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
+    private val pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel by activityViewModels()
     private val activityViewModel: SearchViewModel by activityViewModels()
-    private val mainActivityViewModel: MainActivityViewModel by viewModels()
-    private val antiShaker = AntiShaker()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
+    private lateinit var recyclerAdapter: SimpleListRecyclerAdapter<ItemPokemonDexIndexBinding, PokemonEntity>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView()
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
         binding.apply {
             // 设置浮动按钮的点击事件
             pokemonDexFilterFab.setOnClickListener {
@@ -57,29 +56,49 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
                 pokemonDexFilterFab.translationY = offset
             }
         }
+        setupRecyclerView()
+        lifecycleScope.launch {
+            pokemonDexListAndFilterViewModel.pokemonList.collectLatest {
+                recyclerAdapter.submitList(it)
+            }
+        }
     }
 
     private fun setupRecyclerView() {
+        // <editor-fold defaultstate="collapsed" desc="设置RecyclerView">
         binding.pokemonDexList.apply {
-            pokemonDexListAndFilterViewModel =
-                ViewModelProvider(requireActivity())[PokemonDexListAndFilterViewModel::class.java]
-            val adapter =
-                PokemonDexRecyclerAdapter(PokemonDexRecyclerAdapter.OnClickListener { dexNumber, regionalVariant ->
-                    antiShaker.antiShake {
-                        startActivity<PokeDexDetailsActivity>(
-                            PokeDexDetailsActivity.INTENT_DEX_NUMBER to dexNumber
-                        )
+//            isNestedScrollingEnabled = false
+            recyclerAdapter = SimpleListRecyclerAdapter<ItemPokemonDexIndexBinding, PokemonEntity>(
+                context, ItemPokemonDexIndexBinding::inflate,
+                onBind = {
+                    pokemonName.text = it.name
+                    pokemonType1.type = it.type1
+                    dexNumber.text = "#${it.dexNumber}"
+                    pokemonSubName.text = it.subName.displayedName
+                    pokemonDexGeneration.text = context.resources.getString(
+                        R.string.generation_simple,
+                        it.generation
+                    )
+                    if (it.type2 == null) {
+                        pokemonType2.visibility = View.INVISIBLE
+                    } else {
+                        pokemonType2.visibility = View.VISIBLE
+                        pokemonType2.type = it.type2
                     }
-                }, this.context)
-            layoutManager = LinearLayoutManager(this.context)
-            this.adapter = adapter
-
-            lifecycleScope.launch {
-                pokemonDexListAndFilterViewModel.pokemonList.collectLatest {
-                    adapter.submitList(it)
+                    val path =
+                        "file:///android_asset/small_icon/${it.iconRowIndex * MSP_WIDTH + it.iconColumnIndex}.png"
+                    pokemonHeader.load(Uri.parse(path))
+                },
+                onItemClick = {
+                    startActivity<PokeDexDetailsActivity>(
+                        PokeDexDetailsActivity.INTENT_DEX_NUMBER to it.dexNumber
+                    )
                 }
-            }
+            )
+            layoutManager = LinearLayoutManager(this.context)
+            this.adapter = recyclerAdapter
         }
+        // </editor-fold>
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -111,10 +130,5 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return true
-    }
-
-    companion object {
-        const val STATE_FILTER_SHOW = 1
-        const val STATE_FILTER_HIDE = 2
     }
 }

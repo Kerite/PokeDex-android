@@ -13,10 +13,15 @@ class PokeDexDistributeListener : DistributeListener {
         releaseDetails?.apply {
             Timber.tag("ReleaseStat").i("Details: $this")
             activity?.apply {
-                shortToast(resources.getString(R.string.toast_update_available, releaseDetails.shortVersion))
+                shortToast(
+                    resources.getString(
+                        R.string.toast_update_available,
+                        releaseDetails.shortVersion
+                    )
+                )
             }
         }
-        return false
+        return true
     }
 
     override fun onNoReleaseAvailable(activity: Activity?) {

@@ -38,18 +38,14 @@ class MoveLearnListFragment : BaseFragment<FragmentMoveLearnListBinding>(
         binding.moveListView.apply {
             recyclerAdapter = SimpleListRecyclerAdapter(
                 context, ItemMoveListBinding::inflate,
-                onItemClick = { row ->
-
-                },
-                onBind = { binding, row ->
-                    binding.apply {
-                        moveLevelOrTmView.text = row.value
-                        moveAccuracyView.text = row.accuracy.getDisplayedText(context)
-                        movePowerView.text = row.power.getDisplayedText(context)
-                        moveNameView.text = row.name
-                        moveDescriptionView.text = row.description
-                        moveTypeIcon.type = row.type
-                    }
+                onItemClick = { },
+                onBind = {
+                    moveLevelOrTmView.text = it.value
+                    moveAccuracyView.text = it.accuracy.getDisplayedText(context)
+                    movePowerView.text = it.power.getDisplayedText(context)
+                    moveNameView.text = it.name
+                    moveDescriptionView.text = it.description
+                    moveTypeIcon.type = it.type
                 }
             )
             adapter = recyclerAdapter

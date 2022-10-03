@@ -3,6 +3,7 @@ package com.kerite.pokedex.model
 import com.kerite.pokedex.database.dbview.MoveLearnDatabaseView
 import com.kerite.pokedex.model.enums.EnumGameList
 import com.kerite.pokedex.model.enums.MoveCategory
+import com.kerite.pokedex.model.enums.MovePattern
 import com.kerite.pokedex.model.enums.PokemonType
 
 /**
@@ -33,6 +34,9 @@ data class PokemonMoveRow(
          */
         fun fromMoveLearnView(view: MoveLearnDatabaseView, game: EnumGameList): PokemonMoveRow? {
             var shownText = game.learnProperty.get(view)
+            if (view.pattern == MovePattern.BREED) {
+                shownText = "遗传"
+            }
             if (shownText.isNullOrBlank()) {
                 return null
             }

@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.Window
 import androidx.activity.viewModels
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.textview.MaterialTextView
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.kerite.fission.AntiShaker
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
@@ -33,7 +36,13 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
     private val dialogAntiShaker: AntiShaker = AntiShaker()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        window.sharedElementsUseOverlay = false
+
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         Timber.tag("Intent").d(intent.dataString)
         viewModel.changePokemonDexNumber(intent.getIntExtra(INTENT_DEX_NUMBER, 0))
 
