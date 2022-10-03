@@ -57,6 +57,7 @@ jobs:
       - name: Execute Fission-ktx build
         run: |
           cd ${{ github.workspace }}/kotlin-ktx
+          chmod +x gradlew
           ./gradlew publishToMavenLocal
 
       - name: Build With Gradle
