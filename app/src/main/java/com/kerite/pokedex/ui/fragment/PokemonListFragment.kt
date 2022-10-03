@@ -7,6 +7,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.MenuItem.OnActionExpandListener
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -68,7 +70,7 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
         // <editor-fold defaultstate="collapsed" desc="设置RecyclerView">
         binding.pokemonDexList.apply {
 //            isNestedScrollingEnabled = false
-            recyclerAdapter = SimpleListRecyclerAdapter<ItemPokemonDexIndexBinding, PokemonEntity>(
+            recyclerAdapter = SimpleListRecyclerAdapter(
                 context, ItemPokemonDexIndexBinding::inflate,
                 onBind = {
                     pokemonName.text = it.name
@@ -93,9 +95,15 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
                     startActivity<PokeDexDetailsActivity>(
                         PokeDexDetailsActivity.INTENT_DEX_NUMBER to it.dexNumber
                     )
-                }
+                },
+                animRes = R.anim.anim_recycler_item
             )
             layoutManager = LinearLayoutManager(this.context)
+            val animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+            val animationController = LayoutAnimationController(animation)
+            animationController.order = LayoutAnimationController.ORDER_NORMAL
+            animationController.delay = 0.2f
+            itemAnimator
             this.adapter = recyclerAdapter
         }
         // </editor-fold>
@@ -129,6 +137,10 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+//        when (menuItem.itemId) {
+//            R.id.action_search ->
+//                pokemonDexListAndFilterViewModel.updateSearchWord("")
+//        }
         return true
     }
 }

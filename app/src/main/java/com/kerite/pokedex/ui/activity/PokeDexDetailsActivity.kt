@@ -134,7 +134,7 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
 //            }
             val text =
                 "file:///android_asset/images/${details.dexNumber}_${details.name}_${details.formName ?: ""}_.webp".replace(
-                    "_",
+                    "__",
                     "_"
                 )
             pokemonImage.load(Uri.parse(text))

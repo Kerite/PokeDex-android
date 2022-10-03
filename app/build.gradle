@@ -175,5 +175,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-perf-ktx'
 
-    implementation('com.github.Kerite:fission-ktx:master-SNAPSHOT')
+//    implementation('com.github.Kerite:fission-ktx:master-SNAPSHOT') {
+//        changing true
+//    }
+    implementation('com.kerite.fission:fission-android:0.0.2') {
+        changing true
+    }
+    implementation('com.kerite.fission:fission-common:0.0.2') {
+        changing true
+    }
 }

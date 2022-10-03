@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
+import coil.load
 import com.kerite.fission.android.extensions.startActivity
 import com.kerite.fission.android.ui.SimpleListRecyclerAdapter
+import com.kerite.pokedex.R
 import com.kerite.pokedex.database.PokemonDatabase
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.FragmentDialogAbilityBinding
@@ -36,19 +37,18 @@ class AbilityDialogFragment(
                         pokemonName.text = it.name
                         pokemonFormName.text = it.formName
                         val headerImagePath =
-                            "file:///android_asset/images/${it.dexNumber}#${it.name}#${it.formName ?: ""}#.webp"
-                                .replace("##", "#")
+                            "file:///android_asset/images/${it.dexNumber}_${it.name}_${it.formName ?: ""}_.webp"
+                                .replace("__", "_")
                         val headerUri = Uri.parse(headerImagePath)
-                        Glide.with(binding.root)
-                            .load(headerUri)
-                            .into(pokemonImage)
+                        pokemonImage.load(headerUri)
                     },
                     onItemClick = {
                         startActivity<PokeDexDetailsActivity>(
                             PokeDexDetailsActivity.INTENT_DEX_NUMBER to it.dexNumber,
                             PokeDexDetailsActivity.INTENT_FORM_NAME to (it.formName ?: ""),
                         )
-                    }
+                    },
+                    animRes = R.anim.anim_recycler_item
                 )
                 this.adapter = recyclerAdapter
                 layoutManager = LinearLayoutManager(context)

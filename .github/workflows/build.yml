@@ -20,6 +20,12 @@ jobs:
           fetch-depth: 0
           lfs: true
 
+      - name: Checkout fission
+        uses: actions/checkout@v3
+        with:
+          repository: Kerite/fission-ktx
+          path: ${{ github.workspace }}/kotlin-ktx
+
       - name: Setup Jdk
         uses: actions/setup-java@v3
         with:
@@ -49,6 +55,11 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: assembleRelease
+
+      - name: Execute Fission-ktx build
+        run: |
+          cd ${{ github.workspace }}/kotlin-ktx
+          ./gradlew publishToMavenLocal
 
       - name: Find Built Universal Apk
         id: get-universal-apk
