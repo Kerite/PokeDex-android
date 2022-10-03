@@ -53,8 +53,6 @@ jobs:
 
       - name: Build With Gradle
         uses: gradle/gradle-build-action@v2
-        with:
-          arguments: assembleRelease
 
       - name: Execute Fission-ktx build
         run: |
