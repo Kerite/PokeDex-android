@@ -61,6 +61,11 @@ jobs:
           cd ${{ github.workspace }}/kotlin-ktx
           ./gradlew publishToMavenLocal
 
+      - name: Build With Gradle
+        run: |
+          cd ${{ github.workspace }}
+          ./gradlew assembleRelease
+
       - name: Find Built Universal Apk
         id: get-universal-apk
         run: echo "::set-output name=universal_apk::$(find app/build/outputs/apk/appCenter/release -name "*universal*")"
