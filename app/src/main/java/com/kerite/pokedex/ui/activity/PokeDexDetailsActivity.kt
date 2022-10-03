@@ -9,7 +9,7 @@ import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
+import coil.load
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.textview.MaterialTextView
@@ -133,21 +133,11 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
 //
 //            }
             val text =
-                "file:///android_asset/images/${details.dexNumber}#${details.name}#${details.formName ?: ""}#.webp".replace(
-                    "##",
-                    "#"
+                "file:///android_asset/images/${details.dexNumber}_${details.name}_${details.formName ?: ""}_.webp".replace(
+                    "_",
+                    "_"
                 )
-//            Timber.tag("LoadImage").d(text)
-            Glide.with(this@PokeDexDetailsActivity)
-                .load(Uri.parse(text))
-                .into(pokemonImage)
-//            if (imageLoadDisposable != null) {
-//                imageLoadDisposable!!.dispose()
-//            }
-//            imageLoadDisposable = pokemonImage.load(Uri.parse(text))
-//            Glide.with(this@PokemonDetailsActivity)
-//                .load(Uri.parse(text))
-//                .into(pokemonImage)
+            pokemonImage.load(Uri.parse(text))
             pokemonHeight.text = details.height + " m"
             pokemonWeight.text = details.weight + " kg"
 
