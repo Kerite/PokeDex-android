@@ -38,16 +38,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:paddingBottom="96dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingBottom="96dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/pokemon_subname_tab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pokemon_details_view_pager"

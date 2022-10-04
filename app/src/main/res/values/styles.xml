@@ -37,6 +37,9 @@
         <item name="android:layout_marginStart">@dimen/margin_middle</item>
         <item name="android:layout_marginTop">@dimen/margin_standard</item>
         <item name="android:layout_marginBottom">@dimen/margin_standard</item>
+        <item name="android:contentDescription">@string/content_description_pokemon_icon</item>
+        <item name="android:layout_marginVertical">@dimen/margin_standard</item>
+        <item name="android:layout_marginHorizontal">@dimen/margin_middle</item>
     </style>
 
     <!-- ============================= -->

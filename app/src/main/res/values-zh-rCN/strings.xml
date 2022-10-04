@@ -144,4 +144,11 @@
     <string name="game_brilliant_diamond">晶灿钻石</string>
     <string name="game_shining_pearl">明亮珍珠</string>
     <string name="game_legends_arceus">传说 阿尔宙斯</string>
+    <string name="nav_title_basic">基本</string>
+    <string name="nav_title_move">技能</string>
+    <string name="nav_title_more">更多</string>
+    <string name="pattern_level_up">升级</string>
+    <string name="pattern_tm">技能机</string>
+    <string name="pattern_egg">蛋</string>
+    <string name="pattern_tutor">教学</string>
 </resources>

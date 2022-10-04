@@ -2,6 +2,7 @@ package com.kerite.pokedex.ui.activity
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.Window
 import androidx.activity.viewModels
@@ -10,14 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import coil.load
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.kerite.pokedex.R
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.PokeDexBaseActivity
+import com.kerite.pokedex.ui.dialog.SwitchFormDialogFragment
 import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsBasicFragment
 import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsMoveFragment
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
@@ -63,26 +63,6 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                     }
                 }
             }
-            lifecycleScope.launch {
-                viewModel.pokemonDetails.collect {
-                    pokemonSubnameTab.removeAllTabs()
-                    for (detail in it) {
-                        pokemonSubnameTab.addTab(
-                            pokemonSubnameTab.newTab().setText(detail.formName ?: detail.name)
-                        )
-                    }
-                }
-            }
-            pokemonSubnameTab.addOnTabSelectedListener(object : OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    if (tab != null) {
-                        viewModel.changePokemonIndex(tab.position)
-                    }
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
-                override fun onTabReselected(tab: TabLayout.Tab?) = Unit
-            })
             // onCreate 初始化ViewPager
             pokemonDetailsViewPager.adapter =
                 object : FragmentStateAdapter(this@PokeDexDetailsActivity) {
@@ -125,15 +105,31 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                     "__",
                     "_"
                 )
+            supportActionBar?.title = details.formName ?: details.name
             pokemonImage.load(Uri.parse(text))
             moveViewModel.setDexNumber(details.dexNumber)
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_pokemon_details, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            finish()
-            return true
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+
+            R.id.action_switch_form -> {
+                SwitchFormDialogFragment().show(
+                    supportFragmentManager,
+                    SwitchFormDialogFragment::class.simpleName
+                )
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

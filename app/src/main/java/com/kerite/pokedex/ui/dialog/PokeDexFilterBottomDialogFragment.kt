@@ -5,7 +5,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.GridLayout
 import androidx.annotation.ColorRes
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.kerite.pokedex.COUNT_GENERATION
 import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.FragmentPokemonDexFilterBinding
@@ -19,12 +19,10 @@ import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
 class PokeDexFilterBottomDialogFragment : BaseBottomDialogFragment<FragmentPokemonDexFilterBinding>(
     FragmentPokemonDexFilterBinding::inflate
 ) {
-    private lateinit var pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel
+    private val pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pokemonDexListAndFilterViewModel =
-            ViewModelProvider(requireActivity())[PokemonDexListAndFilterViewModel::class.java]
         initRegionalVariantFilter(pokemonDexListAndFilterViewModel.filterRegionalVariant.value)
         initTypeFilter(pokemonDexListAndFilterViewModel.filterType.value)
         initGenerationFilter(pokemonDexListAndFilterViewModel.filterGeneration.value)

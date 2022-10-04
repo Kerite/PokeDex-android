@@ -4,13 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/move_pattern_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin_middle"
+        android:paddingVertical="@dimen/margin_standard"
+        app:checkedButton="@+id/level_up_button"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selector_level_up_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pattern_level_up" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selector_tm_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pattern_tm" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selector_breed_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pattern_egg" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selector_tutor_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pattern_tutor" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <com.google.android.material.card.MaterialCardView
         style="?attr/materialCardViewElevatedStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_middle">
+        android:layout_marginHorizontal="@dimen/margin_middle"
+        android:layout_marginBottom="@dimen/margin_standard">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,8 +66,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_standard"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_standard">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/move_level_or_tm_header_view"
@@ -33,11 +79,11 @@
                     tools:text="1" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:text="招式名"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:gravity="center"
+                    android:text="招式名"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                     tools:text="TEST" />
 
@@ -62,18 +108,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
 
-            <androidx.core.widget.NestedScrollView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/move_list_view"
-                    android:layout_width="match_parent"
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/move_loading_progress_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="10"
-                    tools:listitem="@layout/item_move_list" />
-            </androidx.core.widget.NestedScrollView>
+                    android:layout_gravity="center"
+                    android:indeterminate="true" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/move_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="10"
+                        tools:listitem="@layout/item_move_list" />
+                </androidx.core.widget.NestedScrollView>
+            </FrameLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

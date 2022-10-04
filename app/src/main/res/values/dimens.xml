@@ -5,4 +5,5 @@
     <dimen name="margin_standard">8dp</dimen>
     <dimen name="margin_middle">16dp</dimen>
     <dimen name="margin_name_to_header">2dp</dimen>
+    <dimen name="pokemon_icon_size">64dp</dimen>
 </resources>

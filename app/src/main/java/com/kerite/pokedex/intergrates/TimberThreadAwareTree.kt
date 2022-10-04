@@ -10,11 +10,9 @@ class TimberThreadAwareTree : Timber.DebugTree() {
         val newTag = tag?.let {
             "<${Thread.currentThread().name}>$tag"
         }
-        t?.let {
-            CoroutineScope(Dispatchers.Default).apply {
-                super.log(priority, newTag, message, t)
-                FirebaseCrashlytics.getInstance().recordException(it)
-            }
+        CoroutineScope(Dispatchers.Default).apply {
+            super.log(priority, newTag, message, t)
+            t?.let { FirebaseCrashlytics.getInstance().recordException(it) }
         }
     }
 }

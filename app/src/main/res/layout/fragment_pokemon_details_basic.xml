@@ -183,6 +183,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:text="@string/abilities"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        <include
+            android:id="@+id/ability_subview"
+            layout="@layout/card_ability"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_middle"
+            android:layout_marginVertical="@dimen/margin_standard" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/species_strength"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="?attr/materialCardViewElevatedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_middle"
+            android:layout_marginVertical="@dimen/margin_standard">
+
+            <com.kerite.pokedex.ui.widgets.PokemonStrengthWidget
+                android:id="@+id/pokemon_strength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_middle"
+                android:layout_marginVertical="@dimen/margin_standard" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="@string/base_points"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
@@ -278,21 +315,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/abilities"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-        <include
-            android:id="@+id/ability_subview"
-            layout="@layout/card_ability"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_middle"
-            android:layout_marginVertical="@dimen/margin_standard" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:text="@string/egg_info"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
@@ -303,27 +325,5 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_middle"
             android:layout_marginVertical="@dimen/margin_standard" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/species_strength"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-        <com.google.android.material.card.MaterialCardView
-            style="?attr/materialCardViewElevatedStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_middle"
-            android:layout_marginVertical="@dimen/margin_standard">
-
-            <com.kerite.pokedex.ui.widgets.PokemonStrengthWidget
-                android:id="@+id/pokemon_strength"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_middle"
-                android:layout_marginVertical="@dimen/margin_standard" />
-        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

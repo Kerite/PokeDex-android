@@ -12,8 +12,11 @@ import com.kerite.pokedex.settingsDataStore
 import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsMoveFragment
 import com.kerite.pokedex.util.extension.isNumeric
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
@@ -36,6 +39,7 @@ class PokemonDetailsMoveViewModel(
                 ?: SettingsConstants.SETTINGS_GAME_DEFAULT
         }
 
+    @OptIn(FlowPreview::class)
     val moveList: Flow<List<PokemonMoveRow>> = combine(
         mMovePatternFlow,
         mDexNumber,
@@ -48,7 +52,7 @@ class PokemonDetailsMoveViewModel(
             MovePattern.TEACH -> getMoveTeachList(dexNumber, formName, version)
             else -> getMoveLearnList(dexNumber, formName, version, pattern)
         }
-    }
+    }.distinctUntilChanged().debounce(200)
 
     fun setMovePattern(pattern: MovePattern) {
         savedState[PokeDetailsMoveFragment.STATE_MOVE_PATTERN] = pattern
