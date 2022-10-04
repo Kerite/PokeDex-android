@@ -1,7 +1,5 @@
 package com.kerite.pokedex.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kerite.pokedex.COUNT_GENERATION
 import com.kerite.pokedex.model.enums.PokemonRegionalVariant
@@ -10,7 +8,8 @@ import com.kerite.pokedex.util.extension.toLinkedHashSet
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class PokemonDexFilterViewModel() : ViewModel() {
+@Suppress("unused")
+class PokemonDexFilterViewModel : ViewModel() {
     private val mFilterMode =
         MutableStateFlow(false)
     private val mSearchWord =

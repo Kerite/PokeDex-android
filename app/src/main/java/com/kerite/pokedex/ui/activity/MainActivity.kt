@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.Window
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -38,9 +39,21 @@ class MainActivity : PokeDexBaseActivity<ActivityMainBinding>(
             super.onPageSelected(position)
             binding.bottomNavigation.selectedItemId =
                 when (position) {
-                    0 -> R.id.mainFragment
-                    1 -> R.id.dexFragment
-                    else -> R.id.toolboxFragment
+                    0 -> {
+                        binding.appBarLayout.liftOnScrollTargetViewId = View.NO_ID
+                        R.id.mainFragment
+                    }
+
+                    1 -> {
+                        binding.appBarLayout.liftOnScrollTargetViewId =
+                            R.id.pokemon_dex_list_recycler_view
+                        R.id.dexFragment
+                    }
+
+                    else -> {
+                        binding.appBarLayout.liftOnScrollTargetViewId = View.NO_ID
+                        R.id.toolboxFragment
+                    }
                 }
         }
     }

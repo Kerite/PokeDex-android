@@ -14,10 +14,18 @@
         android:layout_marginBottom="108dp"
         android:contentDescription="@string/pokemon_search_filter" />
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="match_parent"
+        android:id="@+id/pokemon_dex_circular_progress"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pokemon_dex_list"
+        android:id="@+id/pokemon_dex_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         tools:itemCount="10"
         tools:listitem="@layout/item_pokemon_dex_index" />
 </FrameLayout>

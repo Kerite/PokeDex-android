@@ -62,13 +62,15 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
         lifecycleScope.launch {
             pokemonDexListAndFilterViewModel.pokemonList.collectLatest {
                 recyclerAdapter.submitList(it)
+                binding.pokemonDexListRecyclerView.visibility = View.VISIBLE
+                binding.pokemonDexCircularProgress.visibility = View.INVISIBLE
             }
         }
     }
 
     private fun setupRecyclerView() {
         // <editor-fold defaultstate="collapsed" desc="设置RecyclerView">
-        binding.pokemonDexList.apply {
+        binding.pokemonDexListRecyclerView.apply {
 //            isNestedScrollingEnabled = false
             recyclerAdapter = SimpleListRecyclerAdapter(
                 context, ItemPokemonDexIndexBinding::inflate,
