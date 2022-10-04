@@ -3,37 +3,34 @@ package com.kerite.pokedex.ui.activity
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.view.View.OnClickListener
 import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import coil.load
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.google.android.material.textview.MaterialTextView
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
-import com.kerite.fission.AntiShaker
+import com.kerite.pokedex.R
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.kerite.pokedex.model.PokemonDetails
-import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.ui.PokeDexBaseActivity
-import com.kerite.pokedex.ui.dialog.AbilityDialogFragment
-import com.kerite.pokedex.ui.dialog.EggGroupDialogFragment
+import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsBasicFragment
+import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsMoveFragment
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
-import com.kerite.pokedex.viewmodel.MoveLearnListViewModel
+import com.kerite.pokedex.viewmodel.PokemonDetailsMoveViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
-), OnClickListener {
+) {
     private val viewModel: DetailsActivityViewModel by viewModels()
-    private val moveLearnViewModel: MoveLearnListViewModel by viewModels()
+    private val moveViewModel: PokemonDetailsMoveViewModel by viewModels()
     private var currentDetails: PokemonDetailsEntity? = null
-    private val dialogAntiShaker: AntiShaker = AntiShaker()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
@@ -53,15 +50,6 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                 setDisplayHomeAsUpEnabled(true)
                 setHomeButtonEnabled(true)
             }
-
-            abilitySubview.ability1.setOnClickListener(this@PokeDexDetailsActivity)
-            abilitySubview.ability2.setOnClickListener(this@PokeDexDetailsActivity)
-            abilitySubview.abilityHidden.setOnClickListener(this@PokeDexDetailsActivity)
-
-            eggGroupCard.pokemonEggGroupTextView1.setOnClickListener(this@PokeDexDetailsActivity)
-            eggGroupCard.pokemonEggGroupTextView2.setOnClickListener(this@PokeDexDetailsActivity)
-            eggGroupCard.pokemonEggCycleTextView.setOnClickListener(this@PokeDexDetailsActivity)
-
             lifecycleScope.launch {
                 viewModel.currentPokemonDetail.collect {
                     when (it) {
@@ -95,25 +83,35 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                 override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
                 override fun onTabReselected(tab: TabLayout.Tab?) = Unit
             })
+            // onCreate 初始化ViewPager
+            pokemonDetailsViewPager.adapter =
+                object : FragmentStateAdapter(this@PokeDexDetailsActivity) {
+                    override fun getItemCount(): Int {
+                        return 2
+                    }
+
+                    override fun createFragment(position: Int): Fragment {
+                        return when (position) {
+                            0 -> PokeDetailsBasicFragment()
+                            1 -> PokeDetailsMoveFragment()
+                            else -> PokeDetailsMoveFragment()
+                        }
+                    }
+                }
+            pokemonDetailsViewPager.isUserInputEnabled = false
+            (detailsBottomNavigation).setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.detailsBasicFragment -> pokemonDetailsViewPager.currentItem = 0
+                    R.id.detailsMoveFragment -> pokemonDetailsViewPager.currentItem = 1
+                }
+                true
+            }
         }
     }
 
     private fun initPokemonDetail() {
         binding.apply {
             collapsingToolbar.title = "Pokemon Dex"
-            evHp.text = "0"
-            evAttack.text = "0"
-            evDefence.text = "0"
-            evSpecialAttack.text = "0"
-            evSpecialDefence.text = "0"
-            evSpeed.text = "0"
-
-            pokemonStrength.hp = 0
-            pokemonStrength.attack = 0
-            pokemonStrength.defence = 0
-            pokemonStrength.specialAttack = 0
-            pokemonStrength.specialDefence = 0
-            pokemonStrength.speed = 0
         }
     }
 
@@ -122,111 +120,13 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
         currentDetails = details
         binding.apply {
             collapsingToolbar.title = details.name
-            pokemonDexNumber.text = "#" + details.dexNumber.toString()
-            pokemonJpName.text = details.jpName
-            pokemonEnName.text = details.enName
-//            CoroutineScope(Dispatchers.IO).launch {
-//                val imageUrl = Uri.parse(
-//                    "file:///android_asset/images/" + decidePicName(details.dexNumber, details.formName, details.name)
-//                )
-//                Timber.d("Load Image" + imageUrl.path)
-//
-//            }
             val text =
                 "file:///android_asset/images/${details.dexNumber}_${details.name}_${details.formName ?: ""}_.webp".replace(
                     "__",
                     "_"
                 )
             pokemonImage.load(Uri.parse(text))
-            pokemonHeight.text = details.height + " m"
-            pokemonWeight.text = details.weight + " kg"
-
-            abilitySubview.ability1.text = details.ability1
-            abilitySubview.ability2.text = details.ability2
-            abilitySubview.abilityHidden.text = details.abilityHidden
-
-            eggGroupCard.pokemonEggGroupTextView1.text =
-                resources.getString(details.eggGroup1.displayedName)
-            eggGroupCard.pokemonEggGroupTextView2.text = if (details.eggGroup2 != null)
-                resources.getString(details.eggGroup2.displayedName) else ""
-            eggGroupCard.pokemonEggCycleTextView.text = details.eggCycle.toString()
-
-            pokemonType1.type = details.type1
-            if (details.type2 != null) {
-                pokemonType2.visibility = View.VISIBLE
-                pokemonTypeSpace.visibility = View.VISIBLE
-                pokemonType2.type = details.type2
-            } else {
-                pokemonType2.visibility = View.GONE
-                pokemonTypeSpace.visibility = View.GONE
-            }
-
-            pokemonBodyImage.setImageResource(details.body.icon)
-            pokemonBody.setText(details.body.displayedName)
-            catchRate.text = details.catchRate.toString()
-            moveLearnViewModel.setDexNumber(details.dexNumber)
-
-            //<editor-fold desc="读取努力值" defaultstate="collapsed">
-            evHp.text = details.evHp.toString()
-            evAttack.text = details.evAttack.toString()
-            evDefence.text = details.evDefence.toString()
-            evSpecialAttack.text = details.evSpecialAttack.toString()
-            evSpecialDefence.text = details.evSpecialDefence.toString()
-            evSpeed.text = details.evSpeed.toString()
-            //</editor-fold>
-
-            //<editor-fold desc="读取种族值" defaultstate="collapsed">
-            pokemonStrength.hp = details.hp
-            pokemonStrength.attack = details.attack
-            pokemonStrength.defence = details.defence
-            pokemonStrength.specialAttack = details.specialAttack
-            pokemonStrength.specialDefence = details.specialDefence
-            pokemonStrength.speed = details.speed
-            //</editor-fold>
-        }
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            binding.abilitySubview.ability1.id,
-            binding.abilitySubview.ability2.id,
-            binding.abilitySubview.abilityHidden.id -> {
-                val textView = v as MaterialTextView
-                if (textView.text.isNotBlank()) {
-                    showAbilityDialog(textView.text)
-                }
-            }
-
-            binding.eggGroupCard.pokemonEggGroupTextView1.id -> {
-                currentDetails?.apply {
-                    showEggGroupDialog(eggGroup1)
-                }
-            }
-
-            binding.eggGroupCard.pokemonEggGroupTextView2.id -> {
-                currentDetails?.eggGroup2?.apply {
-                    showEggGroupDialog(this)
-                }
-            }
-
-            binding.eggGroupCard.pokemonEggCycleTextView.id -> {
-            }
-        }
-    }
-
-    private fun showAbilityDialog(abilityString: CharSequence) {
-        dialogAntiShaker.antiShake {
-            AbilityDialogFragment(abilityString.toString()).show(
-                this.supportFragmentManager, AbilityDialogFragment::javaClass.name
-            )
-        }
-    }
-
-    private fun showEggGroupDialog(eggGroup: EggGroup) {
-        dialogAntiShaker.antiShake {
-            EggGroupDialogFragment(eggGroup).show(
-                supportFragmentManager, EggGroupDialogFragment::javaClass.name
-            )
+            moveViewModel.setDexNumber(details.dexNumber)
         }
     }
 

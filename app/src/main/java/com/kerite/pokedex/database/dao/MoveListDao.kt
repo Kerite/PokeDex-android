@@ -4,8 +4,10 @@ import androidx.room.Dao
 import androidx.room.Query
 import com.kerite.pokedex.COUNT_GENERATION
 import com.kerite.pokedex.database.dbview.MoveLearnDatabaseView
+import com.kerite.pokedex.database.dbview.MoveTeachDatabaseView
 import com.kerite.pokedex.database.entity.PokeDexMoveEntity
 import com.kerite.pokedex.model.enums.MoveCategory
+import com.kerite.pokedex.model.enums.MovePattern
 import com.kerite.pokedex.model.enums.PokemonType
 
 @Dao
@@ -43,12 +45,40 @@ interface MoveListDao {
     ): List<PokeDexMoveEntity>
 
     @Query(
-        "SELECT * FROM MoveLearnDatabaseView WHERE dexNumber = :dexNumber AND formName IS NULL"
+        "SELECT * FROM MoveLearnDatabaseView WHERE " +
+                "dexNumber = :dexNumber AND " +
+                "formName IS NULL AND " +
+                "(pattern = :movePattern OR :movePattern IS NULL)"
     )
-    fun filterMoveLearn(dexNumber: Int): List<MoveLearnDatabaseView>
+    fun filterMoveLearn(dexNumber: Int, movePattern: MovePattern?): List<MoveLearnDatabaseView>
 
     @Query(
-        "SELECT * FROM MoveLearnDatabaseView WHERE dexNumber = :dexNumber AND formName = :formName"
+        "SELECT * FROM MoveLearnDatabaseView WHERE " +
+                "dexNumber = :dexNumber AND " +
+                "formName = :formName AND " +
+                "(pattern = :movePattern OR :movePattern IS NULL)"
     )
-    fun filterMoveLearn(dexNumber: Int, formName: String): List<MoveLearnDatabaseView>
+    fun filterMoveLearn(
+        dexNumber: Int,
+        formName: String,
+        movePattern: MovePattern?
+    ): List<MoveLearnDatabaseView>
+
+    @Query(
+        "SELECT * FROM MoveTeachDatabaseView WHERE " +
+                "dexNumber = :dexNumber AND " +
+                "formName = :formName"
+    )
+    fun filterMoveTeach(
+        dexNumber: Int,
+        formName: String
+    ): List<MoveTeachDatabaseView>
+
+    @Query(
+        "SELECT * FROM MoveTeachDatabaseView WHERE " +
+                "dexNumber = :dexNumber"
+    )
+    fun filterMoveTeach(
+        dexNumber: Int
+    ): List<MoveTeachDatabaseView>
 }

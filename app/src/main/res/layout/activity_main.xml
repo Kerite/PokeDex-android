@@ -27,5 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:fitsSystemWindows="false"
         app:menu="@menu/menu_bottom_navigation" />
 </com.kerite.pokedex.ui.widgets.ExtendedCoordinatorLayout>

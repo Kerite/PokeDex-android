@@ -31,7 +31,7 @@ data class PokeDexMoveLearnEntity(
     @ColumnInfo(name = "ultra_sun_ultra_moon") val ultraSunUltraMoon: String?,
     @ColumnInfo(name = "lets_go") val letsGo: String?,
     @ColumnInfo(name = "sword_shield") val swordShield: String?,
-    @ColumnInfo(name = "brilliant_diamond_shinning_pearl") val brilliantDiamondShinningPearl: String?,
+    @ColumnInfo(name = "brilliant_diamond_shining_pearl") val brilliantDiamondShiningPearl: String?,
     @ColumnInfo(name = "legend_arceus") val legendArceus: String?,
     @ColumnInfo(name = "additional_gender") val additionalGender: String?,
     @ColumnInfo(name = "additional_note") val additionalNote: String?,

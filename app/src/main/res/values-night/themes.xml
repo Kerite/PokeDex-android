@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.PokemonDex" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Base.Theme.PokemonDex" parent="Base.V31.Theme.PokemonDex">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>

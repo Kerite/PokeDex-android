@@ -33,7 +33,7 @@
                 android:layout_weight="3"
                 android:gravity="center"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                tools:text="阳光烈焰" />
+                tools:text="TEST" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/move_accuracy_view"

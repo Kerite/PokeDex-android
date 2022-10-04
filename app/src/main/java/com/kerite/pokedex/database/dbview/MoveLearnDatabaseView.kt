@@ -23,7 +23,7 @@ import com.kerite.pokedex.model.enums.PokemonType
             "pokemon_move_learn.black_white_2, pokemon_move_learn.x_y, " +
             "pokemon_move_learn.omega_ruby_alpha_sapphire, pokemon_move_learn.sun_moon, " +
             "pokemon_move_learn.ultra_sun_ultra_moon, pokemon_move_learn.lets_go, " +
-            "pokemon_move_learn.sword_shield, pokemon_move_learn.brilliant_diamond_shinning_pearl," +
+            "pokemon_move_learn.sword_shield, pokemon_move_learn.brilliant_diamond_shining_pearl," +
             "pokemon_move_learn.legend_arceus " +
             "FROM pokemon_move LEFT JOIN pokemon_move_learn ON " +
             "pokemon_move_learn.move_id = pokemon_move.id"
@@ -58,6 +58,6 @@ data class MoveLearnDatabaseView(
     @ColumnInfo(name = "ultra_sun_ultra_moon") val ultraSunUltraMoon: String?,
     @ColumnInfo(name = "lets_go") val letsGo: String?,
     @ColumnInfo(name = "sword_shield") val swordShield: String?,
-    @ColumnInfo(name = "brilliant_diamond_shinning_pearl") val brilliantDiamondShinningPearl: String?,
+    @ColumnInfo(name = "brilliant_diamond_shining_pearl") val brilliantDiamondShiningPearl: String?,
     @ColumnInfo(name = "legend_arceus") val legendArceus: String?,
 )

@@ -9,7 +9,13 @@ import com.kerite.pokedex.database.dao.PokeDexAbilityDao
 import com.kerite.pokedex.database.dao.PokemonDao
 import com.kerite.pokedex.database.dao.PokemonDetailsDao
 import com.kerite.pokedex.database.dbview.MoveLearnDatabaseView
-import com.kerite.pokedex.database.entity.*
+import com.kerite.pokedex.database.dbview.MoveTeachDatabaseView
+import com.kerite.pokedex.database.entity.PokeDexAbilityEntity
+import com.kerite.pokedex.database.entity.PokeDexMoveEntity
+import com.kerite.pokedex.database.entity.PokeDexMoveLearnEntity
+import com.kerite.pokedex.database.entity.PokeDexMoveTeachEntity
+import com.kerite.pokedex.database.entity.PokemonDetailsEntity
+import com.kerite.pokedex.database.entity.PokemonEntity
 
 @Database(
     entities = [
@@ -17,10 +23,12 @@ import com.kerite.pokedex.database.entity.*
         PokemonDetailsEntity::class,
         PokeDexAbilityEntity::class,
         PokeDexMoveLearnEntity::class,
+        PokeDexMoveTeachEntity::class,
         PokeDexMoveEntity::class
     ],
     views = [
-        MoveLearnDatabaseView::class
+        MoveLearnDatabaseView::class,
+        MoveTeachDatabaseView::class
     ],
     version = 1,
     exportSchema = false

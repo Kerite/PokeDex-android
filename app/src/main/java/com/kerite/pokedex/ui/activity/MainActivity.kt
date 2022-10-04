@@ -87,7 +87,6 @@ class MainActivity : PokeDexBaseActivity<ActivityMainBinding>(
                     mainActivityViewModel.setState(state)
                 }
             })
-            onBackPressedDispatcher.addCallback(this@MainActivity, backPressedCallback)
         }
         binding.apply {
             // 设置Appbar
@@ -117,6 +116,7 @@ class MainActivity : PokeDexBaseActivity<ActivityMainBinding>(
                 true
             }
         }
+        onBackPressedDispatcher.addCallback(this, backPressedCallback)
         handleIntent()
     }
 
