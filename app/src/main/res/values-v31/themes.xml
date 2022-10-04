@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.V31.Theme.PokemonDex" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="android:windowSplashScreenBackground">@color/material_amber_400</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/pokeball</item>
+    </style>
+</resources>

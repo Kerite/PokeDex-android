@@ -2,7 +2,7 @@
     <!-- ======================= -->
     <!-- Base application theme. -->
     <!-- ======================= -->
-    <style name="Base.Theme.PokemonDex" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Base.Theme.PokemonDex" parent="Base.V31.Theme.PokemonDex">
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="bottomNavigationStyle">@style/Widget.Pokedex.BottomNavigationView</item>

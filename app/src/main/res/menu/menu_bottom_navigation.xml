@@ -7,6 +7,7 @@
 
     <item
         android:id="@id/dexFragment"
+        android:icon="@drawable/pikachu"
         android:title="@string/title_menu_pokemon_dex" />
 
     <item
