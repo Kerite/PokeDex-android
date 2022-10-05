@@ -1,6 +1,5 @@
 package com.kerite.pokedex.ui.dialog
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +15,7 @@ import com.kerite.pokedex.databinding.ItemEggGroupDialogBinding
 import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.ui.BaseBottomDialogFragment
 import com.kerite.pokedex.ui.activity.PokeDexDetailsActivity
+import com.kerite.pokedex.util.PokemonUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -34,11 +34,7 @@ class EggGroupDialogFragment(
                     onBind = {
                         pokemonNameTextView.text = it.name
                         pokemonFormName.text = it.formName
-                        val headerImagePath =
-                            "file:///android_asset/images/${it.dexNumber}_${it.name}_${it.formName ?: ""}_.webp"
-                                .replace("__", "_")
-                        val headerUri = Uri.parse(headerImagePath)
-                        pokemonThumbnail.load(headerUri)
+                        pokemonThumbnail.load(PokemonUtils.getPokemonImageUri(it))
                     },
                     onItemClick = {
                         startActivity<PokeDexDetailsActivity>(

@@ -1,6 +1,8 @@
 package com.kerite.pokedex.util
 
+import android.net.Uri
 import com.kerite.pokedex.STATISTIC_PERCENT_BEFORE_THREE_GENERATION
+import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
@@ -62,5 +64,24 @@ object PokemonUtils {
         } else {
             (valueBefore * (STATISTIC_PERCENT_BEFORE_THREE_GENERATION[level + 6])).toInt()
         }
+    }
+
+    fun getPokemonImageUri(
+        dexNumber: Int,
+        name: String,
+        formName: String?
+    ): Uri {
+        val headerImagePath =
+            "file:///android_asset/images/${dexNumber}_${name}_${formName ?: ""}_.webp"
+                .replace("__", "_")
+        return Uri.parse(headerImagePath)
+    }
+
+    fun getPokemonImageUri(detail: PokemonDetailsEntity): Uri {
+        return getPokemonImageUri(
+            detail.dexNumber,
+            detail.name,
+            detail.formName
+        )
     }
 }

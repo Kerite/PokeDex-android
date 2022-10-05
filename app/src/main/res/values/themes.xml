@@ -12,6 +12,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Rikka.Material3</item>
+        <item name="bottomSheetDialogTheme">@style/PokeDex.Widget.BottomSheetDialog</item>
     </style>
 
     <!--Default Theme-->

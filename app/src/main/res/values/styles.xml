@@ -68,4 +68,20 @@
         <item name="android:clickable">true</item>
         <item name="android:textAppearance">@style/TextAppearance.Material3.BodyLarge</item>
     </style>
+
+    <style name="PokeDex.Widget.BottomSheetDialog" parent="@style/ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/PokeDex.Widget.BottomSheet</item>
+    </style>
+
+    <style name="PokeDex.Widget.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/PokeDex.Widget.BottomSheetAppearance</item>
+    </style>
+
+    <style name="PokeDex.Widget.BottomSheetAppearance" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">28dp</item>
+        <item name="cornerSizeTopRight">28dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
 </resources>

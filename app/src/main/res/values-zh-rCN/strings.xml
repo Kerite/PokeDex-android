@@ -151,4 +151,5 @@
     <string name="pattern_tm">技能机</string>
     <string name="pattern_egg">蛋</string>
     <string name="pattern_tutor">教学</string>
+    <string name="choose_pokemon_form">选择宝可梦形态</string>
 </resources>

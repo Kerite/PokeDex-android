@@ -150,4 +150,5 @@
     <string name="pattern_tm">TM</string>
     <string name="pattern_egg">Egg</string>
     <string name="pattern_tutor">Totur</string>
+    <string name="choose_pokemon_form">Choose Pokemon Form</string>
 </resources>
