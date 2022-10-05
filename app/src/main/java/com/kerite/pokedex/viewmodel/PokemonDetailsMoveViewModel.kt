@@ -54,9 +54,13 @@ class PokemonDetailsMoveViewModel(
         }
     }.distinctUntilChanged().debounce(200)
 
-    fun setMovePattern(pattern: MovePattern) {
-        savedState[PokeDetailsMoveFragment.STATE_MOVE_PATTERN] = pattern
-    }
+    var movePattern: MovePattern
+        get() {
+            return mMovePatternFlow.value
+        }
+        set(value) {
+            savedState[PokeDetailsMoveFragment.STATE_MOVE_PATTERN] = value
+        }
 
     fun setDexNumber(dexNumber: Int) {
         savedState[PokeDetailsMoveFragment.STATE_DEX_NUMBER] = dexNumber

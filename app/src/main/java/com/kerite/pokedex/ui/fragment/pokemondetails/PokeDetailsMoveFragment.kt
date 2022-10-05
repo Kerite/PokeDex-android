@@ -30,6 +30,7 @@ class PokeDetailsMoveFragment : BaseFragment<FragmentPokemonDetailsMoveBinding>(
                 if (it.pattern == MovePattern.TEACH) {
                     moveLevelOrTmView.visibility = View.GONE
                 } else {
+                    moveLevelOrTmView.visibility = View.VISIBLE
                     moveLevelOrTmView.text = it.value
                 }
                 moveAccuracyView.text = it.accuracy.getDisplayedText(requireContext())
@@ -85,12 +86,14 @@ class PokeDetailsMoveFragment : BaseFragment<FragmentPokemonDetailsMoveBinding>(
     }
 
     private fun changeMovePattern(pattern: MovePattern) {
-        recyclerAdapter.submitList(null) {
-            binding.moveListView.post {
-                binding.moveLoadingProgressView.visibility = View.VISIBLE
+        if (pattern != moveViewModel.movePattern) {
+            recyclerAdapter.submitList(null) {
+                binding.moveListView.post {
+                    binding.moveLoadingProgressView.visibility = View.VISIBLE
+                }
             }
         }
-        moveViewModel.setMovePattern(pattern)
+        moveViewModel.movePattern = pattern
     }
 
     companion object {
