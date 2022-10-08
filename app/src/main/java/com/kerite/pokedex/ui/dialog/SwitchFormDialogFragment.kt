@@ -11,7 +11,6 @@ import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.FragmentDialogPokemonFormSelectBinding
 import com.kerite.pokedex.databinding.ItemPokemonListBinding
 import com.kerite.pokedex.ui.BaseBottomDialogFragment
-import com.kerite.pokedex.util.PokemonUtils
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 
 class SwitchFormDialogFragment(
@@ -27,7 +26,7 @@ class SwitchFormDialogFragment(
                 requireContext(), ItemPokemonListBinding::inflate,
                 onBind = {
                     pokemonFormName.text = it.formName ?: it.name
-                    pokemonIcon.load(PokemonUtils.getPokemonImageUri(it))
+                    pokemonIcon.load(it.imageUri)
                 },
                 onItemClick = {
                     detailsActivityViewModel.changePokemonIndex(it.formName)

@@ -14,6 +14,7 @@ import com.kerite.pokedex.database.entity.PokeDexAbilityEntity
 import com.kerite.pokedex.database.entity.PokeDexMoveEntity
 import com.kerite.pokedex.database.entity.PokeDexMoveLearnEntity
 import com.kerite.pokedex.database.entity.PokeDexMoveTeachEntity
+import com.kerite.pokedex.database.entity.PokeDexTmEntity
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.database.entity.PokemonEntity
 
@@ -24,7 +25,8 @@ import com.kerite.pokedex.database.entity.PokemonEntity
         PokeDexAbilityEntity::class,
         PokeDexMoveLearnEntity::class,
         PokeDexMoveTeachEntity::class,
-        PokeDexMoveEntity::class
+        PokeDexMoveEntity::class,
+        PokeDexTmEntity::class
     ],
     views = [
         MoveLearnDatabaseView::class,

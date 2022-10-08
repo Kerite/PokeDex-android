@@ -15,7 +15,6 @@ import com.kerite.pokedex.databinding.ItemEggGroupDialogBinding
 import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.ui.BaseBottomDialogFragment
 import com.kerite.pokedex.ui.activity.PokeDexDetailsActivity
-import com.kerite.pokedex.util.PokemonUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -34,7 +33,7 @@ class EggGroupDialogFragment(
                     onBind = {
                         pokemonNameTextView.text = it.name
                         pokemonFormName.text = it.formName
-                        pokemonThumbnail.load(PokemonUtils.getPokemonImageUri(it))
+                        pokemonThumbnail.load(it.imageUri)
                     },
                     onItemClick = {
                         startActivity<PokeDexDetailsActivity>(
@@ -55,7 +54,7 @@ class EggGroupDialogFragment(
                     recyclerAdapter.submitList(detailsList)
                 }
             }
-            eggGroupTitleTextView.text = resources.getString(eggGroup.displayedName)
+            eggGroupTitleTextView.text = resources.getString(eggGroup.displayedNameRes)
         }
     }
 }

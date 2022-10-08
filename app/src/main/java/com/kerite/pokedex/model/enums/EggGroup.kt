@@ -8,7 +8,7 @@ import com.kerite.pokedex.R
  */
 @Suppress("unused")
 enum class EggGroup(
-    @StringRes val displayedName: Int
+    @StringRes val displayedNameRes: Int
 ) {
     MONSTER(R.string.egg_group_monster),
     WATER_1(R.string.egg_group_water_1),

@@ -1,7 +1,9 @@
 package com.kerite.pokedex.database.entity
 
+import androidx.core.net.toUri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.kerite.pokedex.model.enums.EggGroup
 import com.kerite.pokedex.model.enums.PokemonBody
@@ -66,4 +68,12 @@ data class PokemonDetailsEntity(
     @ColumnInfo(name = "special_attack") val specialAttack: Int,
     @ColumnInfo(name = "special_defence") val specialDefence: Int,
     @ColumnInfo(name = "speed") val speed: Int
-)
+) {
+    @get:Ignore
+    @delegate:Ignore
+    val imageUri by lazy {
+        "file:///android_asset/images/${dexNumber}_${name}_${formName ?: ""}_.webp"
+            .replace("__", "_")
+            .toUri()
+    }
+}

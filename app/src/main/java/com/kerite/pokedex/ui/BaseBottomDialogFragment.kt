@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.viewbinding.ViewBinding
@@ -37,11 +38,9 @@ abstract class BaseBottomDialogFragment<VB : ViewBinding>(
     private val mBottomSheetBehaviorCallback = object : BottomSheetBehavior.BottomSheetCallback() {
         override fun onSlide(bottomSheet: View, slideOffset: Float) {}
         override fun onStateChanged(bottomSheet: View, newState: Int) {
-            when (newState) {
-                BottomSheetBehavior.STATE_EXPANDED -> {
-                    val newDrawable = createMaterialShape(bottomSheet)
-                    androidx.core.view.ViewCompat.setBackground(bottomSheet, newDrawable)
-                }
+            if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                val newDrawable = createMaterialShape(bottomSheet)
+                ViewCompat.setBackground(bottomSheet, newDrawable)
             }
         }
     }
@@ -95,14 +94,8 @@ abstract class BaseBottomDialogFragment<VB : ViewBinding>(
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-//        binding.root.addOnLayoutChangeListener(mLayoutChangeListener)
-    }
-
     override fun onDestroyView() {
         mAnimator?.cancel()
-//        binding.root.removeOnLayoutChangeListener(mLayoutChangeListener)
         mBinding = null
         super.onDestroyView()
     }

@@ -9,12 +9,10 @@ import android.view.Window
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
-import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.kerite.fission.android.extensions.startActivity
+import com.kerite.fission.android.ui.SimpleFragmentViewPagerAdapter
 import com.kerite.pokedex.INTENT_POKEMON_LIST
 import com.kerite.pokedex.INTENT_TOOL_BOX
 import com.kerite.pokedex.R
@@ -25,38 +23,12 @@ import com.kerite.pokedex.ui.fragment.MainFragment
 import com.kerite.pokedex.ui.fragment.PokemonListFragment
 import com.kerite.pokedex.ui.fragment.ToolboxFragment
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
-import com.kerite.pokedex.viewmodel.SearchViewModel
 
 class MainActivity : PokeDexBaseActivity<ActivityMainBinding>(
     ActivityMainBinding::inflate
 ) {
-    private val searchWordViewModel: SearchViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
-    private var viewPagerAdapter: FragmentStateAdapter? = null
-    private val pageCallback: ViewPager2.OnPageChangeCallback = object :
-        ViewPager2.OnPageChangeCallback() {
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-            binding.bottomNavigation.selectedItemId =
-                when (position) {
-                    0 -> {
-                        binding.appBarLayout.liftOnScrollTargetViewId = View.NO_ID
-                        R.id.mainFragment
-                    }
-
-                    1 -> {
-                        binding.appBarLayout.liftOnScrollTargetViewId =
-                            R.id.pokemon_dex_list_recycler_view
-                        R.id.dexFragment
-                    }
-
-                    else -> {
-                        binding.appBarLayout.liftOnScrollTargetViewId = View.NO_ID
-                        R.id.toolboxFragment
-                    }
-                }
-        }
-    }
+    private lateinit var viewPagerAdapter: SimpleFragmentViewPagerAdapter
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             if (binding.bottomNavigation.behavior.currentState == BottomViewHideOnScrollBehavior.STATE_DOWN) {
@@ -91,43 +63,29 @@ class MainActivity : PokeDexBaseActivity<ActivityMainBinding>(
         binding.apply {
             // 设置Appbar
             setSupportActionBar(toolbar)
-            viewPagerAdapter = object : FragmentStateAdapter(this@MainActivity) {
-                override fun getItemCount(): Int {
-                    return 3
+            viewPagerAdapter = SimpleFragmentViewPagerAdapter(
+                this@MainActivity,
+                R.id.mainFragment to { MainFragment() },
+                R.id.dexFragment to { PokemonListFragment() },
+                R.id.toolboxFragment to { ToolboxFragment() }
+            ) {
+                binding.appBarLayout.liftOnScrollTargetViewId = if (R.id.dexFragment == it) {
+                    R.id.pokemon_dex_list_recycler_view
+                } else {
+                    View.NO_ID
                 }
-
-                override fun createFragment(position: Int): Fragment {
-                    return when (position) {
-                        0 -> MainFragment()
-                        1 -> PokemonListFragment()
-                        else -> ToolboxFragment()
-                    }
-                }
+                bottomNavigation.selectedItemId = it
             }
-            mainFragmentViewPager.registerOnPageChangeCallback(pageCallback)
-            mainFragmentViewPager.adapter = viewPagerAdapter
+            viewPagerAdapter.setupViewPager2(mainFragmentViewPager)
             mainFragmentViewPager.isUserInputEnabled = false
+//            viewPagerAdapter.setupBottomNavigationView(bottomNavigation)
             (bottomNavigation as NavigationBarView).setOnItemSelectedListener {
-                when (it.itemId) {
-                    R.id.mainFragment -> mainFragmentViewPager.setCurrentItem(0, true)
-                    R.id.dexFragment -> mainFragmentViewPager.setCurrentItem(1, true)
-                    R.id.toolboxFragment -> mainFragmentViewPager.setCurrentItem(2, true)
-                }
+                mainFragmentViewPager.setCurrentItem(viewPagerAdapter.getPosition(it.itemId), true)
                 true
             }
         }
         onBackPressedDispatcher.addCallback(this, backPressedCallback)
         handleIntent()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.mainFragmentViewPager.registerOnPageChangeCallback(pageCallback)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        binding.mainFragmentViewPager.unregisterOnPageChangeCallback(pageCallback)
     }
 
     private fun handleIntent() {

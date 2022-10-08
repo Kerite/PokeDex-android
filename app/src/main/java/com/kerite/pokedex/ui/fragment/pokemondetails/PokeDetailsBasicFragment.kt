@@ -96,9 +96,9 @@ class PokeDetailsBasicFragment : BaseFragment<FragmentPokemonDetailsBasicBinding
                 abilitySubview.abilityHidden.text = details.abilityHidden
 
                 eggGroupCard.pokemonEggGroupTextView1.text =
-                    resources.getString(details.eggGroup1.displayedName)
+                    resources.getString(details.eggGroup1.displayedNameRes)
                 eggGroupCard.pokemonEggGroupTextView2.text = if (details.eggGroup2 != null)
-                    resources.getString(details.eggGroup2.displayedName) else ""
+                    resources.getString(details.eggGroup2.displayedNameRes) else ""
                 eggGroupCard.pokemonEggCycleTextView.text = details.eggCycle.toString()
             }
         }

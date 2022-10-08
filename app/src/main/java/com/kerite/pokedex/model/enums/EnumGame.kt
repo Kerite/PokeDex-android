@@ -2,6 +2,18 @@ package com.kerite.pokedex.model.enums
 
 import androidx.annotation.StringRes
 import com.kerite.pokedex.R
+import com.kerite.pokedex.TM_BRILLIANT_DIAMOND_SHINING_PEARL
+import com.kerite.pokedex.TM_GEN_1
+import com.kerite.pokedex.TM_GEN_2
+import com.kerite.pokedex.TM_GEN_3
+import com.kerite.pokedex.TM_GEN_4
+import com.kerite.pokedex.TM_GEN_5
+import com.kerite.pokedex.TM_GEN_6
+import com.kerite.pokedex.TM_LETS_GO
+import com.kerite.pokedex.TM_NO
+import com.kerite.pokedex.TM_SWORD_SHIELD
+import com.kerite.pokedex.TM_ULTRA_SUN_MOON
+import com.kerite.pokedex.TmTableIndex
 import com.kerite.pokedex.database.dbview.MoveLearnDatabaseView
 import com.kerite.pokedex.database.dbview.MoveTeachDatabaseView
 import kotlin.reflect.KProperty1
@@ -10,212 +22,249 @@ import kotlin.reflect.KProperty1
  * 游戏列表
  * @param generation 游戏世代
  * @param gameName 游戏名字
+ * @param tmTableIndex 技能机数据表中对应的 table_index 列的值，-1表示该作没有技能机
  */
 enum class EnumGame(
     val generation: Int,
     val moveLearnProperty: KProperty1<MoveLearnDatabaseView, String?>,
     @StringRes val gameName: Int = 0,
     val moveTeachProperty: KProperty1<MoveTeachDatabaseView, Boolean>? = null,
+    @TmTableIndex val tmTableIndex: Int = TM_NO,
 ) {
     RED(
-        1,
-        MoveLearnDatabaseView::redGreenBlue,
-        R.string.game_red
+        generation = 1,
+        moveLearnProperty = MoveLearnDatabaseView::redGreenBlue,
+        gameName = R.string.game_red,
+        tmTableIndex = TM_GEN_1
     ),
     GREEN(
-        1,
-        MoveLearnDatabaseView::redGreenBlue,
-        R.string.game_green
+        generation = 1,
+        moveLearnProperty = MoveLearnDatabaseView::redGreenBlue,
+        gameName = R.string.game_green,
+        tmTableIndex = TM_GEN_1
     ),
     BLUE(
-        1,
-        MoveLearnDatabaseView::redGreenBlue,
-        R.string.game_blue
+        generation = 1,
+        moveLearnProperty = MoveLearnDatabaseView::redGreenBlue,
+        gameName = R.string.game_blue,
+        tmTableIndex = TM_GEN_1
     ),
     YELLOW(
-        1,
-        MoveLearnDatabaseView::yellow,
-        R.string.game_yellow
+        generation = 1,
+        moveLearnProperty = MoveLearnDatabaseView::yellow,
+        gameName = R.string.game_yellow,
+        tmTableIndex = TM_GEN_1
     ),
     GOLD(
-        2,
-        MoveLearnDatabaseView::goldSilver,
-        R.string.game_gold
+        generation = 2,
+        moveLearnProperty = MoveLearnDatabaseView::goldSilver,
+        gameName = R.string.game_gold,
+        tmTableIndex = TM_GEN_2
     ),
     SILVER(
-        2,
-        MoveLearnDatabaseView::goldSilver,
-        R.string.game_silver
+        generation = 2,
+        moveLearnProperty = MoveLearnDatabaseView::goldSilver,
+        gameName = R.string.game_silver,
+        tmTableIndex = TM_GEN_2
     ),
     CRYSTAL(
-        2,
-        MoveLearnDatabaseView::crystal,
-        R.string.game_crystal,
-        MoveTeachDatabaseView::crystal
+        generation = 2,
+        moveLearnProperty = MoveLearnDatabaseView::crystal,
+        gameName = R.string.game_crystal,
+        MoveTeachDatabaseView::crystal,
+        tmTableIndex = TM_GEN_2
     ),
     RUBY(
-        3,
-        MoveLearnDatabaseView::rubySapphireEmerald,
-        R.string.game_ruby
+        generation = 3,
+        moveLearnProperty = MoveLearnDatabaseView::rubySapphireEmerald,
+        gameName = R.string.game_ruby,
+        tmTableIndex = TM_GEN_3
     ),
     SAPPHIRE(
-        3,
-        MoveLearnDatabaseView::rubySapphireEmerald,
-        R.string.game_sapphire
+        generation = 3,
+        moveLearnProperty = MoveLearnDatabaseView::rubySapphireEmerald,
+        gameName = R.string.game_sapphire,
+        tmTableIndex = TM_GEN_3
     ),
     FIRE_RED(
-        3,
-        MoveLearnDatabaseView::fireRedLeafGreen,
-        R.string.game_fire_red,
-        MoveTeachDatabaseView::fireRedLeafGreen
+        generation = 3,
+        moveLearnProperty = MoveLearnDatabaseView::fireRedLeafGreen,
+        gameName = R.string.game_fire_red,
+        MoveTeachDatabaseView::fireRedLeafGreen,
+        tmTableIndex = TM_GEN_3
     ),
     LEAF_GREEN(
-        3,
-        MoveLearnDatabaseView::fireRedLeafGreen,
-        R.string.game_leaf_green,
-        MoveTeachDatabaseView::fireRedLeafGreen
+        generation = 3,
+        moveLearnProperty = MoveLearnDatabaseView::fireRedLeafGreen,
+        gameName = R.string.game_leaf_green,
+        MoveTeachDatabaseView::fireRedLeafGreen,
+        tmTableIndex = TM_GEN_3
     ),
     EMERALD(
-        3,
-        MoveLearnDatabaseView::rubySapphireEmerald,
-        R.string.game_emerald,
-        MoveTeachDatabaseView::emerald
+        generation = 3,
+        moveLearnProperty = MoveLearnDatabaseView::rubySapphireEmerald,
+        gameName = R.string.game_emerald,
+        MoveTeachDatabaseView::emerald,
+        tmTableIndex = TM_GEN_3
     ),
     DIAMOND(
-        4,
-        MoveLearnDatabaseView::diamondPearl,
-        R.string.game_diamond,
-        MoveTeachDatabaseView::diamondPearl
+        generation = 4,
+        moveLearnProperty = MoveLearnDatabaseView::diamondPearl,
+        gameName = R.string.game_diamond,
+        MoveTeachDatabaseView::diamondPearl,
+        tmTableIndex = TM_GEN_4
     ),
     PEARL(
-        4,
-        MoveLearnDatabaseView::diamondPearl,
-        R.string.game_pearl,
-        MoveTeachDatabaseView::diamondPearl
+        generation = 4,
+        moveLearnProperty = MoveLearnDatabaseView::diamondPearl,
+        gameName = R.string.game_pearl,
+        MoveTeachDatabaseView::diamondPearl,
+        tmTableIndex = TM_GEN_4
     ),
     HEART_GOLD(
-        4,
-        MoveLearnDatabaseView::heartGoldSoulSilver,
-        R.string.game_heart_gold,
-        MoveTeachDatabaseView::heartGoldSoulSilver
+        generation = 4,
+        moveLearnProperty = MoveLearnDatabaseView::heartGoldSoulSilver,
+        gameName = R.string.game_heart_gold,
+        MoveTeachDatabaseView::heartGoldSoulSilver,
+        tmTableIndex = TM_GEN_4
     ),
     SOUL_SILVER(
-        4,
-        MoveLearnDatabaseView::heartGoldSoulSilver,
-        R.string.game_soul_silver,
-        MoveTeachDatabaseView::heartGoldSoulSilver
+        generation = 4,
+        moveLearnProperty = MoveLearnDatabaseView::heartGoldSoulSilver,
+        gameName = R.string.game_soul_silver,
+        MoveTeachDatabaseView::heartGoldSoulSilver,
+        tmTableIndex = TM_GEN_4
     ),
     BLACK(
-        5,
-        MoveLearnDatabaseView::blackWhite,
-        R.string.game_black,
-        MoveTeachDatabaseView::blackWhite
+        generation = 5,
+        moveLearnProperty = MoveLearnDatabaseView::blackWhite,
+        gameName = R.string.game_black,
+        MoveTeachDatabaseView::blackWhite,
+        tmTableIndex = TM_GEN_5
     ),
     WHITE(
-        5,
-        MoveLearnDatabaseView::blackWhite,
-        R.string.game_white,
-        MoveTeachDatabaseView::blackWhite
+        generation = 5,
+        moveLearnProperty = MoveLearnDatabaseView::blackWhite,
+        gameName = R.string.game_white,
+        MoveTeachDatabaseView::blackWhite,
+        tmTableIndex = TM_GEN_5
     ),
     BLACK_2(
-        5,
-        MoveLearnDatabaseView::blackWhite2,
-        R.string.game_black_2,
-        MoveTeachDatabaseView::blackWhite2
+        generation = 5,
+        moveLearnProperty = MoveLearnDatabaseView::blackWhite2,
+        gameName = R.string.game_black_2,
+        MoveTeachDatabaseView::blackWhite2,
+        tmTableIndex = TM_GEN_5
     ),
     WHITE_2(
-        5,
-        MoveLearnDatabaseView::blackWhite2,
-        R.string.game_white_2,
-        MoveTeachDatabaseView::blackWhite2
+        generation = 5,
+        moveLearnProperty = MoveLearnDatabaseView::blackWhite2,
+        gameName = R.string.game_white_2,
+        MoveTeachDatabaseView::blackWhite2,
+        tmTableIndex = TM_GEN_5
     ),
     X(
-        6,
-        MoveLearnDatabaseView::xy,
-        R.string.game_x,
-        MoveTeachDatabaseView::xy
+        generation = 6,
+        moveLearnProperty = MoveLearnDatabaseView::xy,
+        gameName = R.string.game_x,
+        MoveTeachDatabaseView::xy,
+        tmTableIndex = TM_GEN_6
     ),
     Y(
-        6,
-        MoveLearnDatabaseView::xy,
-        R.string.game_y,
-        MoveTeachDatabaseView::xy
+        generation = 6,
+        moveLearnProperty = MoveLearnDatabaseView::xy,
+        gameName = R.string.game_y,
+        MoveTeachDatabaseView::xy,
+        tmTableIndex = TM_GEN_6
     ),
     OMEGA_RUBY(
-        6,
-        MoveLearnDatabaseView::omegaRubyAlphaSapphire,
-        R.string.game_omega_ruby,
-        MoveTeachDatabaseView::omegaRubyAlphaSapphire
+        generation = 6,
+        moveLearnProperty = MoveLearnDatabaseView::omegaRubyAlphaSapphire,
+        gameName = R.string.game_omega_ruby,
+        MoveTeachDatabaseView::omegaRubyAlphaSapphire,
+        tmTableIndex = TM_GEN_6
     ),
     ALPHA_SAPPHIRE(
-        6,
-        MoveLearnDatabaseView::omegaRubyAlphaSapphire,
-        R.string.game_alpha_sapphire,
-        MoveTeachDatabaseView::omegaRubyAlphaSapphire
+        generation = 6,
+        moveLearnProperty = MoveLearnDatabaseView::omegaRubyAlphaSapphire,
+        gameName = R.string.game_alpha_sapphire,
+        MoveTeachDatabaseView::omegaRubyAlphaSapphire,
+        tmTableIndex = TM_GEN_6
     ),
     SUN(
-        7,
-        MoveLearnDatabaseView::sunMoon,
-        R.string.game_sun,
-        MoveTeachDatabaseView::sunMoon
+        generation = 7,
+        moveLearnProperty = MoveLearnDatabaseView::sunMoon,
+        gameName = R.string.game_sun,
+        MoveTeachDatabaseView::sunMoon,
+        tmTableIndex = TM_ULTRA_SUN_MOON
     ),
     MOON(
-        7,
-        MoveLearnDatabaseView::sunMoon,
-        R.string.game_moon,
-        MoveTeachDatabaseView::sunMoon
+        generation = 7,
+        moveLearnProperty = MoveLearnDatabaseView::sunMoon,
+        gameName = R.string.game_moon,
+        MoveTeachDatabaseView::sunMoon,
+        tmTableIndex = TM_ULTRA_SUN_MOON
     ),
     ULTRA_SUN(
-        7,
-        MoveLearnDatabaseView::ultraSunUltraMoon,
-        R.string.game_ultra_sun,
-        MoveTeachDatabaseView::ultraSunUltraMoon
+        generation = 7,
+        moveLearnProperty = MoveLearnDatabaseView::ultraSunUltraMoon,
+        gameName = R.string.game_ultra_sun,
+        MoveTeachDatabaseView::ultraSunUltraMoon,
+        tmTableIndex = TM_ULTRA_SUN_MOON
     ),
     ULTRA_MOON(
-        7,
-        MoveLearnDatabaseView::ultraSunUltraMoon,
-        R.string.game_ultra_moon,
-        MoveTeachDatabaseView::ultraSunUltraMoon
+        generation = 7,
+        moveLearnProperty = MoveLearnDatabaseView::ultraSunUltraMoon,
+        gameName = R.string.game_ultra_moon,
+        MoveTeachDatabaseView::ultraSunUltraMoon,
+        tmTableIndex = TM_ULTRA_SUN_MOON
     ),
     LETS_GO_PIKACHU(
-        7,
-        MoveLearnDatabaseView::letsGo,
-        R.string.game_lets_go_pikachu,
-        MoveTeachDatabaseView::letsGo
+        generation = 7,
+        moveLearnProperty = MoveLearnDatabaseView::letsGo,
+        gameName = R.string.game_lets_go_pikachu,
+        MoveTeachDatabaseView::letsGo,
+        tmTableIndex = TM_LETS_GO
     ),
     LETS_GO_EEVEE(
-        7,
-        MoveLearnDatabaseView::letsGo,
-        R.string.game_lets_go_eevee,
-        MoveTeachDatabaseView::letsGo
+        generation = 7,
+        moveLearnProperty = MoveLearnDatabaseView::letsGo,
+        gameName = R.string.game_lets_go_eevee,
+        MoveTeachDatabaseView::letsGo,
+        tmTableIndex = TM_LETS_GO
     ),
     SWORD(
-        8,
-        MoveLearnDatabaseView::swordShield,
-        R.string.game_sword,
-        MoveTeachDatabaseView::swordShield
+        generation = 8,
+        moveLearnProperty = MoveLearnDatabaseView::swordShield,
+        gameName = R.string.game_sword,
+        MoveTeachDatabaseView::swordShield,
+        tmTableIndex = TM_SWORD_SHIELD
     ),
     SHIELD(
-        8,
-        MoveLearnDatabaseView::swordShield,
-        R.string.game_shield,
-        MoveTeachDatabaseView::swordShield
+        generation = 8,
+        moveLearnProperty = MoveLearnDatabaseView::swordShield,
+        gameName = R.string.game_shield,
+        MoveTeachDatabaseView::swordShield,
+        tmTableIndex = TM_SWORD_SHIELD
     ),
     BRILLIANT_DIAMOND(
-        8,
-        MoveLearnDatabaseView::brilliantDiamondShiningPearl,
-        R.string.game_brilliant_diamond,
-        MoveTeachDatabaseView::brilliantDiamondShiningPearl
+        generation = 8,
+        moveLearnProperty = MoveLearnDatabaseView::brilliantDiamondShiningPearl,
+        gameName = R.string.game_brilliant_diamond,
+        MoveTeachDatabaseView::brilliantDiamondShiningPearl,
+        tmTableIndex = TM_BRILLIANT_DIAMOND_SHINING_PEARL
     ),
     SHINING_PEARL(
-        8,
-        MoveLearnDatabaseView::brilliantDiamondShiningPearl,
-        R.string.game_shining_pearl,
-        MoveTeachDatabaseView::brilliantDiamondShiningPearl
+        generation = 8,
+        moveLearnProperty = MoveLearnDatabaseView::brilliantDiamondShiningPearl,
+        gameName = R.string.game_shining_pearl,
+        MoveTeachDatabaseView::brilliantDiamondShiningPearl,
+        tmTableIndex = TM_BRILLIANT_DIAMOND_SHINING_PEARL
     ),
     LEGEND_ARCEUS(
-        8, MoveLearnDatabaseView::legendArceus,
-        R.string.game_legends_arceus,
+        generation = 8,
+        moveLearnProperty = MoveLearnDatabaseView::legendArceus,
+        gameName = R.string.game_legends_arceus,
         MoveTeachDatabaseView::legendsArceus
     );
 }

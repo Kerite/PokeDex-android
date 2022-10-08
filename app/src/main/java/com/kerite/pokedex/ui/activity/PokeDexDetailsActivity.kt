@@ -1,6 +1,5 @@
 package com.kerite.pokedex.ui.activity
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,9 +8,9 @@ import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import coil.load
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import com.kerite.fission.android.ui.SimpleFragmentViewPagerAdapter
 import com.kerite.pokedex.R
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
 import com.kerite.pokedex.databinding.ActivityPokemonDetailsBinding
@@ -31,6 +30,7 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
     private val viewModel: DetailsActivityViewModel by viewModels()
     private val moveViewModel: PokemonDetailsMoveViewModel by viewModels()
     private var currentDetails: PokemonDetailsEntity? = null
+    private lateinit var viewPagerAdapter: SimpleFragmentViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
@@ -45,7 +45,6 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
 
         binding.apply {
             setSupportActionBar(toolbar)
-
             supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(true)
                 setHomeButtonEnabled(true)
@@ -64,26 +63,16 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                 }
             }
             // onCreate 初始化ViewPager
-            pokemonDetailsViewPager.adapter =
-                object : FragmentStateAdapter(this@PokeDexDetailsActivity) {
-                    override fun getItemCount(): Int {
-                        return 2
-                    }
-
-                    override fun createFragment(position: Int): Fragment {
-                        return when (position) {
-                            0 -> PokeDetailsBasicFragment()
-                            1 -> PokeDetailsMoveFragment()
-                            else -> PokeDetailsMoveFragment()
-                        }
-                    }
-                }
+            viewPagerAdapter = SimpleFragmentViewPagerAdapter(
+                this@PokeDexDetailsActivity,
+                R.id.detailsBasicFragment to { PokeDetailsBasicFragment() },
+                R.id.detailsMoveFragment to { PokeDetailsMoveFragment() },
+                R.id.detailsMoreFragment to { Fragment() }
+            )
+            viewPagerAdapter.setupViewPager2(pokemonDetailsViewPager)
             pokemonDetailsViewPager.isUserInputEnabled = false
-            (detailsBottomNavigation).setOnItemSelectedListener {
-                when (it.itemId) {
-                    R.id.detailsBasicFragment -> pokemonDetailsViewPager.currentItem = 0
-                    R.id.detailsMoveFragment -> pokemonDetailsViewPager.currentItem = 1
-                }
+            detailsBottomNavigation.setOnItemSelectedListener {
+                pokemonDetailsViewPager.currentItem = viewPagerAdapter.getPosition(it.itemId)
                 true
             }
         }
@@ -96,17 +85,11 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
     }
 
     private fun updateDetails(details: PokemonDetailsEntity) {
-//        Timber.tag("PokemonChanged").d(details.toString())
         currentDetails = details
         binding.apply {
             collapsingToolbar.title = details.name
-            val text =
-                "file:///android_asset/images/${details.dexNumber}_${details.name}_${details.formName ?: ""}_.webp".replace(
-                    "__",
-                    "_"
-                )
             supportActionBar?.title = details.formName ?: details.name
-            pokemonImage.load(Uri.parse(text))
+            pokemonImage.load(details.imageUri)
             moveViewModel.setDexNumber(details.dexNumber)
         }
     }
