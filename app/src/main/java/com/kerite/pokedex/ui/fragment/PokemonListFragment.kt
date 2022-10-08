@@ -1,6 +1,5 @@
 package com.kerite.pokedex.ui.fragment
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,6 +9,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import androidx.appcompat.widget.SearchView
+import androidx.core.net.toUri
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
@@ -30,7 +30,6 @@ import com.kerite.pokedex.ui.customview.BackPressedSearchView
 import com.kerite.pokedex.ui.dialog.PokeDexFilterBottomDialogFragment
 import com.kerite.pokedex.viewmodel.MainActivityViewModel
 import com.kerite.pokedex.viewmodel.PokemonDexListAndFilterViewModel
-import com.kerite.pokedex.viewmodel.SearchViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -38,7 +37,6 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
     FragmentPokemonDexBinding::inflate
 ), MenuProvider {
     private val pokemonDexListAndFilterViewModel: PokemonDexListAndFilterViewModel by activityViewModels()
-    private val activityViewModel: SearchViewModel by activityViewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private lateinit var recyclerAdapter: SimpleListRecyclerAdapter<ItemPokemonDexIndexBinding, PokemonEntity>
 
@@ -77,12 +75,10 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
                 onBind = {
                     pokemonName.text = it.name
                     pokemonType1.type = it.type1
-                    dexNumber.text = "#${it.dexNumber}"
+                    dexNumber.text = resources.getString(R.string.dex_number_format, it.dexNumber)
                     pokemonSubName.text = it.subName.displayedName
-                    pokemonDexGeneration.text = context.resources.getString(
-                        R.string.generation_simple,
-                        it.generation
-                    )
+                    pokemonDexGeneration.text =
+                        resources.getString(R.string.generation_simple, it.generation)
                     if (it.type2 == null) {
                         pokemonType2.visibility = View.INVISIBLE
                     } else {
@@ -91,7 +87,7 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
                     }
                     val path =
                         "file:///android_asset/small_icon/${it.iconRowIndex * MSP_WIDTH + it.iconColumnIndex}.png"
-                    pokemonHeader.load(Uri.parse(path))
+                    pokemonHeader.load(path.toUri())
                 },
                 onItemClick = {
                     startActivity<PokeDexDetailsActivity>(
@@ -114,28 +110,32 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.menu_search_filter, menu)
 
-        // 定义搜索操作
         val searchMenu = menu.findItem(R.id.action_search)
         searchMenu.setOnActionExpandListener(object : OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean = true
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean = true
         })
-        val searchView = searchMenu.actionView as BackPressedSearchView
-        searchView.queryHint = "Search Pokemon"
-        searchView.setOnCloseListener {
-            return@setOnCloseListener false
-        }
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                pokemonDexListAndFilterViewModel.updateSearchWord(query ?: "")
-                return true
+        (searchMenu.actionView as BackPressedSearchView).apply {
+            queryHint = resources.getString(R.string.query_hint_search_pokemon)
+            val mQuery = pokemonDexListAndFilterViewModel.searchWord.value
+            if (mQuery.isNotBlank()) {
+                onActionViewExpanded()
+                setQuery(mQuery, false)
+                isFocusable = true
             }
+            setOnCloseListener { false }
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    pokemonDexListAndFilterViewModel.updateSearchWord(query ?: "")
+                    return true
+                }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                pokemonDexListAndFilterViewModel.updateSearchWord(newText ?: "")
-                return true
-            }
-        })
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    pokemonDexListAndFilterViewModel.updateSearchWord(newText ?: "")
+                    return true
+                }
+            })
+        }
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

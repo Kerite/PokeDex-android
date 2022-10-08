@@ -20,6 +20,14 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PokeDexPreferenceFragment : PreferenceFragmentCompat() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireContext().theme.applyStyle(
+            rikka.material.preference.R.style.ThemeOverlay_Rikka_Material3_Preference,
+            true
+        )
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.preferenceDataStore =
             SettingsDataStore(requireContext().settingsDataStore)

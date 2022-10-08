@@ -152,4 +152,6 @@
     <string name="pattern_egg">蛋</string>
     <string name="pattern_tutor">教学</string>
     <string name="choose_pokemon_form">选择宝可梦形态</string>
+    <string name="query_hint_search_pokemon">搜索宝可梦</string>
+    <string name="dex_number_format">#%d</string>
 </resources>
