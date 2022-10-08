@@ -1,16 +1,16 @@
 package com.kerite.pokedex.ui.widgets
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Rect
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import com.kerite.pokedex.R
 import com.kerite.pokedex.model.enums.PokemonType
 import com.kerite.pokedex.util.dp
@@ -31,21 +31,20 @@ class PokemonTypeView @JvmOverloads constructor(
     private lateinit var mTypeString: String
 
     private val mBackgroundRect = RectF()
-    private val mIconRect = RectF()
+    private val mIconRect = Rect()
     private val mTextBounds = Rect()
-
-    private lateinit var mIconBitmap: Bitmap
     private val mOverlayPath: Path = Path()
     private val mTextPaint = Paint()
 
     private var mRadius: Float = 0f
+    private lateinit var mIconDrawable: Drawable
 
     var type
         get() = mType
         set(value) {
             mTypeString = context.getString(value.nameRes)
             mBackgroundPaint.color = context.getColor(value.colorRes)
-            mIconBitmap = BitmapFactory.decodeResource(context.resources, value.iconRes)
+            mIconDrawable = ResourcesCompat.getDrawable(resources, value.iconRes, null)!!
             invalidate()
         }
 
@@ -83,10 +82,10 @@ class PokemonTypeView @JvmOverloads constructor(
         val iconSize = min(h * 1f, w / 3f)
 
         mIconRect.apply {
-            left = iconMiddleX - iconSize / 2
-            top = iconMiddleY - iconSize / 2
-            right = iconMiddleX + iconSize / 2
-            bottom = iconMiddleY + iconSize / 2
+            left = (iconMiddleX - iconSize / 2).toInt()
+            top = (iconMiddleY - iconSize / 2).toInt()
+            right = (iconMiddleX + iconSize / 2).toInt()
+            bottom = (iconMiddleY + iconSize / 2).toInt()
         }
 
         mRadius = min(h, w) / 4f
@@ -116,7 +115,8 @@ class PokemonTypeView @JvmOverloads constructor(
 //        canvas.drawRect(mRectIcon, mTextPaint)
 
         canvas.drawPath(mOverlayPath, mOverlayPaint)
-        canvas.drawBitmap(mIconBitmap, null, mIconRect, mIconPaint)
+        mIconDrawable.bounds = mIconRect
+        mIconDrawable.draw(canvas)
 
         // TODO optimize performance
         mTextPaint.textAlign = Paint.Align.CENTER
