@@ -5,18 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.PokemonListFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/pokemon_dex_filter_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="108dp"
-        android:contentDescription="@string/pokemon_search_filter" />
-
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:layout_width="match_parent"
         android:id="@+id/pokemon_dex_circular_progress"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:indeterminate="true" />
@@ -28,4 +19,14 @@
         android:visibility="invisible"
         tools:itemCount="10"
         tools:listitem="@layout/item_pokemon_dex_index" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pokemon_dex_filter_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="108dp"
+        android:contentDescription="@string/pokemon_search_filter"
+        android:src="@drawable/icon_filter" />
 </FrameLayout>

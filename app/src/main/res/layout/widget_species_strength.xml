@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:divider="@drawable/spacer_linear"
+    android:divider="@drawable/transparent_spacer"
     android:orientation="vertical"
     android:padding="5dp"
     android:showDividers="middle">
@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 
@@ -51,7 +51,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 
@@ -90,7 +90,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 
@@ -129,7 +129,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 
@@ -168,7 +168,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 
@@ -207,7 +207,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 
@@ -246,7 +246,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_linear"
+        android:divider="@drawable/transparent_spacer"
         android:orientation="horizontal"
         android:showDividers="middle">
 

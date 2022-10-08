@@ -27,4 +27,11 @@
     <color name="type_fairy">#eb8fe6</color>
 
     <color name="type_background_filter">#cf4f4F4f</color>
+
+    <color name="move_category_physical">#ff4400</color>
+    <color name="move_category_special">#2266cc</color>
+    <color name="move_category_status">#999999</color>
+    <color name="move_category_max">#ac379e</color>
+    <color name="move_category_gigantamax">#ac379e</color>
+    <color name="move_category_z_move">#5ac8fa</color>
 </resources>

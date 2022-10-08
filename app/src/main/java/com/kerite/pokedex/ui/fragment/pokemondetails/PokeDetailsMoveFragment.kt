@@ -38,6 +38,7 @@ class PokeDetailsMoveFragment : BaseFragment<FragmentPokemonDetailsMoveBinding>(
                 moveNameView.text = it.name
                 moveTypeIcon.type = it.type
                 movePowerView.text = it.power.getDisplayedText(requireContext())
+                moveCategory.text = it.category.categoryName
             },
             diffCallback = object : DiffUtil.ItemCallback<PokemonMoveRow>() {
                 override fun areItemsTheSame(

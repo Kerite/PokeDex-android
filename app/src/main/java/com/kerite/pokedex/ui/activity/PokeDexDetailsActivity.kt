@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import com.kerite.fission.AntiShaker
 import com.kerite.fission.android.ui.SimpleFragmentViewPagerAdapter
 import com.kerite.pokedex.R
 import com.kerite.pokedex.database.entity.PokemonDetailsEntity
@@ -27,6 +28,7 @@ import timber.log.Timber
 class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding>(
     ActivityPokemonDetailsBinding::inflate
 ) {
+    private val menuAntiShaker = AntiShaker()
     private val viewModel: DetailsActivityViewModel by viewModels()
     private val moveViewModel: PokemonDetailsMoveViewModel by viewModels()
     private var currentDetails: PokemonDetailsEntity? = null
@@ -87,8 +89,8 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
     private fun updateDetails(details: PokemonDetailsEntity) {
         currentDetails = details
         binding.apply {
-            collapsingToolbar.title = details.name
-            supportActionBar?.title = details.formName ?: details.name
+            collapsingToolbar.title =
+                if (details.formName == null) details.name else "${details.name}(${details.formName})"
             pokemonImage.load(details.imageUri)
             moveViewModel.setDexNumber(details.dexNumber)
         }
@@ -107,10 +109,12 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
             }
 
             R.id.action_switch_form -> {
-                SwitchFormDialogFragment().show(
-                    supportFragmentManager,
-                    SwitchFormDialogFragment::class.simpleName
-                )
+                menuAntiShaker.antiShake {
+                    SwitchFormDialogFragment().show(
+                        supportFragmentManager,
+                        SwitchFormDialogFragment::class.simpleName
+                    )
+                }
                 return true
             }
         }
