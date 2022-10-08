@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/baseline_search_24"
         android:title="@string/search"
         app:actionViewClass="com.kerite.pokedex.ui.customview.BackPressedSearchView"
         app:showAsAction="ifRoom" />

@@ -2,11 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/detailsBasicFragment"
+        android:icon="@drawable/icon_book"
         android:title="@string/nav_title_basic" />
     <item
         android:id="@+id/detailsMoveFragment"
+        android:icon="@drawable/icon_move"
         android:title="@string/nav_title_move" />
     <item
         android:id="@+id/detailsMoreFragment"
+        android:icon="@drawable/icon_more"
+        android:iconTint="?attr/colorControlNormal"
         android:title="@string/nav_title_more" />
 </menu>
