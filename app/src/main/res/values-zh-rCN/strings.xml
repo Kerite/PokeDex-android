@@ -154,4 +154,7 @@
     <string name="choose_pokemon_form">选择宝可梦形态</string>
     <string name="query_hint_search_pokemon">搜索宝可梦</string>
     <string name="dex_number_format">#%d</string>
+    <string name="weak_against">弱点</string>
+    <string name="resistant_against">抵抗</string>
+    <string name="normal_damage">普通</string>
 </resources>

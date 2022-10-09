@@ -5,8 +5,12 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
+/**
+ * 宝可梦相关工具
+ */
 object PokemonUtils {
     /**
+     * 计算属性值
      * @param speciesStrength 种族值
      * @param individualValue Individual Values 个体值
      * @param basePoint basePoint 基础点数

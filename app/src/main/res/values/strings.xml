@@ -153,4 +153,7 @@
     <string name="choose_pokemon_form">Choose Pokemon Form</string>
     <string name="query_hint_search_pokemon">Search Pokemon</string>
     <string name="dex_number_format">#%d</string>
+    <string name="weak_against">Weak against...</string>
+    <string name="resistant_against">Resistant against...</string>
+    <string name="normal_damage">Normal damage from...</string>
 </resources>

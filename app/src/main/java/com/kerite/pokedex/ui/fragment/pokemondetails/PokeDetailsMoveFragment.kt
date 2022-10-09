@@ -2,11 +2,13 @@ package com.kerite.pokedex.ui.fragment.pokemondetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import com.kerite.fission.android.ui.BaseFragment
 import com.kerite.fission.android.ui.SimpleListRecyclerAdapter
+import com.kerite.pokedex.R
 import com.kerite.pokedex.databinding.FragmentPokemonDetailsMoveBinding
 import com.kerite.pokedex.databinding.ItemMoveListBinding
 import com.kerite.pokedex.model.PokemonMoveRow
@@ -39,6 +41,12 @@ class PokeDetailsMoveFragment : BaseFragment<FragmentPokemonDetailsMoveBinding>(
                 moveTypeIcon.type = it.type
                 movePowerView.text = it.power.getDisplayedText(requireContext())
                 moveCategory.text = it.category.categoryName
+                moveCategory.setBackgroundColor(
+                    ResourcesCompat.getColor(resources, it.category.categoryColorRes, null)
+                )
+                moveCategory.setTextColor(
+                    ResourcesCompat.getColor(resources, R.color.black, null)
+                )
             },
             diffCallback = object : DiffUtil.ItemCallback<PokemonMoveRow>() {
                 override fun areItemsTheSame(

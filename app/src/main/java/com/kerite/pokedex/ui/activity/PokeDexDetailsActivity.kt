@@ -6,7 +6,6 @@ import android.view.MenuItem
 import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
@@ -19,6 +18,7 @@ import com.kerite.pokedex.model.PokemonDetails
 import com.kerite.pokedex.ui.PokeDexBaseActivity
 import com.kerite.pokedex.ui.dialog.SwitchFormDialogFragment
 import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsBasicFragment
+import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsMoreFragment
 import com.kerite.pokedex.ui.fragment.pokemondetails.PokeDetailsMoveFragment
 import com.kerite.pokedex.viewmodel.DetailsActivityViewModel
 import com.kerite.pokedex.viewmodel.PokemonDetailsMoveViewModel
@@ -69,7 +69,7 @@ class PokeDexDetailsActivity : PokeDexBaseActivity<ActivityPokemonDetailsBinding
                 this@PokeDexDetailsActivity,
                 R.id.detailsBasicFragment to { PokeDetailsBasicFragment() },
                 R.id.detailsMoveFragment to { PokeDetailsMoveFragment() },
-                R.id.detailsMoreFragment to { Fragment() }
+                R.id.detailsMoreFragment to { PokeDetailsMoreFragment() }
             )
             viewPagerAdapter.setupViewPager2(pokemonDetailsViewPager)
             pokemonDetailsViewPager.isUserInputEnabled = false

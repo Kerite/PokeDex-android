@@ -16,25 +16,47 @@
         <attr name="speed" format="integer" />
     </declare-styleable>
     <declare-styleable name="PokemonTypeView">
-        <attr name="type" format="enum">
+        <attr name="pokemonType" format="enum">
             <enum name="normal" value="0" />
-            <enum name="flying" value="1" />
-            <enum name="fire" value="2" />
-            <enum name="psychic" value="3" />
-            <enum name="water" value="4" />
-            <enum name="bug" value="5" />
-            <enum name="electric" value="6" />
-            <enum name="rock" value="7" />
-            <enum name="grass" value="8" />
-            <enum name="ghost" value="9" />
-            <enum name="ice" value="10" />
-            <enum name="dragon" value="11" />
-            <enum name="fighting" value="12" />
-            <enum name="dark" value="13" />
-            <enum name="poison" value="14" />
-            <enum name="steel" value="15" />
-            <enum name="ground" value="16" />
+            <enum name="fighting" value="1" />
+            <enum name="flying" value="2" />
+            <enum name="poison" value="3" />
+            <enum name="ground" value="4" />
+            <enum name="rock" value="5" />
+            <enum name="bug" value="6" />
+            <enum name="ghost" value="7" />
+            <enum name="steel" value="8" />
+            <enum name="fire" value="9" />
+            <enum name="water" value="10" />
+            <enum name="grass" value="11" />
+            <enum name="electric" value="12" />
+            <enum name="psychic" value="13" />
+            <enum name="ice" value="14" />
+            <enum name="dragon" value="15" />
+            <enum name="dark" value="16" />
             <enum name="fairy" value="17" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="PokemonDamageMultiplierWidget">
+        <attr name="pokemonTypes" format="flags">
+            <flag name="normal" value="1" />
+            <flag name="fighting" value="2" />
+            <flag name="flying" value="4" />
+            <flag name="poison" value="8" />
+            <flag name="ground" value="16" />
+            <flag name="rock" value="32" />
+            <flag name="bug" value="64" />
+            <flag name="ghost" value="128" />
+            <flag name="steel" value="256" />
+            <flag name="fire" value="512" />
+            <flag name="water" value="1024" />
+            <flag name="grass" value="2048" />
+            <flag name="electric" value="4096" />
+            <flag name="psychic" value="8192" />
+            <flag name="ice" value="16384" />
+            <flag name="dragon" value="32768" />
+            <flag name="dark" value="65536" />
+            <flag name="fairy" value="1331072" />
         </attr>
     </declare-styleable>
 </resources>
