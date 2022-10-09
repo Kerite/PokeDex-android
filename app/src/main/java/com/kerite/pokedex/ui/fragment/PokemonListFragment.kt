@@ -86,7 +86,7 @@ class PokemonListFragment : BaseFragment<FragmentPokemonDexBinding>(
                         pokemonType2.type = it.type2
                     }
                     val path =
-                        "file:///android_asset/small_icon/${it.iconRowIndex * MSP_WIDTH + it.iconColumnIndex}.png"
+                        "file:///android_asset/small_icon/${it.iconRowIndex * MSP_WIDTH + it.iconColumnIndex}.webp"
                     pokemonHeader.load(path.toUri())
                 },
                 onItemClick = {
