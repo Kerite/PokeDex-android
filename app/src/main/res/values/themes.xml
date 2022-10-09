@@ -3,28 +3,27 @@
     <!-- Base application theme. -->
     <!-- ======================= -->
     <style name="Base.Theme.PokemonDex" parent="Base.V31.Theme.PokemonDex">
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="bottomNavigationStyle">@style/Widget.Pokedex.BottomNavigationView</item>
-        <item name="actionModeCloseButtonStyle">@style/Theme.Pokedex.ActionMode.CloseButton</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Rikka.Material3</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+        <item name="bottomNavigationStyle">@style/Widget.Pokedex.BottomNavigationView</item>
+        <item name="actionModeCloseButtonStyle">@style/Theme.Pokedex.ActionMode.CloseButton</item>
         <item name="bottomSheetDialogTheme">@style/PokeDex.Widget.BottomSheetDialog</item>
+        <!-- Enable Rikka's Material Preference -->
         <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
-        <!-- ===== Pokemon Shape Icon Colors ===== -->
-        <item name="body_shape_foreground">@color/default_shape_icon_foreground</item>
-        <item name="body_shape_background">@color/default_shape_icon_background</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Rikka.Material3</item>
+        <!-- Transparent system bars for edge-to-edge. -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <!--Default Theme-->
     <style name="Theme.PokemonDex" parent="Base.Theme.PokemonDex">
-        <!-- Transparent system bars for edge-to-edge. -->
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+        <!-- ===== Pokemon Shape Icon Colors ===== -->
+        <item name="body_shape_foreground">@color/default_shape_icon_foreground</item>
+        <item name="body_shape_background">@color/default_shape_icon_background</item>
     </style>
 
     <style name="SelectableTextViewText" parent="Widget.AppCompat.TextView">
