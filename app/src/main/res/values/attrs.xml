@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="body_shape_foreground" format="color" />
+    <attr name="body_shape_background" format="color" />
+
     <declare-styleable name="SelectableTextView">
         <attr name="checked" format="boolean" />
         <attr name="maskColor" format="color" />

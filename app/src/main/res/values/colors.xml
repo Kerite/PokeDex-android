@@ -34,4 +34,7 @@
     <color name="move_category_max">#ac379e</color>
     <color name="move_category_gigantamax">#ac379e</color>
     <color name="move_category_z_move">#5ac8fa</color>
+
+    <color name="default_shape_icon_foreground">#787878</color>
+    <color name="default_shape_icon_background">#ffffff</color>
 </resources>
