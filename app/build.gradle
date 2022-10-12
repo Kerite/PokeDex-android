@@ -110,6 +110,34 @@ android {
 }
 
 dependencies {
+    implementation "androidx.activity:activity-ktx:1.6.0"
+    implementation "androidx.fragment:fragment-ktx:1.5.3"
+    implementation "androidx.collection:collection-ktx:1.2.0"
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+
+    // Appcompat
+    def jetpack_appcompat_version = '1.5.1'
+    implementation "androidx.appcompat:appcompat:$jetpack_appcompat_version"
+    implementation "androidx.appcompat:appcompat-resources:$jetpack_appcompat_version"
+
+    // Core
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // Lifecycle
+    def lifecycle_version = '2.5.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // Navigation
+    def jetpack_navigation_version = '2.5.2'
+    implementation "androidx.navigation:navigation-fragment-ktx:$jetpack_navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$jetpack_navigation_version"
+
     // ROOM
     def room_version = '2.4.3'
     implementation "androidx.room:room-runtime:$room_version"
@@ -123,44 +151,18 @@ dependencies {
     implementation "androidx.work:work-runtime-ktx:$work_manager_version"
     implementation "androidx.work:work-multiprocess:$work_manager_version"
 
-    // Lifecycle
-    def lifecycle_version = '2.5.1'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
-    // DataStore
-    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
-    implementation "androidx.datastore:datastore-preferences:1.0.0"
-
-    // Core
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.core:core-splashscreen:1.0.0'
-    implementation "androidx.core:core-animation:1.0.0-beta01"
-
-    // AppCenter
-    def appCenterSdkVersion = '4.4.5'
-    appCenterImplementation "com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}"
-    googlePlayImplementation "com.microsoft.appcenter:appcenter-distribute-play:${appCenterSdkVersion}"
-
     implementation 'androidx.interpolator:interpolator:1.0.0'
 
     // 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
-
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation "androidx.appcompat:appcompat-resources:1.5.1"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
-    implementation 'androidx.preference:preference-ktx:1.2.0'
 
-    implementation 'com.google.android.material:material:1.6.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
+    // MLKit
     implementation 'com.google.mlkit:image-labeling:17.0.7'
     implementation 'com.google.mlkit:image-labeling-custom:17.0.1'
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.6.1'
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:30.5.0')
@@ -171,22 +173,23 @@ dependencies {
     // Third Party Libraries
     implementation 'com.jakewharton.timber:timber:5.0.1'
     implementation 'io.coil-kt:coil:2.2.2'
-    implementation 'com.github.bumptech.glide:glide:4.14.1'
-    kapt 'com.github.bumptech.glide:compiler:4.14.1'
     implementation "dev.rikka.rikkax.material:material-preference:2.0.0"
-    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
-//    implementation "com.hendraanggrian.material:collapsingtoolbarlayout-subtitle:1.5.0"
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
 
-//    implementation('com.github.Kerite:fission-ktx:master-SNAPSHOT') {
-//        changing true
-//    }
     implementation('com.kerite.fission:fission-android:0.0.2') {
         changing true
     }
     implementation('com.kerite.fission:fission-common:0.0.2') {
         changing true
     }
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // AppCenter
+    def appCenterSdkVersion = '4.4.5'
+    appCenterImplementation "com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}"
+    googlePlayImplementation "com.microsoft.appcenter:appcenter-distribute-play:${appCenterSdkVersion}"
 }

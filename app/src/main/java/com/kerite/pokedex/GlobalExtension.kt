@@ -1,6 +1,9 @@
 package com.kerite.pokedex
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.core.net.toFile
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
@@ -41,5 +44,17 @@ inline fun <T> measurePerformance(
     return action().also {
         Timber.tag("Performance[$tag]")
             .d("Used ${System.currentTimeMillis() - startTime} milliseconds")
+    }
+}
+
+fun Context.installApk(uri: Uri) {
+    val file = uri.toFile()
+    if (file.exists()) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "application/vnd.android.package-archive")
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        startActivity(intent)
     }
 }
